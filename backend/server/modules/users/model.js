@@ -39,10 +39,6 @@ const UserSchema = new Schema ({
     gender: {
         type: String
     },
-    post: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post'
-    }]
 }, { timestamps: {createdAt: true, updatedAt: false} });
 
 export default mongoose.model('User', UserSchema);

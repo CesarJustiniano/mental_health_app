@@ -11,8 +11,7 @@ const CommentSchema = new Schema({
         ref: 'Post'
     },
     postedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: mongoose.Schema.Types.Mixed,
     }
 }, {timestamps: {createdAt: true, updatedAt: false} });
 
