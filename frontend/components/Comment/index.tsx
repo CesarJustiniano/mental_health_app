@@ -13,7 +13,7 @@ export type CommentProps = {
 
 const Comment = ({comment}: CommentProps) => (
     <View style={styles.container}>
-         <LeftContainer user={comment.user}/>
+         <LeftContainer user={comment.postedBy}/>
          <MainContainer comment={comment}/>
     </View>
 )

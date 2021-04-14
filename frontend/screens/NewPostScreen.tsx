@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     StyleSheet,
     Text,
@@ -12,20 +12,35 @@ import { AntDesign } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import ProfilePicture from "../components/ProfilePicture";
 import {useNavigation} from "@react-navigation/native";
+import { createPost } from '../constants/api';
 
 export default function NewPostScreen() {
-    let {post} = useState('');
-    let {imageUrl} = useState('');
-    let {videoUrl} = useState('');
+    const [post, setPost] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [videoUrl, setVideoUrl] = useState('');
     const navigation = useNavigation();
 
-    const onPostButton = () => {
-        console.log(`Post: ${post} 
-            Image: ${imageUrl}
-            Video: ${videoUrl}`);
-        if(post != null && post != '')
+    const onPostButton = async () => {
+        try {
+            const newPost = {
+                body: post,
+            }
+            const response = await createPost(newPost);
+            const data = await response.json();
+            setPost(data);
             onCloseButton();
-    };
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    // const onPostButton = () => {
+    //     console.log(`Post: ${post}
+    //         Image: ${imageUrl}
+    //         Video: ${videoUrl}`);
+    //     if(post != null && post != '')
+    //         onCloseButton();
+    // };
 
     const onCloseButton = () => {
         navigation.navigate('Root');
@@ -44,7 +59,7 @@ export default function NewPostScreen() {
                 <View style={styles.inputContainer}>
                     <TextInput
                         value={post}
-                        onChangeText={value => post = value}
+                        onChangeText={value => setPost(value)}
                         multiline={true}
                         numberOfLines={3}
                         style={styles.postInput}
@@ -52,13 +67,13 @@ export default function NewPostScreen() {
                     />
                     <TextInput
                         value={imageUrl}
-                        onChangeText={value => imageUrl = value}
+                        onChangeText={value => setImageUrl(value)}
                         style={styles.imageInput}
                         placeholder={'Image url (optional)'}
                     />
                     <TextInput
                         value={videoUrl}
-                        onChangeText={value => videoUrl = value}
+                        onChangeText={value => setVideoUrl(value)}
                         style={styles.videoInput}
                         placeholder={'Video url (optional)'}
                     />
