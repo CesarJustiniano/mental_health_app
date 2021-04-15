@@ -17,6 +17,10 @@ export default function TabTwoScreen() {
     navigation.navigate('UserMenuScreen');
   }
 
+  const onButtonPressFirst = ()=>{
+    navigation.navigate('FirstScreen')
+  }
+
 
 
 
@@ -69,6 +73,13 @@ export default function TabTwoScreen() {
         </TextInput>
         <View>
           <Text style={styles.redButton} onPress={onButtonPress2} >LOGIN</Text>
+        </View>
+
+        <View>
+          <Text style={styles.headings}>-----------0R-----------</Text>
+          <TouchableOpacity >
+            <Text style={styles.redButton} onPress={onButtonPressFirst} >GO BACK</Text>
+          </TouchableOpacity>
         </View>
 
 
