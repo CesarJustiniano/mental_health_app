@@ -19,6 +19,8 @@ export type RootStackParamList = {
   CalendarAgenda: undefined;
   DatePickerScreen:undefined;
   DateTimePickerScreen: undefined;
+  InformationPsychologistScreen: undefined;
+  TermsOfServiceScreen:undefined;
 };
 
 export type BottomTabParamList = {
