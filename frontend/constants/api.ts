@@ -1,4 +1,5 @@
 import axios from "axios";
+import {PostType} from "../types";
 
 //axios.defaults.baseURL = 'http://localhost:3000/api'; //for Web page
 //axios.defaults.baseURL = 'http://172.20.10.3:3000/api'; //for mobile device & Web Page
@@ -34,11 +35,6 @@ export const getAuthUser = async () => {
     return response.data;
 }
 
-export const createComment = async (data: any) => {
-    const response = await axios.post('/post/:id/createComment', { data });
-    return response.data;
-}
-
 export default {
     getPosts,
     createPost,
@@ -46,5 +42,4 @@ export default {
     userLogin,
     userLogout,
     getAuthUser,
-    createComment,
 };

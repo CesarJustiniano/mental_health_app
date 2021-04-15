@@ -11,19 +11,28 @@ import { View } from '../components/Themed';
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import ProfilePicture from "../components/ProfilePicture";
-import {useNavigation} from "@react-navigation/native";
+import {RouteProp, useNavigation} from "@react-navigation/native";
 import { useRoute } from '@react-navigation/native';
+import {Params} from "../types";
+import axios from "axios";
 
 export default function NewCommentScreen() {
-    let {post} = useState("");
+    const [comment, setComment] = useState("");
     const navigation = useNavigation();
-    const route = useRoute();
+    const route = useRoute<RouteProp<Params, 'A'>>();
 
-    console.log(route.params)
-
-    const onPostButton = () => {
-        console.log(`Posting comment: ${post}`);
-        onCloseButton();
+    const onPostButton = async () => {
+        try{
+            const newComment = {
+                text: comment,
+            }
+            const response = await axios.post(`/post/${route.params.id}/createComment`, { newComment });
+            console.log(response);
+            //setComment(response);
+            onCloseButton();
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     const onCloseButton = () => {
@@ -42,8 +51,8 @@ export default function NewCommentScreen() {
                 <ProfilePicture image={'https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'} />
                 <View style={styles.inputContainer}>
                     <TextInput
-                        value={post}
-                        onChangeText={value => post = value}
+                        value={comment}
+                        onChangeText={value => setComment(value)}
                         multiline={true}
                         numberOfLines={3}
                         style={styles.postInput}

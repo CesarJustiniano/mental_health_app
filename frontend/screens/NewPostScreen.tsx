@@ -28,6 +28,7 @@ export default function NewPostScreen() {
             const response = await createPost(newPost);
             const data = await response.json();
             setPost(data);
+            console.log(data);
             onCloseButton();
         } catch (e) {
             console.log(e);
