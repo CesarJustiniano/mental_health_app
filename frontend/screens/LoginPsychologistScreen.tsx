@@ -16,6 +16,10 @@ export default function LoginPsychologistScreen() {
         navigation.navigate('PsychologistMenuScreen');
     }
 
+    const onButtonPressFirst = ()=>{
+        navigation.navigate('FirstScreen')
+    }
+
 
 
     // @ts-ignore
@@ -68,6 +72,13 @@ export default function LoginPsychologistScreen() {
 
 
                     </View>
+                    <View>
+                        <Text style={styles.headings}>-----------0R-----------</Text>
+                        <TouchableOpacity >
+                            <Text style={styles.redButton} onPress={onButtonPressFirst} >GO BACK</Text>
+                        </TouchableOpacity>
+                    </View>
+
                 </View>
 
 
