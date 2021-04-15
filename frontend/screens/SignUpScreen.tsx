@@ -1,9 +1,12 @@
 import React from 'react';
-import {KeyboardAvoidingView, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {CheckBox, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+//import CheckBox from '@react-native-community/checkbox';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import {  Text, View , } from '../components/Themed';
+import {useState} from "react";
+import {blue50} from "react-native-paper/lib/typescript/styles/colors";
 
 export default function SignUpScreen(){
     const  navigation = useNavigation();
@@ -14,6 +17,14 @@ export default function SignUpScreen(){
     const onButtonPress2 = () => {
         navigation.navigate('TabTwoScreen');
     }
+
+    const onButtonToS = ()=>{
+        Linking.openURL("https://pdfhost.io/v/Yql1Cwto7_FeelGoods_Terms_Of_Service.pdf");
+    }
+
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+
+
 
     return (
 
@@ -69,12 +80,18 @@ export default function SignUpScreen(){
                        underlineColorAndroid='transparent'>
             </TextInput>
             <View>
+                <Text onPress={onButtonToS}
+                style={{color:'blue'}}>
+                    PLEASE READ TERMS OF SERVICE:
+                </Text>
+
             <TouchableOpacity >
-                <Text style={styles.customButton} onPress={onButtonPress} >REGISTER</Text>
+                <Text style={styles.customButton} onPress={onButtonToS} >REGISTER</Text>
             </TouchableOpacity>
                 <TouchableOpacity >
                     <Text style={styles.customButton} onPress={onButtonPress2} >GO BACK</Text>
                 </TouchableOpacity>
+
             </View>
 
 

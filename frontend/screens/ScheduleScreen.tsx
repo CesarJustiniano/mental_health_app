@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, View} from "../components/Themed";
-import {Modal, StyleSheet,  TouchableHighlight, Button} from "react-native";
+import {Modal, StyleSheet, TouchableHighlight, Button, TextInput} from "react-native";
 //import moment from "moment";
 //import {useState} from "react";
 
@@ -34,6 +34,18 @@ export default function ScheduleScreen() {
                 onDateChange={(value)=>console.log('Date changed: '+value)}
             >
             </CustomDatePicker>
+            </View>
+            <View>
+                <TextInput style={styles.customInput}  placeholder='Enter Your Name'
+                           placeholderTextColor='rgba(255,255,255,0.7'
+                           underlineColorAndroid='transparent'>
+                </TextInput>
+                <TextInput style={styles.customInput}  placeholder='Email'
+                           placeholderTextColor='rgba(255,255,255,0.7'
+                           underlineColorAndroid='transparent'>
+                </TextInput>
+
+
             </View>
             <View>
                 <Text style={styles.redButton}  >CONFIRM</Text>
@@ -85,6 +97,21 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 12,
         //cursor: 'pointer'
+    },
+
+    customInput:{
+        borderWidth: 0,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        backgroundColor: "#f2f2f2",
+        padding: 12,
+        borderRadius: 3,
+        width: 250,
+        fontSize: 14,
+        borderBottomWidth: 1,
+        borderBottomColor: 'black',
+        marginBottom:15,
+
     },
 
 
