@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from "react-native";
 import {CommentType} from "../../../types";
 import styles from "./styles";
-import moment from 'moment'; //download with 'npm install moment --save'
+import moment from 'moment';
 
 export type MainContainerProps = {
     comment: CommentType

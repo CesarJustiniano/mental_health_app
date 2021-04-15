@@ -1,9 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
 import {View, FlatList, ScrollView, RefreshControl} from "react-native";
-//import posts from '../../data/Posts';
 import Post from "../Post";
 import { getPosts } from '../../constants/api';
-//import {PostType} from "../../types";
 
 const Feed = () => {
 
@@ -17,7 +15,6 @@ const Feed = () => {
         try{
             const postData = await getPosts();
             setPosts(postData);
-            console.log(postData);
         } catch (e) {
             console.log(e);
         }
@@ -31,25 +28,6 @@ const Feed = () => {
     }, [])
 
     return (
-        // <View style={{width: '100%'}}>
-        //     <FlatList
-        //         data={posts}
-        //         renderItem={({item}) => <Post post={item}/>}
-        //         keyExtractor={(item) => item._id}
-        //         ref={flatList}
-        //         refreshing={loading}
-        //         onRefresh={fetchPosts}
-        //         inverted
-        //         initialScrollIndex={posts.length - 1}
-        //         onScrollToIndexFailed={info => {
-        //             const wait = new Promise(resolve => setTimeout(resolve, 500));
-        //             wait.then(() => {
-        //                 flatList.current?.scrollToIndex({ index: info.index, animated: true });
-        //             });
-        //         }}
-        //     />
-        // </View>
-
         <ScrollView
             contentContainerStyle={{
                 flexDirection: 'row',

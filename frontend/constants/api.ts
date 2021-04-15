@@ -1,5 +1,4 @@
 import axios from "axios";
-import {PostType} from "../types";
 
 //axios.defaults.baseURL = 'http://localhost:3000/api'; //for Web page
 //axios.defaults.baseURL = 'http://172.20.10.3:3000/api'; //for mobile device & Web Page

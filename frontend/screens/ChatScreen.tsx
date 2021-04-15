@@ -15,7 +15,7 @@ export default function ChatScreen() {
           style={{width: '100%'}}
           data={chatRooms}
           renderItem={({item}) => <ChatListItem chatRoom={item}/>}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item._id}
       />
       <NewMessageButton />
     </View>

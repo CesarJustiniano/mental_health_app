@@ -73,20 +73,20 @@ export type CommentType = {
 }
 
 export type Message = {
-  id: string,
+  _id: string,
   content: string,
   createdAt: string,
   user: UserType,
 }
 
 export type ChatRoom = {
-  id: string,
+  _id: string,
   users: UserType[],
   lastMessage: Message,
 }
 
 export type GroupChatRoom = {
-  id: string,
+  _id: string,
   name: string,
   users: UserType[],
   lastMessage: Message,
@@ -95,7 +95,7 @@ export type GroupChatRoom = {
 }
 
 export type Category = {
-  id: string,
+  _id: string,
   name: string,
   groupChats?: GroupChatRoom[],
   posts?: PostType[],

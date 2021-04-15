@@ -7,10 +7,11 @@ const style =StyleSheet.create({
     },
     PostHeaderContainer: {
         flexDirection: 'row',
-        justifyContent: "space-between",
     },
     PostHeaderNames: {
         flexDirection: 'row',
+        justifyContent: "space-between",
+        width: '100%'
     },
     username: {
         marginRight: 5,

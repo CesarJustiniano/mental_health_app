@@ -23,10 +23,9 @@ const MainContainer = ({post}: MainContainerProps) => {
                     <Text style={styles.username}>@{post.postedBy.username}</Text>
                     <Text style={styles.createdAt}>{moment(post.createdAt).fromNow()}</Text>
                 </View>
-                <Ionicons name={'chevron-down'} size={16} color={'grey'}/>
             </View>
             <View>
-                <Text style={styles.content}> {post.body}</Text>
+                <Text style={styles.content}>{post.body}</Text>
                 {!!post.image && <Image style={styles.image} source={{uri: post.image}}/>}
                 {!!post.video &&
                 <Video
