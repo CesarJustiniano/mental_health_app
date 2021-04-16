@@ -18,7 +18,7 @@ export default function UserMenuScreen(){
         //await?
     }
     const onButtonPressChats = () => {
-        navigation.navigate('FirstScreen');
+        navigation.navigate('ChatScreen');
     }
     const onButtonPressVideo = () => {
         //navigation.navigate('LoginPsychologistScreen');

@@ -27,6 +27,7 @@ import DatePickerScreen from "../screens/DatePickerScreen";
 import DateTimePickerScreen from "../screens/DateTimePickerScreen";
 import TermsOfServiceScreen from "../screens/TermsOfServiceScteen";
 import InformationPsychologistScreen from "../screens/InformationPsychologistScreen";
+import VideoPreCallScreen from "../screens/VideoPreCallScreen";
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -67,6 +68,7 @@ function RootNavigator() {
       <Stack.Screen name="TermsOfServiceScreen" component={TermsOfServiceScreen} />
       <Stack.Screen name= "DateTimePickerScreen" component={DateTimePickerScreen} />
       <Stack.Screen name= "InformationPsychologistScreen" component={InformationPsychologistScreen} />
+      <Stack.Screen name= "VideoPreCallScreen" component={VideoPreCallScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );

@@ -6,10 +6,14 @@ import sessionStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
 import dbConfig from './config/db.js';
 import middlewareConfig from './config/middlewares.js';
-import { PostRoutes, UserRoutes, CommentRoutes, ChatRoomRoutes } from './modules';
+import { PostRoutes, UserRoutes, CommentRoutes, ChatRoomRoutes , DoctorRoutes} from './modules';
 
 import User from '../server/modules/users/model.js';
+import Doctor from '../server/modules/doctors/model.js';
 import Message from '../server/modules/chatrooms/messageModel.js';
+import UserSchema from "../server/modules/users/model.js";
+import DoctorSchema from "../server/modules/doctors/model.js";
+import {DoctorRoutes} from "./modules/doctors";
 
 
 const app = express();
@@ -22,7 +26,16 @@ dbConfig();
 //Middlewares
 middlewareConfig(app);
 
-app.use('/api', [PostRoutes, UserRoutes, CommentRoutes]);
+app.use('/api', [PostRoutes, UserRoutes, CommentRoutes, DoctorRoutes]);
+
+app.get("/newEndpoint",async (req,res)=> {
+
+    return res.status(200).json(await User.find({} ));
+    //return res.status(200).json(await User.findOne(user.phoneNumber))
+    }
+
+)
+
 
 const PORT = process.env.PORT || 3000;
 

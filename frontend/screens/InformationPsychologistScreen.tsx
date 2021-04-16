@@ -1,5 +1,5 @@
 import React from 'react';
-import {KeyboardAvoidingView, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {Text, View, } from '../components/Themed';
@@ -15,12 +15,21 @@ export default function InformationPsychologistScreen(){
         navigation.navigate('PsychologistMenuScreen');
     }
 
+    const onButtonPrivacy = ()=>{
+        Linking.openURL("https://pdfhost.io/v/kXsaPhgTN_FeelGoods_Privacy_Policy.pdf");
+    }
+
     return(
 
         <View style={styles.container}>
 
             <View>
 
+                <Text onPress={onButtonPrivacy}
+                      style={{color:'blue', alignItems: 'center',
+                          justifyContent: 'center'}}>
+                    Privacy Policy
+                </Text>
                 <TouchableOpacity >
                     <Text style={styles.customButton} onPress={onButtonHelp} >HELP CENTERS</Text>
                 </TouchableOpacity>
@@ -32,6 +41,9 @@ export default function InformationPsychologistScreen(){
                 <TouchableOpacity >
                     <Text style={styles.customButton} onPress={onButtonBack} >FEEDBACK</Text>
                 </TouchableOpacity>
+
+
+
                 <TouchableOpacity >
                     <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
                 </TouchableOpacity>

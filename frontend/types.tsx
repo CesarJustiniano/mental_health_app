@@ -21,6 +21,7 @@ export type RootStackParamList = {
   DateTimePickerScreen: undefined;
   InformationPsychologistScreen: undefined;
   TermsOfServiceScreen:undefined;
+  VideoPreCallScreen: undefined;
 };
 
 export type BottomTabParamList = {

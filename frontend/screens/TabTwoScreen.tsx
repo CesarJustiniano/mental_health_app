@@ -21,6 +21,10 @@ export default function TabTwoScreen() {
     navigation.navigate('FirstScreen')
   }
 
+  const onButtonTest= ()=>{
+    navigation.navigate('VideoPreCallScreen')
+  }
+
 
 
 
@@ -48,7 +52,7 @@ export default function TabTwoScreen() {
 
         <View >
           <TouchableOpacity>
-          <Text style={styles.redButton} onPress={onButtonPress}>SIGN UP</Text>
+          <Text style={styles.redButton} onPress={onButtonTest}>SIGN UP</Text>
           </TouchableOpacity>
         </View>
 
