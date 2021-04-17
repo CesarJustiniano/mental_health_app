@@ -22,7 +22,7 @@ export const createUser = async (req, res) => {
                 phoneNumber,
                 physicalAddress,
                 age,
-                gender
+                gender,
             })
 
             try {
@@ -87,6 +87,7 @@ export const updateUser = async (req, res) => {
         user.physicalAddress = req.body.physicalAddress
         user.age = req.body.age
         user.gender = req.body.gender
+        user.myDoctor = req.body.myDoctor
 
         //await user.save();
         return res.status(200).json(await user.save());

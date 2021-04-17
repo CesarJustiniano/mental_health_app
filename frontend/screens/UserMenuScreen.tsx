@@ -14,7 +14,8 @@ export default function UserMenuScreen(){
     }
     const onButtonPressVideoChat = () => {
         //navigation.navigate('LoginPsychologistScreen');
-        Linking.openURL("tel:+17874094429");
+        //Linking.openURL("tel:+17874094429");
+        navigation.navigate('VideoPreCallScreen')
         //await?
     }
     const onButtonPressChats = () => {

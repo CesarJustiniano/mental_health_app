@@ -13,7 +13,7 @@ import Doctor from '../server/modules/doctors/model.js';
 import Message from '../server/modules/chatrooms/messageModel.js';
 import UserSchema from "../server/modules/users/model.js";
 import DoctorSchema from "../server/modules/doctors/model.js";
-import {DoctorRoutes} from "./modules/doctors";
+
 
 
 const app = express();
@@ -30,7 +30,7 @@ app.use('/api', [PostRoutes, UserRoutes, CommentRoutes, DoctorRoutes]);
 
 app.get("/newEndpoint",async (req,res)=> {
 
-    return res.status(200).json(await User.find({} ));
+    return res.status(200).json(await Doctor.find({} ));
     //return res.status(200).json(await User.findOne(user.phoneNumber))
     }
 

@@ -42,7 +42,14 @@ const UserSchema = new Schema ({
     post: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
-    }]
+    }],
+
+    myDoctor: {
+        type: mongoose.Schema.Types.ObjectId,
+
+    }
+
+
 }, { timestamps: {createdAt: true, updatedAt: false} });
 
 export default mongoose.model('User', UserSchema);

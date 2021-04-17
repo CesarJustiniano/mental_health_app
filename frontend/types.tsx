@@ -58,6 +58,18 @@ export type UserType = {
   username: string,
   image?: string,
   status?: string,
+  phoneNumber: string,
+
+}
+
+export type DoctorType = {
+  _id:string,
+  firstName: string,
+  username: string,
+  image?:string,
+  status?: string,
+  phoneNumber: string,
+
 }
 
 export type PostType = {

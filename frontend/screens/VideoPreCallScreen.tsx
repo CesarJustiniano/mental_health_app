@@ -1,5 +1,15 @@
 import * as React from 'react';
-import {StyleSheet,Platform,ScrollView, TextInput, Dimensions, TouchableOpacity, KeyboardAvoidingView, Image} from 'react-native';
+import {
+    StyleSheet,
+    Platform,
+    ScrollView,
+    TextInput,
+    Dimensions,
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    Image,
+    Linking
+} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View , } from '../components/Themed';
@@ -7,22 +17,35 @@ import {useNavigation} from "@react-navigation/native";
 const {width: WIDTH} = Dimensions.get('window')
 //import { PostType } from "../../types";
 import {UserType} from "../types";
-import LeftContainer from "../components/Post/LeftContainer";
-import MainContainer from "../components/Post/MainContainer";
-import {PostProps} from "../components/Post";
+import {DoctorType} from "../types";
+import {useState} from "react";
 
-export type UserProps = {
-    user: UserType,
+
+export type VideoCallProps = {
+    patient: UserType,
+    doctor: DoctorType
 }
 
-export default function VideoPreCallScreen(){
+export default function VideoPreCallScreen({doctor,patient}:VideoCallProps){
     const  navigation = useNavigation();
 
 
+    //Dummy data
+    let [username, setUsername] = useState('Jesse'); //Dummy initial
+    let [phoneNumber, setPhoneNumber] = useState("17874094429"); //Dummy initial
+    let [address, setAddress] = useState('San Juan, Puerto Rico'); //Dummy initial
+
+    const onButtonPressVideoChat = () => {
+        //navigation.navigate('LoginPsychologistScreen');
+        Linking.openURL("tel:+"+phoneNumber);
+        //await?
+    }
+
 
     return (
-        <View>
-            <Text>Hello</Text>
+        <View style={styles.container}>
+            <Text style={styles.headings}>IF YOUR APPOINTMENT IS READY THEN PRESS THE BUTTON</Text>
+            <Text onPress={onButtonPressVideoChat}> This is my doctors's phone {phoneNumber}</Text>
         </View>
 
     );
