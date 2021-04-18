@@ -28,10 +28,7 @@ export default passport => {
 
     passport.deserializeUser((id, cb) => {
         User.findOne({_id: id }, (err, user) => {
-            const userInfo = {
-                username: user.username,
-            };
-            cb(err, userInfo);
+            cb(err, user);
         });
     });
 };

@@ -64,10 +64,6 @@ export const getUser = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
     try {
-        // return User.find({}).populate('post').exec((err, data) => {
-        //     if (err) throw err;
-        //     console.log(data);
-        // })
         return res.status(200).json(await User.find({} ));
     } catch {
         return res.status(404).json({ error: true, message: 'Error with User'});

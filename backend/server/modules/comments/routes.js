@@ -5,7 +5,7 @@ import User from '../users/model.js';
 
 const routes = new Router();
 
-routes.post('/post/:_id/createComment', async (req, res) => {
+routes.post('/post/:id/createComment', async (req, res) => {
     if(req.user){
 
         const postId = await Post.findById(req.params.id);
@@ -40,7 +40,7 @@ routes.post('/post/:_id/createComment', async (req, res) => {
     }
 });
 
-routes.get('/post/:_id/comments', async (req, res) => {
+routes.get('/post/:id/comments', async (req, res) => {
 
     const postId = await Post.findById(req.params.id);
 

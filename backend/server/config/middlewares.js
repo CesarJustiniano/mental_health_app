@@ -16,13 +16,14 @@ export default app => {
 
    app.use(cors());
 
+   app.use(cookieParser('secretCode'));
+
    app.use(session({
       secret: "secretCode",
       resave: true,
       saveUninitialized: true,
    }));
 
-   app.use(cookieParser("secretCode"));
    app.use(passport.initialize());
    app.use(passport.session());
    passportConfig(passport);
