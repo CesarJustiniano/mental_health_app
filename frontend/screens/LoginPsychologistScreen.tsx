@@ -10,7 +10,7 @@ export default function LoginPsychologistScreen() {
     const  navigation = useNavigation();
 
     const onButtonPress = () => {
-        //navigation.navigate('SignUpScreen');
+        navigation.navigate('SignUpDoctorScreen');
     }
     const onButtonPress2 = () => {
         navigation.navigate('PsychologistMenuScreen');

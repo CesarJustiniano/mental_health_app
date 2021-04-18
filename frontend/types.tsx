@@ -22,6 +22,8 @@ export type RootStackParamList = {
   InformationPsychologistScreen: undefined;
   TermsOfServiceScreen:undefined;
   VideoPreCallScreen: undefined;
+  SignUpDoctorScreen: undefined;
+  ScheduleScreen:undefined
 };
 
 export type BottomTabParamList = {

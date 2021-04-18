@@ -7,9 +7,21 @@ const VideoCallSchema = new Schema({
         minlength: [10, '10 characters long at least'],
         maxlength: 150,
     },
-    postedBy: {
+
+
+    patient: {
         type: mongoose.Schema.Types.Mixed,
+        required: true
     },
+
+    doctor:{
+        type:mongoose.Schema.Types.Mixed,
+        required:true
+    },
+
+    appointmentDate:{
+        type: Date
+    }
 
 }, { timestamps: {createdAt: true, updatedAt: false} } );
 

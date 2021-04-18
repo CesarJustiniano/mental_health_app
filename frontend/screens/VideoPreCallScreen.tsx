@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView,
     Image,
-    Linking
+    Linking,
+    FlatList, RefreshControl
 } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -18,7 +19,10 @@ const {width: WIDTH} = Dimensions.get('window')
 //import { PostType } from "../../types";
 import {UserType} from "../types";
 import {DoctorType} from "../types";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import axios from "axios";
+import {getDoctorList, getPosts} from "../constants/api";
+import Post from "../components/Post";
 
 
 export type VideoCallProps = {
@@ -27,26 +31,61 @@ export type VideoCallProps = {
 }
 
 export default function VideoPreCallScreen({doctor,patient}:VideoCallProps){
+
     const  navigation = useNavigation();
+    const [doctors, setDoctors] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const flatList = useRef<FlatList>(null);
+
+    const fetchDoctors = async () => {
+        setLoading(true);
+        try{
+            const postData = await getDoctorList();
+            setDoctors(postData);
+        } catch (e) {
+            console.log(e);
+        }
+        finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchDoctors().then();
+    }, [])
+
+
 
 
     //Dummy data
     let [username, setUsername] = useState('Jesse'); //Dummy initial
     let [phoneNumber, setPhoneNumber] = useState("17874094429"); //Dummy initial
     let [address, setAddress] = useState('San Juan, Puerto Rico'); //Dummy initial
+    let[appointmentDate] = useState('May-03-2021')
+    let[myDoctor] = useState('Jesse')
 
     const onButtonPressVideoChat = () => {
         //navigation.navigate('LoginPsychologistScreen');
         Linking.openURL("tel:+"+phoneNumber);
         //await?
     }
+    const onButtonBack = () => {
+        //navigation.navigate('CalendarAgenda');
+        navigation.navigate('UserMenuScreen');
+    }
 
 
     return (
         <View style={styles.container}>
-            <Text style={styles.headings}>IF YOUR APPOINTMENT IS READY THEN PRESS THE BUTTON</Text>
-            <Text onPress={onButtonPressVideoChat}> This is my doctors's phone {phoneNumber}</Text>
+            <Text style={styles.headings}>IF YOUR APPOINTMENT IS READY THEN WAIT FOR YOUR DOCTOR TO CALL YOU</Text>
+            <Text>Your Appointment is {appointmentDate}</Text>
+            <Text onPress={onButtonPressVideoChat}> Doctor: {myDoctor}| Phone: {phoneNumber}</Text>
+            <TouchableOpacity >
+                <Text style={styles.redButton} onPress={onButtonBack} >GO BACK</Text>
+            </TouchableOpacity>
         </View>
+
 
     );
 
