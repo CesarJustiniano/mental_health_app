@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const UserSchema = new Schema ({
+const DoctorSchema = new Schema ({
     firstName: {
         type: String,
         required: true,
@@ -29,23 +29,23 @@ const UserSchema = new Schema ({
         type: String,
         required: true,
     },
-    physicalAddress: {
-        type: String,
-        required: true,
-    },
+
     age: {
         type: Number
     },
     gender: {
         type: String
     },
+    post: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
+    }],
 
-
-    myDoctor: {
+    myPatients: [{
         type: mongoose.Schema.Types.ObjectId,
 
-    },
+    }],
 
 }, { timestamps: {createdAt: true, updatedAt: false} });
 
-export default mongoose.model('User', UserSchema);
+export default mongoose.model('Doctor', DoctorSchema);

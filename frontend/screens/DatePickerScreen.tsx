@@ -22,7 +22,7 @@ export default function DatePickerScreen(){
 
     return(
         <View style={styles.MainView}>
-            <Text>React Native</Text>
+            <Text>Choose a Date</Text>
             <Button title="Show Date Picker" onPress={showDatePicker} />
             <DateTimePickerModal
                 isVisible={isDatePickerVisible}
@@ -30,6 +30,17 @@ export default function DatePickerScreen(){
                 onConfirm={handleConfirm}
                 onCancel={hideDatePicker}
             />
+            <Text>
+                Choose Time
+            </Text>
+            <Button title="Show Time Picker" onPress={showDatePicker} />
+            <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="time"
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+            />
+
 
 
         </View>
@@ -43,6 +54,8 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
     },
+
+
 });
 
 

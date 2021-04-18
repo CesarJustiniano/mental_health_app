@@ -4,31 +4,19 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Text, View, } from '../components/Themed';
 
-export default function UserMenuScreen(){
+export default function InformationPsychologistScreen(){
 
     const  navigation = useNavigation();
 
-    const onButtonPressSchedule = () => {
-        //navigation.navigate('CalendarAgenda');
-        navigation.navigate('ScheduleScreen');
+    const onButtonHelp = () => {
+        navigation.navigate('HelpCenterScreen');
     }
-    const onButtonPressVideoChat = () => {
-        //navigation.navigate('LoginPsychologistScreen');
-        //Linking.openURL("tel:+17874094429");
-        navigation.navigate('VideoPreCallScreen')
-        //await?
+    const onButtonBack = () => {
+        navigation.navigate('PsychologistMenuScreen');
     }
-    const onButtonPressChats = () => {
-        navigation.navigate('ChatScreen');
-    }
-    const onButtonPressVideo = () => {
-        //navigation.navigate('LoginPsychologistScreen');
-    }
-    const onButtonPressShare = () => {
-        //navigation.navigate('LoginPsychologistScreen');
-    }
-    const onButtonPressBoard = () => {
-        navigation.navigate('InformationBoardScreen');
+
+    const onButtonPrivacy = ()=>{
+        Linking.openURL("https://pdfhost.io/v/kXsaPhgTN_FeelGoods_Privacy_Policy.pdf");
     }
 
     return(
@@ -36,26 +24,28 @@ export default function UserMenuScreen(){
         <View style={styles.container}>
 
             <View>
+
+                <Text onPress={onButtonPrivacy}
+                      style={{color:'blue', alignItems: 'center',
+                          justifyContent: 'center'}}>
+                    Privacy Policy
+                </Text>
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPressSchedule} >SCHEDULE MEETING</Text>
+                    <Text style={styles.customButton} onPress={onButtonHelp} >HELP CENTERS</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPressVideoChat} >VIDEO CHAT WITH DOCTOR</Text>
+                    <Text style={styles.customButton} onPress={onButtonBack} >PHONE NUMBERS</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPressChats} >GROUP CHATS</Text>
+                    <Text style={styles.customButton} onPress={onButtonBack} >FEEDBACK</Text>
                 </TouchableOpacity>
 
+
+
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPressVideo} >WATCH MOTIVATIONAL VIDEOS</Text>
-                </TouchableOpacity>
-                <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPressShare} >SHARE YOUR EXPERIENCE</Text>
-                </TouchableOpacity>
-                <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPressBoard} >INFORMATION BOARD</Text>
+                    <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
                 </TouchableOpacity>
 
             </View>
