@@ -16,6 +16,14 @@ export type RootStackParamList = {
   PsychologistMenuScreen:undefined;
   UserMenuScreen:undefined;
   FirstScreen: undefined;
+  CalendarAgenda: undefined;
+  DatePickerScreen:undefined;
+  DateTimePickerScreen: undefined;
+  InformationPsychologistScreen: undefined;
+  TermsOfServiceScreen:undefined;
+  VideoPreCallScreen: undefined;
+  SignUpDoctorScreen: undefined;
+  ScheduleScreen:undefined
 };
 
 export type BottomTabParamList = {
@@ -52,6 +60,18 @@ export type UserType = {
   username: string,
   image?: string,
   status?: string,
+  phoneNumber: string,
+
+}
+
+export type DoctorType = {
+  _id:string,
+  firstName: string,
+  username: string,
+  image?:string,
+  status?: string,
+  phoneNumber: string,
+
 }
 
 export type PostType = {

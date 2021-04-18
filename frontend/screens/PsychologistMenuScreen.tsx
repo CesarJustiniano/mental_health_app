@@ -11,8 +11,12 @@ export default function PsychologistMenuScreen(){
     const onButtonPress = () => {
         //navigation.navigate('HelpCenterScreen');
     }
-    const onButtonPress2 = () => {
+    const onButtonBack = () => {
         navigation.navigate('LoginPsychologistScreen');
+    }
+
+    const onButtonInfo = ()=> {
+        navigation.navigate('InformationPsychologistScreen');
     }
 
     return(
@@ -21,7 +25,7 @@ export default function PsychologistMenuScreen(){
 
             <View>
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPress2} >CHECK SCHEDULES</Text>
+                    <Text style={styles.customButton} onPress={onButtonBack} >CHECK SCHEDULES</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity >
@@ -29,17 +33,17 @@ export default function PsychologistMenuScreen(){
                 </TouchableOpacity>
 
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPress2} >GROUP CHATS</Text>
+                    <Text style={styles.customButton} onPress={onButtonPress} >GROUP CHATS</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPress2} >POST MOTIVATIONAL VIDEOS</Text>
+                    <Text style={styles.customButton} onPress={onButtonBack} >POST MOTIVATIONAL VIDEOS</Text>
                 </TouchableOpacity>
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPress2} >INFORMATION ABOUT OUR APP</Text>
+                    <Text style={styles.customButton} onPress={onButtonInfo} >INFORMATION ABOUT OUR APP</Text>
                 </TouchableOpacity>
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPress2} >GO BACK</Text>
+                    <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
                 </TouchableOpacity>
 
             </View>
@@ -94,11 +98,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: 'black',
 
-        //alignSelf: 'stretch',
-        //height: 40,
+
         marginBottom: 15,
-        //color: '#fff',
-        //borderBottomWidth: 1,
 
 
 

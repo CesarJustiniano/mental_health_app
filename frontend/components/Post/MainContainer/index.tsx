@@ -3,8 +3,8 @@ import {Image, Text, View} from "react-native";
 import { Video } from 'expo-av';
 import {PostType} from "../../../types";
 import styles from "./styles";
-import { Ionicons } from '@expo/vector-icons';
-import moment from 'moment';
+import { Ionicons} from "@expo/vector-icons";
+import moment from 'moment'; //download with 'npm install moment --save'
 
 import Footer from './Footer';
 
