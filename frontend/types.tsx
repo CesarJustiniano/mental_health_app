@@ -102,3 +102,9 @@ export type Category = {
   groupChats?: GroupChatRoom[],
   posts?: PostType[],
 }
+
+export type Params = {
+  A: {
+    id: string,
+  };
+}

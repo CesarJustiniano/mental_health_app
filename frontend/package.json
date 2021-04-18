@@ -13,7 +13,7 @@
   },
   "proxy": "http://localhost:3000",
   "dependencies": {
-    "@expo/vector-icons": "^12.0.0",
+    "@expo/vector-icons": "^12.0.4",
     "@react-native-community/datetimepicker": "3.0.4",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "5.11.2",
@@ -32,8 +32,8 @@
     "expo-web-browser": "~8.6.0",
     "ios": "0.0.1",
     "moment": "^2.29.1",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-calendars": "^1.1254.0",
     "react-native-gesture-handler": "~1.8.0",
@@ -42,19 +42,22 @@
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.0",
     "react-native-video": "^5.1.1",
-    "react-native-web": "~0.13.12",
-    "react-redux": "^7.2.2",
-    "redux": "^4.0.5"
+    "react-native-web": "^0.15.7",
+    "react-redux": "^7.2.3",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "require-context": "^1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0",
+    "@babel/core": "^7.13.15",
     "@types/react": "~16.9.35",
-    "@types/react-native": "~0.63.2",
+    "@types/react-native": "^0.63.52",
     "@types/react-native-video": "^5.0.4",
     "expo-av": "^9.0.0",
     "jest-expo": "~40.0.0",
     "redux-devtools": "^3.7.0",
-    "typescript": "~4.0.0"
+    "typescript": "~4.0.0",
+    "webpack": "^5.32.0"
   },
   "private": true
 }

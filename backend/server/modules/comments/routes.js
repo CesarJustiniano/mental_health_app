@@ -9,7 +9,12 @@ routes.post('/post/:_id/createComment', async (req, res) => {
     if(req.user){
 
         const postId = await Post.findById(req.params.id);
-        const user = await User.findOne(req.user);
+
+        const user = await User.findOne({username: req.user.username}, function (err, userInfo){
+            if (err) throw err;
+            else
+                return userInfo;
+        });
 
         const newComment = new Comment({
             text: req.body.text,
@@ -17,13 +22,18 @@ routes.post('/post/:_id/createComment', async (req, res) => {
             postedBy: user,
         });
 
-        return res.status(200).json(await newComment.save());
-        // return res.status(200).json({ comment : await newComment.save().then(result => {
-        //     Comment.populate(newComment, { path: 'Post'}).then(comment => {
-        //         res.json({message: 'Comment added', comment})
-        //         });
-        //     })
-        // });
+        return res.status(200).json(await newComment.save()
+            .then(comment => {
+                return Post.findById(req.params.id);
+            })
+            .then(post => {
+                post.comments.push(newComment);
+                return post.save();
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        );
 
     } else {
         return res.status(404).json({ error: true, message: 'Error with Comment'})
@@ -35,7 +45,7 @@ routes.get('/post/:_id/comments', async (req, res) => {
     const postId = await Post.findById(req.params.id);
 
     try {
-        return res.status(200).json(await Comment.findOne({postId}));
+        return res.status(200).json(await Comment.find({ postIn: postId }));
     } catch {
         return res.status(404).json({ error: true, message: 'Error with Comment'})
     }

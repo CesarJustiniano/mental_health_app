@@ -17,7 +17,7 @@ const MainContainer = ({comment}: MainContainerProps) => (
             </View>
         </View>
         <View>
-            <Text style={styles.content}>{comment.text}</Text>
+            <Text style={styles.content}> {comment.text}</Text>
         </View>
     </View>
 )

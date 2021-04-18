@@ -10,6 +10,9 @@ const PostSchema = new Schema({
     postedBy: {
         type: mongoose.Schema.Types.Mixed,
     },
+    image: {
+        type: String,
+    },
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment',
