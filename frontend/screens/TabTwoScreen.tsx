@@ -4,17 +4,32 @@ import {StyleSheet,Platform,ScrollView, TextInput, Dimensions, TouchableOpacity,
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View , } from '../components/Themed';
 import {useNavigation} from "@react-navigation/native";
+import {useState} from "react";
+import axios from "axios";
 const {width: WIDTH} = Dimensions.get('window')
 
 export default function TabTwoScreen() {
+  const [uLogin, setUserLogin] = useState({username: '', password: ''});
   const  navigation = useNavigation();
 
   const onButtonPress = () => {
     navigation.navigate('SignUpScreen');
   }
   
-  const onButtonPress2 = () => {
-    navigation.navigate('UserMenuScreen');
+  const onButtonLogin = async () => {
+    try {
+      const loginCredentials = {
+        username: uLogin.username,
+        password: uLogin.password,
+      }
+      console.log(loginCredentials);
+      const response = await axios.post('/login', loginCredentials);
+      console.log(response.data);
+      setUserLogin(response.data);
+      navigation.navigate('UserMenuScreen');
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   const onButtonPressFirst = ()=>{
@@ -28,6 +43,7 @@ export default function TabTwoScreen() {
 
 
 
+  // @ts-ignore
   // @ts-ignore
   return (
       <KeyboardAvoidingView
@@ -63,20 +79,27 @@ export default function TabTwoScreen() {
       <View>
 
         <Text style={styles.headings}>LOGIN</Text>
-        <TextInput style={styles.customInput}  placeholder='Email/Username'
-        placeholderTextColor='rgba(255,255,255,0.7'
-        underlineColorAndroid='transparent'>
-
-
+        <TextInput
+            value={uLogin.username || ''}
+            onChangeText={(event) => setUserLogin({...uLogin, username: event})}
+            style={styles.customInput}
+            placeholder='Username'
+            placeholderTextColor='rgba(255,255,255,0.7'
+            underlineColorAndroid='transparent'>
         </TextInput>
 
-        <TextInput style={styles.customInput}
-        placeholder={'Password'} secureTextEntry={true} placeholderTextColor='rgba(255,255,255,0.7' underlineColorAndroid='transparent'
-        >
+        <TextInput
+            value={uLogin.password || ''}
+            onChangeText={(event) => setUserLogin({...uLogin, password: event})}
+            style={styles.customInput}
+            placeholder={'Password'}
+            secureTextEntry={true}
+            placeholderTextColor='rgba(255,255,255,0.7'
+            underlineColorAndroid='transparent'>
 
         </TextInput>
         <View>
-          <Text style={styles.redButton} onPress={onButtonPress2} >LOGIN</Text>
+          <Text style={styles.redButton} onPress={onButtonLogin} >LOGIN</Text>
         </View>
 
         <View>
