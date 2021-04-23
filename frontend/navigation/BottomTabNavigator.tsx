@@ -114,7 +114,7 @@ function HomeNavigator() {
 
             headerLeft: () => (
                 <TouchableOpacity onPress={onProfilePress}>
-                    <ProfilePicture size={40} image={'https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'}/>
+                    <ProfilePicture size={40} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
                 </TouchableOpacity>
             )
 
@@ -173,7 +173,7 @@ function ChatNavigator() {
 
                     headerLeft: () => (
                         <TouchableOpacity onPress={onProfilePress}>
-                            <ProfilePicture size={40} image={'https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'}/>
+                            <ProfilePicture size={40} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
                         </TouchableOpacity>
                     )
 
@@ -218,7 +218,7 @@ function ScheduleNavigator() {
 
                     headerLeft: () => (
                         <TouchableOpacity onPress={onProfilePress}>
-                            <ProfilePicture size={40} image={'https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'}/>
+                            <ProfilePicture size={40} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
                         </TouchableOpacity>
                     )
 
@@ -263,7 +263,7 @@ function InformationBoardNavigator() {
 
                     headerLeft: () => (
                         <TouchableOpacity onPress={onProfilePress}>
-                            <ProfilePicture size={40} image={'https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'}/>
+                            <ProfilePicture size={40} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
                         </TouchableOpacity>
                     )
 

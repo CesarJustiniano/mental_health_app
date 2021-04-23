@@ -47,7 +47,7 @@ export default function NewPostScreen() {
                 </TouchableOpacity>
             </View>
             <View style={styles.newPostContainer}>
-                <ProfilePicture image={'https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'} />
+                <ProfilePicture image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'} />
                 <View style={styles.inputContainer}>
                     <TextInput
                         value={post}

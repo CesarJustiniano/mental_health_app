@@ -36,7 +36,7 @@ export default function ProfileSettingsScreen() {
                 <Text style={styles.headerText}>Profile</Text>
             </View>
             <View style={styles.midContainer}>
-                <ProfilePicture size={100} image={'https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'}/>
+                <ProfilePicture size={100} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
                 <Text style={styles.text}>First Name:
                     <Text style={styles.data}> Jose</Text>
                 </Text>

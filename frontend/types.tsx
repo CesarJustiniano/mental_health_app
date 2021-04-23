@@ -111,7 +111,7 @@ export type GroupChatRoom = {
   users: UserType[],
   lastMessage: Message,
   description: string,
-  image: string,
+  image?: string,
 }
 
 export type Category = {
