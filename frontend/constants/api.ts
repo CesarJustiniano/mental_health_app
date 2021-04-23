@@ -9,7 +9,7 @@ axios.defaults.baseURL = 'http://10.0.0.75:3000/api'; //for mobile device & Web 
 //axios.defaults.baseURL = 'http://10.0.0.65:19000/api'; //for mobile device & Web Page
 
 export const getPosts = async () => {
-    const response = await axios.get('/posts');
+    const response = await axios.get('/posts', {withCredentials: true});
     return response.data;
 };
 

@@ -12,7 +12,7 @@ import { AntDesign } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import ProfilePicture from "../components/ProfilePicture";
 import {useNavigation} from "@react-navigation/native";
-import { createPost } from '../constants/api';
+import axios from "axios";
 
 export default function NewPostScreen() {
     const [post, setPost] = useState('');
@@ -25,23 +25,14 @@ export default function NewPostScreen() {
             const newPost = {
                 body: post,
             }
-            const response = await createPost(newPost);
-            const data = await response.json();
-            setPost(data);
-            console.log(data);
+            const response = await axios.post('/createPost', newPost, {withCredentials: true});
+            setPost(response.data);
+            console.log(response.data);
             onCloseButton();
         } catch (e) {
             console.log(e);
         }
     }
-
-    // const onPostButton = () => {
-    //     console.log(`Post: ${post}
-    //         Image: ${imageUrl}
-    //         Video: ${videoUrl}`);
-    //     if(post != null && post != '')
-    //         onCloseButton();
-    // };
 
     const onCloseButton = () => {
         navigation.navigate('Root');
@@ -60,7 +51,7 @@ export default function NewPostScreen() {
                 <View style={styles.inputContainer}>
                     <TextInput
                         value={post}
-                        onChangeText={value => setPost(value)}
+                        onChangeText={(value) => setPost(value)}
                         multiline={true}
                         numberOfLines={3}
                         style={styles.postInput}

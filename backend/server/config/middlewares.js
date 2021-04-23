@@ -8,23 +8,33 @@ import passportConfig from './passportConfig.js';
 import express from "express";
 
 export default app => {
-   app.use(bodyParser.json());
-   app.use(bodyParser.urlencoded({extended: false}));
 
    app.use(morgan('dev'));
    app.use('/uploads', express.static(process.cwd() + 'uploads'));
 
-   app.use(cors());
+   app.use(cors({
+      credentials: true,
+      origin: 'http://localhost:19006',
+      methods: 'GET, POST',
+   }));
 
    app.use(cookieParser('secretCode'));
+   app.use(bodyParser.json());
+   app.use(bodyParser.urlencoded({extended: false}));
 
    app.use(session({
       secret: "secretCode",
-      resave: true,
+      resave: false,
       saveUninitialized: true,
    }));
 
    app.use(passport.initialize());
    app.use(passport.session());
    passportConfig(passport);
+
+   app.use(function (req, res, next){
+      console.log(req.session);
+      console.log(req.user);
+      next();
+   })
 };

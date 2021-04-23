@@ -23,7 +23,7 @@ export default passport => {
     );
 
     passport.serializeUser((user, cb) => {
-        cb(null, user.id);
+        cb(null, user._id);
     });
 
     passport.deserializeUser((id, cb) => {

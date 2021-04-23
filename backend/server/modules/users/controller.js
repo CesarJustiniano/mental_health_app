@@ -44,9 +44,11 @@ export const loginUser = async (req, res, next) => {
         else {
             req.logIn(user, (err) => {
                 if (err) throw err;
-                res.send("Successfully Authenticated");
+                user.isAuthenticated = true;
+                //res.send("Successfully Authenticated");
                 console.log(req.user.username);
-                //res.redirect('/')  redirect to home page
+                res.send(req.user);
+                //res.redirect('/')  //redirect to home page
             });
         }
     })(req, res, next);

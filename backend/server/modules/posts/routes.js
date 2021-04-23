@@ -60,7 +60,7 @@ routes.post('/createPost', upload.single('image'), async (req, res) => {
         }
 
     } else {
-        return res.status(404).json({ error: true, message: 'Error with Post'})
+        return res.status(404).json({ error: true, message: 'Error with Post'});
     }
 });
 

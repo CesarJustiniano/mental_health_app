@@ -23,10 +23,11 @@ export default function TabTwoScreen() {
         password: uLogin.password,
       }
       console.log(loginCredentials);
-      const response = await axios.post('/login', loginCredentials);
+      const response = await axios.post('/login', loginCredentials, {withCredentials: true});
       console.log(response.data);
       setUserLogin(response.data);
-      navigation.navigate('UserMenuScreen');
+      navigation.navigate('Root');
+      // navigation.navigate('UserMenuScreen');
     } catch (e) {
       console.log(e)
     }

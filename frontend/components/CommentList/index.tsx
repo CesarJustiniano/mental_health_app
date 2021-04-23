@@ -20,7 +20,7 @@ const CommentList = () => {
         try {
             const getComments = async () => {
                 try{
-                    const response = await axios.get(`/post/${route.params.id}/comments`);
+                    const response = await axios.get(`/post/${route.params.id}/comments`, {withCredentials: true});
                     return response.data;
                 } catch (e) {
                    console.log(e);
