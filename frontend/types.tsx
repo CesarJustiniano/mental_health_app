@@ -23,7 +23,8 @@ export type RootStackParamList = {
   TermsOfServiceScreen:undefined;
   VideoPreCallScreen: undefined;
   SignUpDoctorScreen: undefined;
-  ScheduleScreen:undefined
+  ScheduleScreen:undefined;
+  DoctorListScreen:undefined;
 };
 
 export type BottomTabParamList = {
@@ -67,6 +68,7 @@ export type UserType = {
 export type DoctorType = {
   _id:string,
   firstName: string,
+  lastName: string,
   username: string,
   image?:string,
   status?: string,

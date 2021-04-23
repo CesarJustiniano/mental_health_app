@@ -12,7 +12,7 @@ export default function InformationBoardScreen(){
             navigation.navigate('HelpCenterScreen');
         }
         const onButtonPress2 = () => {
-            navigation.navigate('UserMenuScreen');
+            navigation.navigate('DoctorListScreen');
         }
 
     return(
