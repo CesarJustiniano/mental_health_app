@@ -9,22 +9,12 @@ axios.defaults.baseURL = 'http://10.0.0.75:3000/api'; //for mobile device & Web 
 //axios.defaults.baseURL = 'http://10.0.0.65:19000/api'; //for mobile device & Web Page
 
 export const getPosts = async () => {
-    const response = await axios.get('/posts');
+    const response = await axios.get('/posts', {withCredentials: true});
     return response.data;
 };
 
 export const createPost = async (data: any) => {
-    const response = await axios.post('/createPost', data);
-    return response.data;
-}
-
-export const createUser = async (data: any) => {
-    const response = await axios.post('/signup', data);
-    return response.data;
-}
-
-export const userLogin = async (data: any) => {
-    const response = await axios.post('/login', data);
+    const response = await axios.post('/createPost', { data });
     return response.data;
 }
 
@@ -46,8 +36,6 @@ export const getDoctorList = async()=>{
 export default {
     getPosts,
     createPost,
-    createUser,
-    userLogin,
     userLogout,
     getAuthUser,
     getDoctorList
