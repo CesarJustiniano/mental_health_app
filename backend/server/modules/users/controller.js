@@ -44,9 +44,11 @@ export const loginUser = async (req, res, next) => {
         else {
             req.logIn(user, (err) => {
                 if (err) throw err;
-                res.send("Successfully Authenticated");
+                user.isAuthenticated = true;
+                //res.send("Successfully Authenticated");
                 console.log(req.user.username);
-                //res.redirect('/')  redirect to home page
+                res.send(req.user);
+                //res.redirect('/')  //redirect to home page
             });
         }
     })(req, res, next);
@@ -64,10 +66,6 @@ export const getUser = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
     try {
-        // return User.find({}).populate('post').exec((err, data) => {
-        //     if (err) throw err;
-        //     console.log(data);
-        // })
         return res.status(200).json(await User.find({} ));
     } catch {
         return res.status(404).json({ error: true, message: 'Error with User'});

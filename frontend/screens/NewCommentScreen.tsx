@@ -17,7 +17,7 @@ import {Params} from "../types";
 import axios from "axios";
 
 export default function NewCommentScreen() {
-    const [comment, setComment] = useState("");
+    const [comment, setComment] = useState('');
     const navigation = useNavigation();
     const route = useRoute<RouteProp<Params, 'A'>>();
 
@@ -26,9 +26,9 @@ export default function NewCommentScreen() {
             const newComment = {
                 text: comment,
             }
-            const response = await axios.post(`/post/${route.params.id}/createComment`, { newComment });
-            console.log(response);
-            //setComment(response);
+            const response = await axios.post(`/post/${route.params.id}/createComment`, newComment, {withCredentials: true});
+            setComment(response.data);
+            console.log(response.data);
             onCloseButton();
         } catch (e) {
             console.log(e);
@@ -52,7 +52,7 @@ export default function NewCommentScreen() {
                 <View style={styles.inputContainer}>
                     <TextInput
                         value={comment}
-                        onChangeText={value => setComment(value)}
+                        onChangeText={(value) => setComment(value)}
                         multiline={true}
                         numberOfLines={3}
                         style={styles.postInput}

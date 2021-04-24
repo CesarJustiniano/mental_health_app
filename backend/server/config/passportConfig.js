@@ -23,15 +23,12 @@ export default passport => {
     );
 
     passport.serializeUser((user, cb) => {
-        cb(null, user.id);
+        cb(null, user._id);
     });
 
     passport.deserializeUser((id, cb) => {
         User.findOne({_id: id }, (err, user) => {
-            const userInfo = {
-                username: user.username,
-            };
-            cb(err, userInfo);
+            cb(err, user);
         });
     });
 };
