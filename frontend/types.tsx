@@ -73,6 +73,7 @@ export type DoctorType = {
   image?:string,
   status?: string,
   phoneNumber: string,
+  email:string,
 
 }
 

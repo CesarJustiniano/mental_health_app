@@ -10,6 +10,8 @@ import axios from "axios";
 import Comment from "../Comment";
 import {getDoctorList} from "../../constants/api";
 import ProfilePicture from "../ProfilePicture";
+import Post from "../Post";
+import DoctorListComp from "./DoctorComponent";
 export type VideoCallProps ={
     patient: UserType
     doctor: DoctorType
@@ -47,16 +49,7 @@ const DoctorList = () =>{
             <FlatList
                 data={doctor}
                 renderItem={({item}) => (
-                    <View style={styles.container}>
-                        <TouchableOpacity >
-                            <ProfilePicture></ProfilePicture>
-                            <Text>Doctor: {item.firstName} {item.lastName} </Text>
-                            <Text>Email: {item.email}</Text>
-                            <Text>Phone Number: {item.phoneNumber}</Text>
-                            <Text   style={styles.redButton}>ASSIGN DOCTOR TO ME</Text>
-                        </TouchableOpacity>
-
-                    </View>
+                    <DoctorListComp doctor={item}/>
                 )}
                 keyExtractor={(item) => item._id}
                 ref={flatList}

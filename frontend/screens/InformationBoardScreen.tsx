@@ -15,6 +15,10 @@ export default function InformationBoardScreen(){
             navigation.navigate('DoctorListScreen');
         }
 
+        const onButtonBack = () => {
+            navigation.navigate('UserMenuScreen');
+        }
+
     return(
 
     <View style={styles.container}>
@@ -36,7 +40,7 @@ export default function InformationBoardScreen(){
                 <Text style={styles.customButton} onPress={onButtonPress2} >FEEDBACK</Text>
            </TouchableOpacity>
            <TouchableOpacity >
-               <Text style={styles.customButton} onPress={onButtonPress2} >GO BACK</Text>
+               <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
            </TouchableOpacity>
 
            </View>
