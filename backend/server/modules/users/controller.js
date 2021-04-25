@@ -74,23 +74,38 @@ export const getAllUsers = async (req, res) => {
 
 export const updateUser = async (req, res) => {
     if (req.user){
-        let user
 
-        user = await User.findById(req.params.id);
+        await User.findOne({_id: req.user._id}, (err, obj) => {
+            if(err) {
+                console.log(err);
+                res.status(500).send();
+            } else {
+                if(!obj) {
+                    res.status(400).send();
+                } else {
+                    if(req.body.username) {
+                        obj.username = req.body.username;
+                    }
 
-        user.firstName = req.body.firstName
-        user.lastName = req.body.lastName
-        user.username = req.body.username
-        user.phoneNumber = req.body.phoneNumber
-        user.physicalAddress = req.body.physicalAddress
-        user.age = req.body.age
-        user.gender = req.body.gender
-        user.myDoctor = req.body.myDoctor
+                    if(req.body.phoneNumber) {
+                        obj.phoneNumber = req.body.phoneNumber;
+                    }
 
-        //await user.save();
-        return res.status(200).json(await user.save());
-        //res.redirect()  to some path
+                    if(req.body.physicalAddress) {
+                        obj.physicalAddress = req.body.physicalAddress;
+                    }
 
+                    obj.save((err, updatedObj) => {
+                        if(err) {
+                            console.log(err);
+                            res.status(500).send();
+                        } else {
+                            res.send(updatedObj);
+                        }
+                    })
+                }
+            }
+        })
     } else {
         return res.status(404).json({ error: true, message: 'Error with updating user'});
     }

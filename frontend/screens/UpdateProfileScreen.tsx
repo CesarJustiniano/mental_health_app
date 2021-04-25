@@ -4,6 +4,7 @@ import {SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 
 import {AntDesign} from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import * as React from "react";
+import axios from "axios";
 
 export default function UpdateProfileScreen() {
 
@@ -20,11 +21,21 @@ export default function UpdateProfileScreen() {
         navigation.navigate('ProfileSettings');
     }
 
-    const onConfirmButton = () => {
-        //Update User Profile
-        console.log(`Username: ${username}
-            Phone Number: ${phoneNumber}
-            Address: ${address}`);
+    const onConfirmButton = async () => {
+        try{
+            const update = {
+                username: username,
+                phoneNumber: phoneNumber,
+                physicalAddress: address,
+            }
+            const response = await axios.put('/updateUser', update, {withCredentials: true});
+            setUsername(response.data.username);
+            setPhoneNumber(response.data.phoneNumber);
+            setAddress(response.data.physicalAddress);
+            onCloseButton();
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     return (
@@ -39,8 +50,8 @@ export default function UpdateProfileScreen() {
                     <TextInput
                         style={styles.data}
                         value={username}
-                        onChangeText={setUsername}
-                        placeholder={'joserivera'}
+                        onChangeText={(value) => setUsername(value)}
+                        placeholder={'Type username'}
                     />
                 </View>
                 <View style={styles.inputContainer}>
@@ -48,8 +59,8 @@ export default function UpdateProfileScreen() {
                     <TextInput
                         style={styles.data}
                         value={phoneNumber}
-                        onChangeText={setPhoneNumber}
-                        placeholder={'1-555-555-5555'}
+                        onChangeText={(value) => setPhoneNumber(value)}
+                        placeholder={'e.g: 555-555-5555'}
                     />
                 </View>
                 <View style={styles.inputContainer}>
@@ -57,8 +68,8 @@ export default function UpdateProfileScreen() {
                     <TextInput
                         style={styles.data}
                         value={address}
-                        onChangeText={setAddress}
-                        placeholder={'San Juan, Puerto Rico'}
+                        onChangeText={(value) => setAddress(value)}
+                        placeholder={'Type address'}
                     />
                 </View>
                 <View style={styles.buttonContainer}>

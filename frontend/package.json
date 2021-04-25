@@ -47,7 +47,8 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
-    "require-context": "^1.1.0"
+    "require-context": "^1.1.0",
+    "socket.io-client": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",

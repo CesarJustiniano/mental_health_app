@@ -18,9 +18,6 @@ export default function ProfileSettingsScreen() {
     const [address, setAddress] = useState([]);
     const [age, setAge] = useState([]);
     const [gender, setGender] = useState([]);
-    // let [username, setUsername] = useState('JoseRivera'); //Dummy initial
-    // let [phoneNumber, setPhoneNumber] = useState('555-555-5555'); //Dummy initial
-    // let [address, setAddress] = useState('San Juan, Puerto Rico'); //Dummy initial
 
     const fetchFName = async () => {
         try{
@@ -59,9 +56,7 @@ export default function ProfileSettingsScreen() {
     }
 
     const onUpdateInfoButton = () => {
-        console.log(`Username: ${username}
-            Phone Number: ${phone}
-            Address: ${address}`);
+        navigation.navigate("UpdateProfileScreen");
     }
 
     return (
@@ -71,43 +66,25 @@ export default function ProfileSettingsScreen() {
                 <Text style={styles.headerText}>Profile</Text>
             </View>
             <View style={styles.midContainer}>
-                <ProfilePicture size={100} image={'https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'}/>
+                <ProfilePicture size={100} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
                 <Text style={styles.text}>First Name:
                     <Text style={styles.data}>{fName}</Text>
                 </Text>
                 <Text style={styles.text}>Last Name:
                     <Text style={styles.data}>{lName}</Text>
                 </Text>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.text}>*Username: </Text>
+                <Text style={styles.text}>*Username:
                     <Text style={styles.data}>{username}</Text>
-                    {/*<TextInput*/}
-                    {/*    value={username}*/}
-                    {/*    onChangeText={setUsername}*/}
-                    {/*    placeholder={'username'}*/}
-                    {/*/>*/}
-                </View>
+                </Text>
                 <Text style={styles.text}>Email:
                     <Text style={styles.data}>{email}</Text>
                 </Text>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.text}>*Phone Number: </Text>
+                <Text style={styles.text}>*Phone Number:
                     <Text style={styles.data}>{phone}</Text>
-                    {/*<TextInput*/}
-                    {/*    value={phone}*/}
-                    {/*    onChangeText={setPhone}*/}
-                    {/*    placeholder={'555-555-5555'}*/}
-                    {/*/>*/}
-                </View>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.text}>*Address: </Text>
+                </Text>
+                <Text style={styles.text}>*Address:
                     <Text style={styles.data}>{address}</Text>
-                    {/*<TextInput*/}
-                    {/*    value={address}*/}
-                    {/*    onChangeText={setAddress}*/}
-                    {/*    placeholder={'San Juan, Puerto Rico'}*/}
-                    {/*/>*/}
-                </View>
+                </Text>
                 <Text style={styles.text}>Age:
                     <Text style={styles.data}>{age}</Text>
                 </Text>

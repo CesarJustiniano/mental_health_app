@@ -8,6 +8,6 @@ routes.post('/login', UserController.loginUser);
 routes.get('/logout', UserController.logoutUser);
 routes.get('/user', UserController.getUser);
 routes.get('/allUsers', UserController.getAllUsers);
-routes.patch('/user/:_id', UserController.updateUser);
+routes.put('/updateUser', UserController.updateUser);
 
 export default routes;
