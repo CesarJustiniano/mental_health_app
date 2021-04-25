@@ -9,6 +9,7 @@ const PostSchema = new Schema({
     },
     postedBy: {
         type: mongoose.Schema.Types.Mixed,
+        ref: 'User'
     },
     image: {
         type: String,

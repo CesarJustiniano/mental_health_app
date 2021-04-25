@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
     KeyboardAvoidingView,
     TextInput,
@@ -7,19 +7,70 @@ import {
 } from "react-native";
 import styles from "./styles";
 import {Entypo, FontAwesome5, Fontisto, MaterialCommunityIcons, MaterialIcons} from "@expo/vector-icons";
+import { ChatRoom } from "../../types";
+import io from "socket.io-client";
 
-const InputBox = () => {
-    let [message, setMessage] = useState('');
+const ENDPOINT = 'http://10.0.0.121:3000/api'; //must be same as axios baseURL
+
+let socket = io(ENDPOINT);
+
+export type InputBoxProps = {
+    chatRoom: ChatRoom,
+}
+
+const InputBox = ({chatRoom}: InputBoxProps) => {
+    const [message, setMessage] = useState('');
+
+    // const [name, setName] = useState('');
+    // const [room, setRoom] = useState('');
+    // const [users, setUsers] = useState('');
+    // const [messages, setMessages] = useState([]);
+    //
+    // useEffect(() => {
+    //     const { name, room } = queryString.parse(location.search);
+    //
+    //     socket = io(ENDPOINT);
+    //
+    //     setRoom(room);
+    //     setName(name)
+    //
+    //     socket.emit('join', { name, room }, (error) => {
+    //         if(error) {
+    //             alert(error);
+    //         }
+    //     });
+    // }, [ENDPOINT, location.search]);
+    //
+    // useEffect(() => {
+    //     socket.on('message', message => {
+    //         setMessages(messages => [ ...messages, message ]);
+    //     });
+    //
+    //     socket.on("roomData", ({ users }) => {
+    //         setUsers(users);
+    //     });
+    // }, []);
+    //
+    // const sendMessage = (event) => {
+    //     event.preventDefault();
+    //
+    //     if(message) {
+    //         socket.emit('sendMessage', message, () => setMessage(''));
+    //     }
+    // }
 
     const onMicrophonePress = () => {
         console.warn('Microphone pressed');
     }
 
     const onSendPress = () => {
-        console.warn(`Sending: ${message}`);
+        console.log(`Sending: ${message}`);
 
         //send the message to the backend
-
+        if(message) {
+            socket.emit('chatRoomMessage', {chatRoomId: chatRoom, message: message},
+                () => setMessage(''));
+        }
         setMessage('');
     }
 

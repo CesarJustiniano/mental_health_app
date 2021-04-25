@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {FlatList, StyleSheet, Text, ImageBackground, KeyboardAvoidingView, SafeAreaView} from "react-native";
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {View} from "../components/Themed";
@@ -11,6 +11,11 @@ import BG from '../assets/images/chatBackground.jpg';
 import InputBox from "../components/InputBox";
 import posts from "../data/Posts";
 
+import io from "socket.io-client";
+
+const ENDPOINT = 'http://10.0.0.121:3000/api'; //must be same as axios baseURL
+
+let socket = io(ENDPOINT);
 
 export default function ChatRoomScreen() {
     const navigation = useNavigation();
@@ -20,6 +25,7 @@ export default function ChatRoomScreen() {
     console.log(route.params)
 
     const onCloseButton = () => {
+        socket.emit('leaveRoom', route.params.chatRoom);
         navigation.navigate('Root');
     }
 
@@ -52,7 +58,7 @@ export default function ChatRoomScreen() {
                                     flatList.current?.scrollToIndex({ index: info.index, animated: true });
                                 })}}
                         />
-                        <InputBox />
+                        <InputBox chatRoom={route.params.chatRoom}/>
                     </ImageBackground>
                 </KeyboardAvoidingView>
             </View>
