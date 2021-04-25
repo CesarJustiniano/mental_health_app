@@ -31,6 +31,8 @@ import VideoPreCallScreen from "../screens/VideoPreCallScreen";
 import SignUpDoctorScreen from "../screens/SignUpDoctorScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
 import DoctorListScreen from "../screens/DoctorListScreen";
+import UpdateProfileScreen from "../screens/UpdateProfileScreen";
+
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -75,6 +77,7 @@ function RootNavigator() {
       <Stack.Screen name= "ScheduleScreen" component={ScheduleScreen}/>
       <Stack.Screen name= "SignUpDoctorScreen" component={SignUpDoctorScreen} />
       <Stack.Screen name="DoctorListScreen" component={DoctorListScreen}/>
+      <Stack.Screen name={"UpdateProfileScreen"} component={UpdateProfileScreen}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );

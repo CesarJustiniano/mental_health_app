@@ -11,19 +11,21 @@ export type RootStackParamList = {
   SignUpScreen: undefined;
   NotFound: undefined;
   InformationBoardScreen: undefined;
-  HelpCenterScreen:undefined;
-  LoginPsychologistScreen:undefined;
-  PsychologistMenuScreen:undefined;
-  UserMenuScreen:undefined;
+  HelpCenterScreen: undefined;
+  LoginPsychologistScreen: undefined;
+  PsychologistMenuScreen: undefined;
+  UserMenuScreen: undefined;
   FirstScreen: undefined;
   CalendarAgenda: undefined;
-  DatePickerScreen:undefined;
+  DatePickerScreen: undefined;
   DateTimePickerScreen: undefined;
   InformationPsychologistScreen: undefined;
-  TermsOfServiceScreen:undefined;
+  TermsOfServiceScreen: undefined;
   VideoPreCallScreen: undefined;
   SignUpDoctorScreen: undefined;
-  ScheduleScreen:undefined;
+  ScheduleScreen: undefined;
+  UpdateProfileScreen: undefined;
+
   DoctorListScreen:undefined;
 };
 
@@ -104,8 +106,12 @@ export type Message = {
 
 export type ChatRoom = {
   _id: string,
+  name?: string,
   users: UserType[],
   lastMessage: Message,
+  messages?: Message[],
+  description?: string,
+  image?: string,
 }
 
 export type GroupChatRoom = {
@@ -114,7 +120,7 @@ export type GroupChatRoom = {
   users: UserType[],
   lastMessage: Message,
   description: string,
-  image: string,
+  image?: string,
 }
 
 export type Category = {
