@@ -28,10 +28,17 @@ export const getDoctorList = async()=>{
     return response.data;
 
 }
+
+export const getChatRoomList = async () => {
+    const response = await axios.get('/chatRooms');
+    return response.data;
+}
+
 export default {
     getPosts,
     createPost,
     userLogout,
     getAuthUser,
-    getDoctorList
+    getDoctorList,
+    getChatRoomList
 };

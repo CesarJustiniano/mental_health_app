@@ -5,6 +5,7 @@ import styles from "./styles";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import io from "socket.io-client";
+import ProfilePicture from "../ProfilePicture";
 
 const ENDPOINT = 'http://10.0.0.121:3000/api'; //must be same as axios baseURL
 
@@ -19,10 +20,10 @@ const ChatListItem = (props: ChatListItemProps) => {
 
     const navigation = useNavigation();
 
-    const user = chatRoom.users[1]; //dummy getter
+    const user = chatRoom.users[0].user; //dummy getter [1]
 
     const onClick = () => {
-        socket.emit('joinRoom', { chatRoom: chatRoom }, (error) => {
+        socket.emit('joinRoom', { chatRoomId: chatRoom }, (error) => {
             if (error) {
                 alert(error);
             }
@@ -38,15 +39,13 @@ const ChatListItem = (props: ChatListItemProps) => {
         <TouchableWithoutFeedback onPress={onClick}>
             <View style={styles.container}>
                 <View style={styles.leftContainer}>
-                    <Image source={{uri: user.image}} style={styles.avatar}/>
+                    <ProfilePicture image={user.image} size={70}/>
                     <View style={styles.midContainer}>
                         <Text style={styles.username}>{user.username}</Text>
-                        <Text numberOfLines={2} style={styles.lastMessage}>{chatRoom.lastMessage.content}</Text>
+                        <Text numberOfLines={2} style={styles.lastMessage}>{chatRoom.lastMessage ? chatRoom.lastMessage.content : 'No new messages'}</Text>
                     </View>
                 </View>
-                <Text style={styles.time}>
-                    {moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY")}
-                </Text>
+                <Text style={styles.time}>{chatRoom.lastMessage ? moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY") : ''}</Text>
             </View>
         </TouchableWithoutFeedback>
     )
