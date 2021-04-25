@@ -10,4 +10,5 @@ routes.get('/user', UserController.getUser);
 routes.get('/allUsers', UserController.getAllUsers);
 routes.patch('/user/:_id', UserController.updateUser);
 
+
 export default routes;

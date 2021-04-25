@@ -8,7 +8,7 @@ import {Params} from "../../types";
 import styles from "./styles";
 import axios from "axios";
 import Comment from "../Comment";
-import {getDoctorList} from "../../constants/api";
+import {getAuthUser, getDoctorList} from "../../constants/api";
 export type VideoCallProps ={
     patient: UserType
     doctor: DoctorType
@@ -18,16 +18,20 @@ const VideoCall = () =>{
 
     const flatList = useRef<FlatList>(null);
 
-    const [doctor, setDoctor] = useState([]);
+    const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(false);
+    const route = useRoute();
+    console.log(route.params)
 
     const fetchDoctors = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`/allDoctors`);
-            //const response = await getDoctorList();
+            //const response = await axios.get(`/allDoctors`);
+            const response = await getAuthUser();
+            console.log("this is the user:")
             console.log(response.data)
-            setDoctor(response.data);
+
+            setUser(response.data);
 
         } catch (e){
         console.log(e);
@@ -48,11 +52,11 @@ useEffect(() => {
 return (
     <View style={{ width: '100%'}}>
         <FlatList
-            data={doctor}
+            data={user}
             renderItem={({item}) => (
                 <View style={styles.container}>
                     <TouchableOpacity >
-                        <Text style={styles.redButton}> testing {item.phoneNumber} </Text>
+                        <Text style={styles.redButton}> first name {item.phoneNumber} </Text>
                     </TouchableOpacity>
 
                 </View>

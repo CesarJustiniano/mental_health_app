@@ -21,10 +21,12 @@ import {UserType} from "../types";
 import {DoctorType} from "../types";
 import {useEffect, useRef, useState} from "react";
 import axios from "axios";
+
 import {getDoctorList, getPosts} from "../constants/api";
 import Post from "../components/Post";
 import VideoCall from "../components/VideoCall";
 import { useRoute } from '@react-navigation/native';
+
 
 
 
@@ -42,15 +44,8 @@ export default function VideoPreCallScreen(this: any, {doctor,patient}:VideoCall
     const route = useRoute();
     console.log(route.params)
 
-
-
     //const [doctors, setDoctors] = useState([]);
     //const [loading, setLoading] = useState(false);
-
-
-
-
-
 
     //Dummy data
     let [username, setUsername] = useState('Jesse'); //Dummy initial
@@ -68,6 +63,9 @@ export default function VideoPreCallScreen(this: any, {doctor,patient}:VideoCall
         //navigation.navigate('CalendarAgenda');
         navigation.navigate('UserMenuScreen');
     }
+    const flatList = useRef<FlatList>(null);
+    const [user, setUser] = useState([]);
+    const [loading, setLoading] = useState(false);
 
 
     return (

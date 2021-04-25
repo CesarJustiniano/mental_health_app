@@ -30,7 +30,7 @@ const DoctorListComp = ({doctor}:DoctorProps) => (
             <Text>Doctor: {doctor.firstName} {doctor.lastName} </Text>
             <Text>Email: {doctor.email}</Text>
             <Text>Phone Number: {doctor.phoneNumber}</Text>
-            <Text   style={styles.redButton} onPress={()=>onButtonPressVideoChat(doctor.phoneNumber)}>ASSIGN DOCTOR TO ME</Text>
+            <Text style={styles.redButton} onPress={()=>onButtonPressVideoChat(doctor.phoneNumber)}>ASSIGN DOCTOR TO ME</Text>
         </TouchableOpacity>
     </View>
 )

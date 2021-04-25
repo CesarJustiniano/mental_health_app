@@ -9,7 +9,7 @@ export const createUser = async (req, res) => {
         if (doc) res.send("Email Already Exists");
         if (!doc) {
 
-            const { firstName, lastName, username, email, phoneNumber, physicalAddress, age, gender } = req.body;
+            const { firstName, lastName, username, email, phoneNumber, physicalAddress, age, gender, myDoctor } = req.body;
             const saltPassword = await Bcrypt.genSalt(10)
             const securePassword = await Bcrypt.hash(req.body.password, saltPassword)
 
@@ -23,6 +23,7 @@ export const createUser = async (req, res) => {
                 physicalAddress,
                 age,
                 gender,
+                myDoctor,
             })
 
             try {
@@ -71,6 +72,8 @@ export const getAllUsers = async (req, res) => {
         return res.status(404).json({ error: true, message: 'Error with User'});
     }
 }
+
+
 
 export const updateUser = async (req, res) => {
     if (req.user){
