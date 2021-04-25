@@ -13,18 +13,13 @@ export const getPosts = async () => {
     return response.data;
 };
 
-export const createPost = async (data: any) => {
-    const response = await axios.post('/createPost', { data });
-    return response.data;
-}
-
 export const userLogout = async () => {
-    const response = await axios.get('/logout');
+    const response = await axios.get('/logout', {withCredentials: true});
     return response.data;
 }
 
 export const getAuthUser = async () => {
-    const response = await axios.get('/user');
+    const response = await axios.get('/user', {withCredentials: true});
     return response.data;
 }
 
@@ -35,7 +30,6 @@ export const getDoctorList = async()=>{
 }
 export default {
     getPosts,
-    createPost,
     userLogout,
     getAuthUser,
     getDoctorList
