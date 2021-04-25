@@ -9,7 +9,10 @@ const chatRoomSchema = new Schema({
     users: [{
         type: mongoose.Schema.Types.Mixed,
         ref: 'User',
-        required: true
+    }],
+    messages: [{
+       type: mongoose.Schema.Types.Mixed,
+       ref: 'Message'
     }],
     lastMessage: {
         type: mongoose.Schema.Types.Mixed,

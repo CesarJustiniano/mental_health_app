@@ -8,10 +8,8 @@ import Colors from "../constants/Colors";
 import {useState} from "react";
 
 export default function ProfileSettingsScreen() {
+
     const navigation = useNavigation();
-    let [username, setUsername] = useState('JoseRivera'); //Dummy initial
-    let [phoneNumber, setPhoneNumber] = useState('555-555-5555'); //Dummy initial
-    let [address, setAddress] = useState('San Juan, Puerto Rico'); //Dummy initial
 
     const onCloseButton = () => {
         navigation.navigate('Root');
@@ -24,9 +22,7 @@ export default function ProfileSettingsScreen() {
     }
 
     const onUpdateInfoButton = () => {
-        console.log(`Username: ${username}
-            Phone Number: ${phoneNumber}
-            Address: ${address}`);
+        navigation.navigate("UpdateProfileScreen");
     }
 
     return (
@@ -43,33 +39,18 @@ export default function ProfileSettingsScreen() {
                 <Text style={styles.text}>Last Name:
                     <Text style={styles.data}> Rivera</Text>
                 </Text>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.text}>*Username: </Text>
-                    <TextInput
-                        value={username}
-                        onChangeText={setUsername}
-                        placeholder={'username'}
-                    />
-                </View>
+                    <Text style={styles.text}>*Username:
+                        <Text style={styles.data}> joserivera</Text>
+                    </Text>
                 <Text style={styles.text}>Email:
                     <Text style={styles.data}> joserivera@yahoo.com</Text>
                 </Text>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.text}>*Phone Number: </Text>
-                    <TextInput
-                        value={phoneNumber}
-                        onChangeText={setPhoneNumber}
-                        placeholder={'555-555-5555'}
-                    />
-                </View>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.text}>*Address: </Text>
-                    <TextInput
-                        value={address}
-                        onChangeText={setAddress}
-                        placeholder={'San Juan, Puerto Rico'}
-                    />
-                </View>
+                    <Text style={styles.text}>*Phone Number:
+                        <Text style={styles.data}> 1-555-555-5555</Text>
+                    </Text>
+                    <Text style={styles.text}>*Address:
+                        <Text style={styles.data}> San Juan, Puerto Rico</Text>
+                    </Text>
                 <Text style={styles.text}>Age:
                     <Text style={styles.data}> 21</Text>
                 </Text>

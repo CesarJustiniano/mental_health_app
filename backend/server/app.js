@@ -26,7 +26,7 @@ dbConfig();
 //Middlewares
 middlewareConfig(app);
 
-app.use('/api', [PostRoutes, UserRoutes, CommentRoutes, DoctorRoutes]);
+app.use('/api', [PostRoutes, UserRoutes, CommentRoutes, DoctorRoutes, ChatRoomRoutes]);
 
 app.get("/newEndpoint",async (req,res)=> {
 
@@ -81,13 +81,13 @@ io.on('connection', (socket) => {
             const newMessage = new Message({
                 chatroom: chatRoomId,
                 user: socket.request.user,
-                message,
+                content: message,
             });
 
             io.to(chatRoomId).emit('newMessage', {
-                message,
+                message: message,
                 name: user,
-                userId: socket.request.user,
+                user: socket.request.user,
             });
 
             await newMessage.save();

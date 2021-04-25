@@ -11,10 +11,10 @@ const messageSchema = new Schema({
         ref: 'User',
         required: true
     },
-    message: {
+    content: {
         type: String,
         required: true
     }
-});
+}, {timestamps: {createdAt: true, updatedAt: false} });
 
 export default mongoose.model('Message', messageSchema);
