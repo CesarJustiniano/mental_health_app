@@ -23,7 +23,6 @@ export const createUser = async (req, res) => {
                 physicalAddress,
                 age,
                 gender,
-                myDoctor,
             })
 
             try {
@@ -39,7 +38,7 @@ export const createUser = async (req, res) => {
 }
 
 export const loginUser = async (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
+    passport.authenticate('user-local', (err, user, info) => {
         if (err) throw err;
         if (!user) res.send("No User Exists");
         else {

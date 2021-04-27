@@ -49,7 +49,7 @@ export default function SignUpScreen(){
     }
 
     const onButtonPress2 = () => {
-        navigation.navigate('TabTwoScreen');
+        navigation.navigate('UserLoginScreen');
     }
 
     const onButtonToS = ()=>{

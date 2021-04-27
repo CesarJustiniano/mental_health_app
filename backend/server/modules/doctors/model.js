@@ -30,18 +30,16 @@ const DoctorSchema = new Schema ({
         type: String,
         required: true,
     },
-
     age: {
         type: Number
     },
     gender: {
         type: String
     },
-    post: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post'
-    }],
-
+    role: {
+        type: String,
+        default: 'doctor',
+    },
     myPatients: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
