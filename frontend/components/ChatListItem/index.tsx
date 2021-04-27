@@ -20,18 +20,12 @@ const ChatListItem = (props: ChatListItemProps) => {
 
     const navigation = useNavigation();
 
-    const user = chatRoom.users[0].user; //dummy getter [1]
-
     const onClick = () => {
-        socket.emit('joinRoom', { chatRoomId: chatRoom }, (error) => {
-            if (error) {
-                alert(error);
-            }
-        });
         navigation.navigate('ChatRoom', {
             chatRoom: chatRoom,
-            username: user.username,
-            image: user.image
+            id: chatRoom._id,
+            name: chatRoom.name,
+            image: chatRoom.image
         });
     }
 
@@ -39,10 +33,10 @@ const ChatListItem = (props: ChatListItemProps) => {
         <TouchableWithoutFeedback onPress={onClick}>
             <View style={styles.container}>
                 <View style={styles.leftContainer}>
-                    <ProfilePicture image={user.image} size={70}/>
+                    <ProfilePicture image={chatRoom.image} size={70}/>
                     <View style={styles.midContainer}>
-                        <Text style={styles.username}>{user.username}</Text>
-                        <Text numberOfLines={2} style={styles.lastMessage}>{chatRoom.lastMessage ? chatRoom.lastMessage.content : 'No new messages'}</Text>
+                        <Text style={styles.username}>{chatRoom.name}</Text>
+                        <Text numberOfLines={2} style={styles.lastMessage}>{chatRoom.lastMessage ? chatRoom.lastMessage.message.content : 'No messages...'}</Text>
                     </View>
                 </View>
                 <Text style={styles.time}>{chatRoom.lastMessage ? moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY") : ''}</Text>

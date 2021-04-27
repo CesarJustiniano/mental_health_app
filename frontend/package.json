@@ -38,6 +38,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-calendars": "^1.1254.0",
     "react-native-gesture-handler": "~1.8.0",
+    "react-native-keyboard-spacer": "^0.4.1",
     "react-native-modal-datetime-picker": "^9.2.0",
     "react-native-paper": "^4.7.2",
     "react-native-safe-area-context": "3.1.9",
@@ -47,12 +48,14 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
-    "require-context": "^1.1.0"
+    "require-context": "^1.1.0",
+    "socket.io-client": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@types/react": "~16.9.35",
     "@types/react-native": "^0.63.52",
+    "@types/react-native-keyboard-spacer": "^0.4.1",
     "@types/react-native-video": "^5.0.4",
     "expo-av": "^9.0.0",
     "jest-expo": "~40.0.0",

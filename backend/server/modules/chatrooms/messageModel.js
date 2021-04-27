@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const messageSchema = new Schema({
-    chatroom: {
+    chatRoom: {
         type: mongoose.Schema.Types.Mixed,
         ref: 'ChatRoom',
         required: true
