@@ -20,6 +20,7 @@ const CustomDatePicker =(props)=>{
             setDate(moment(selectedDate));
             props.onDateChange(selectedDate);
             console.warn("A date has been picked: ", date);
+            console.log("Date Picked ", date)
         }
     }
     //
@@ -34,6 +35,7 @@ const CustomDatePicker =(props)=>{
     const onDonePress =()=>{
             props.onDateChange(date);
             console.warn("A date has been picked: ", date);
+            console.log("Date Picked ", date)
             setShow(false);
     }
 

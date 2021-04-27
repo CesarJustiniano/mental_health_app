@@ -25,6 +25,7 @@ export type RootStackParamList = {
   SignUpDoctorScreen: undefined;
   ScheduleScreen: undefined;
   UpdateProfileScreen: undefined;
+  UserLoginScreen:undefined;
 
   DoctorListScreen:undefined;
 };
@@ -64,6 +65,7 @@ export type UserType = {
   image?: string,
   status?: string,
   phoneNumber: string,
+  myDoctor: object,
 
 }
 

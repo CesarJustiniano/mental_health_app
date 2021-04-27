@@ -10,112 +10,42 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Text, View} from '../components/Themed';
+import axios from "axios";
 
 import DoctorList from "../components/DoctorList";
 import ProfilePicture from "../components/ProfilePicture";
 const ITEM_SIZE = 160
 
 export default function DoctorListScreen(){
-    const scrollY = React.useRef(new Animated.Value(0)).current
-    const [people,setPeople] = useState([
-
-        {name: 'Hospital Menonita Cayey', id: '50',phone:' (787) 852-0505',web:''},
 
 
-
-
-
-
-
-
-
-
-
-
-    ])
 
     const  navigation = useNavigation();
+
+
 
     const onButtonPress = () => {
         navigation.navigate('InformationBoardScreen');
     }
+
     const onButtonPress2 = () => {
         //navigation.navigate('TabTwoScreen');
     }
 
+
     return(
 
         <View style={styles.container}>
+
+
+            <DoctorList/>
             <TouchableOpacity >
                 <Text style={styles.customButton} onPress={onButtonPress} >GO BACK</Text>
             </TouchableOpacity>
 
-            <Animated.FlatList
-                numColumns={1}
-                onScroll={Animated.event(
-                    [{nativeEvent:{contentOffset:{y:scrollY}}}]
-                )}
-                keyExtractor={(item)=>item.id}
-                data={people}
-                contentContainerStyle={{
-                    //padding: 'SPACING',
-                    paddingTop: StatusBar.currentHeight || 42,
-                }}
-                renderItem={({item,index})=> {
-                    const inputRange = [
-                        -1,
-                        0,
-                        ITEM_SIZE * index,
-                        ITEM_SIZE * (index + 2 )
-                    ]
-                    const opacityInputRange = [
-                        -1,
-                        0,
-                        ITEM_SIZE * index,
-                        ITEM_SIZE * (index +1 )
-                    ]
-
-                    const scale = scrollY.interpolate(
-                        {
-                            inputRange,
-                            outputRange:[1,1,1,0]
-                        }
-                    )
-                    const opacity = scrollY.interpolate(
-                        {
-                            inputRange: opacityInputRange,
-                            outputRange:[1,1,1,0]
-                        }
-                    )
 
 
-                    return <Animated.View style={
-                        {
-                            marginTop: 24,
-                            padding: 30,
-                            backgroundColor: 'rgb(0, 128, 128)',
-                            //fontSize: 24,
-                            marginHorizontal:10,
-                            shadowColor: "#000",
-                            shadowOffset: {
-                                width:0,
-                                height:10
-                            },
-                            shadowOpacity: .3,
-                            shadowRadius: 20,
-                            transform:[{scale}],
-                            opacity,
-                        }
-                    }>
-                        <Text style={{fontSize: 22, fontWeight: '700'}}>{item.name}</Text>
-                        <Text style={{fontSize: 16, opacity: .7}}>{item.phone}</Text>
-                        <Text style={{fontSize: 12, opacity: .7}} onPress={ ()=> Linking.openURL(item.web) }>{item.web}</Text>
-                    </Animated.View>
 
-                }}
-            />
-
-            <DoctorList/>
         </View>
     );
 }

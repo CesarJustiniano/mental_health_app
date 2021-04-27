@@ -1,6 +1,7 @@
 import Doctor from './model.js';
 import Bcrypt from 'bcrypt';
 import passport from 'passport';
+import User from "../users/model";
 
 export const createDoctor = async (req, res) => {
 
@@ -9,7 +10,7 @@ export const createDoctor = async (req, res) => {
         if (doc) res.send("Email Already Exists");
         if (!doc) {
 
-            const { firstName, lastName, username, email, phoneNumber,  age, gender } = req.body;
+            const { firstName, lastName, username, email, phoneNumber,  age, gender , myPatients} = req.body;
             const saltPassword = await Bcrypt.genSalt(10)
             const securePassword = await Bcrypt.hash(req.body.password, saltPassword)
 
@@ -21,7 +22,10 @@ export const createDoctor = async (req, res) => {
                 password: securePassword,
                 phoneNumber,
                 age,
-                gender
+                gender,
+                myPatients,
+
+
             })
 
             try {
@@ -74,11 +78,21 @@ export const getAllDoctors = async (req, res) => {
     }
 }
 
+export const getMyPatients = async (req, res) => {
+    try {
+        const doc = await Doctor.findOne({username:req.user.username})
+        return res.status(200).json(await User.find({myDoctor:doc}))
+        //return res.status(200).json(await Doctor.find().select({ myPatients: 1 }));
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with Doctor'});
+    }
+}
+
 export const updateDoctor = async (req, res) => {
     if (req.user){
         let user
 
-        user = await User.findById(req.params.id);
+        user = await Doctor.findById(req.params.id);
 
         user.firstName = req.body.firstName
         user.lastName = req.body.lastName
@@ -86,6 +100,7 @@ export const updateDoctor = async (req, res) => {
         user.phoneNumber = req.body.phoneNumber
         user.age = req.body.age
         user.gender = req.body.gender
+        user.myPatients = req.body.myPatients
 
         //await user.save();
         return res.status(200).json(await user.save());

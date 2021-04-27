@@ -10,6 +10,8 @@ import axios from "axios";
 import Comment from "../../Comment";
 import {getDoctorList} from "../../../constants/api";
 import ProfilePicture from "../../ProfilePicture";
+import {useState} from "react";
+import {useNavigation} from "@react-navigation/native";
 
 export type DoctorProps = {
     doctor: DoctorType
@@ -20,6 +22,12 @@ const onButtonPressVideoChat = (phoneNumber) => {
     Linking.openURL("tel:+"+phoneNumber);
     //await?
 }
+const onCloseButton = () => {
+    // navigation.navigate('UserMenuScreen');
+}
+
+
+
 const DoctorListComp = ({doctor}:DoctorProps) => (
 
 

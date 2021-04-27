@@ -22,6 +22,7 @@ export default function ProfileSettingsScreen() {
     const fetchFName = async () => {
         try{
             const info = await getAuthUser();
+
             setFName(info.firstName);
             setLName(info.lastName);
             setUsername(info.username);

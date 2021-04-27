@@ -10,7 +10,7 @@ export default function FirstScreen() {
     const  navigation = useNavigation();
 
     const onButtonPress = () => {
-        navigation.navigate('TabTwoScreen');
+        navigation.navigate('UserLoginScreen');
     }
     const onButtonPress2 = () => {
         navigation.navigate('LoginPsychologistScreen');

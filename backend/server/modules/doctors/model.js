@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
+
 const DoctorSchema = new Schema ({
     firstName: {
         type: String,
@@ -43,6 +44,7 @@ const DoctorSchema = new Schema ({
 
     myPatients: [{
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
 
     }],
 
