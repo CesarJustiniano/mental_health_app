@@ -8,42 +8,43 @@ import {useState} from "react";
 import axios from "axios";
 const {width: WIDTH} = Dimensions.get('window')
 
-export default function LoginPsychologistScreen() {
-
+export default function UserLoginScreen(){
     const [uLogin, setUserLogin] = useState({username: '', password: ''});
     const  navigation = useNavigation();
 
     const onButtonPress = () => {
-        navigation.navigate('SignUpDoctorScreen');
+        navigation.navigate('SignUpScreen');
     }
 
-    const onButtonLogin = async () =>{
-        try{
-            const loginCredentials ={
-                username:uLogin.username,
-                password: uLogin.password
+    const onButtonLogin = async () => {
+        try {
+            const loginCredentials = {
+                username: uLogin.username,
+                password: uLogin.password,
             }
-            console.log(loginCredentials)
-            const response = await  axios.post('/doctor_login',loginCredentials, {withCredentials:true});
-            console.log(response.data)
-            setUserLogin(response.data)
-            navigation.navigate('PsychologistMenuScreen')
-            //navigation.navigate('Root');
-        }catch (e){
+            console.log(loginCredentials);
+            const response = await axios.post('/login', loginCredentials, {withCredentials: true});
+            console.log(response.data);
+            setUserLogin(response.data);
+            navigation.navigate('Root');
+            // navigation.navigate('UserMenuScreen');
+        } catch (e) {
             console.log(e)
         }
-    }
-
-    const onButtonPress2 = () => {
-        navigation.navigate('PsychologistMenuScreen');
     }
 
     const onButtonPressFirst = ()=>{
         navigation.navigate('FirstScreen')
     }
 
+    const onButtonTest= ()=>{
+        navigation.navigate('VideoPreCallScreen')
+    }
 
 
+
+
+    // @ts-ignore
     // @ts-ignore
     return (
         <KeyboardAvoidingView
@@ -55,16 +56,19 @@ export default function LoginPsychologistScreen() {
             <ScrollView
 
                 contentContainerStyle={{flex:1}} bounces={false}>
-
                 <View style={styles.container}>
 
+
+
+
+
                     <View>
-                        <Text style={styles.headings}>REGISTER AS PROFESSIONAL</Text>
+                        <Text style={styles.headings}>CREATE AN ACCOUNT</Text>
 
 
                         <View >
                             <TouchableOpacity>
-                                <Text style={styles.redButton} onPress={onButtonPress}>REGISTER</Text>
+                                <Text style={styles.redButton} onPress={onButtonPress}>SIGN UP</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -76,48 +80,44 @@ export default function LoginPsychologistScreen() {
 
                         <Text style={styles.headings}>LOGIN</Text>
                         <TextInput
-                                   value={uLogin.username||''}
-                                   onChangeText={(event) => setUserLogin({...uLogin, username: event})}
-                                   style={styles.customInput}
-                                   placeholder='Username'
-                                   placeholderTextColor='rgba(255,255,255,0.7'
-                                   underlineColorAndroid='transparent'>
-
-
+                            value={uLogin.username || ''}
+                            onChangeText={(event) => setUserLogin({...uLogin, username: event})}
+                            style={styles.customInput}
+                            placeholder='Username'
+                            placeholderTextColor='rgba(255,255,255,0.7'
+                            underlineColorAndroid='transparent'>
                         </TextInput>
 
                         <TextInput
-                                   value={uLogin.password || ''}
-                                    onChangeText={(event) => setUserLogin({...uLogin, password: event})}
-                                   style={styles.customInput}
-                                   placeholder={'Password'}
-                                   secureTextEntry={true}
-                                   placeholderTextColor='rgba(255,255,255,0.7'
-                                   underlineColorAndroid='transparent'
-                        >
+                            value={uLogin.password || ''}
+                            onChangeText={(event) => setUserLogin({...uLogin, password: event})}
+                            style={styles.customInput}
+                            placeholder={'Password'}
+                            secureTextEntry={true}
+                            placeholderTextColor='rgba(255,255,255,0.7'
+                            underlineColorAndroid='transparent'>
 
                         </TextInput>
-                        <TouchableOpacity>
-                            <Text style={styles.redButton} onPress={onButtonLogin}>LOGIN</Text>
-                        </TouchableOpacity>
+                        <View>
+                            <Text style={styles.redButton} onPress={onButtonLogin} >LOGIN</Text>
+                        </View>
+
+                        <View>
+                            <Text style={styles.headings}>-----------0R-----------</Text>
+                            <TouchableOpacity >
+                                <Text style={styles.redButton} onPress={onButtonPressFirst} >GO BACK</Text>
+                            </TouchableOpacity>
+                        </View>
 
 
 
                     </View>
-                    <View>
-                        <Text style={styles.headings}>-----------0R-----------</Text>
-                        <TouchableOpacity >
-                            <Text style={styles.redButton} onPress={onButtonPressFirst} >GO BACK</Text>
-                        </TouchableOpacity>
-                    </View>
+
+
+
+
 
                 </View>
-
-
-
-
-
-
             </ScrollView>
         </KeyboardAvoidingView>
 
@@ -125,12 +125,8 @@ export default function LoginPsychologistScreen() {
 
 
     );
+
 }
-
-
-
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

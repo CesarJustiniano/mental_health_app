@@ -24,13 +24,16 @@ import UserMenuScreen from "../screens/UserMenuScreen";
 import FirstScreen from "../screens/FirstScreen";
 import CalendarAgenda from "../screens/CalendarAgenda";
 import DatePickerScreen from "../screens/DatePickerScreen";
-import DateTimePickerScreen from "../screens/DateTimePickerScreen";
+
 import TermsOfServiceScreen from "../screens/TermsOfServiceScteen";
 import InformationPsychologistScreen from "../screens/InformationPsychologistScreen";
 import VideoPreCallScreen from "../screens/VideoPreCallScreen";
 import SignUpDoctorScreen from "../screens/SignUpDoctorScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
+import DoctorListScreen from "../screens/DoctorListScreen";
 import UpdateProfileScreen from "../screens/UpdateProfileScreen";
+import UserLoginScreen from "../screens/UserLoginScreen";
+
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -51,6 +54,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name= "FirstScreen" component={FirstScreen} />
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen name="NewPost" component={NewPostScreen} />
       <Stack.Screen name="NewComment" component={NewCommentScreen} />
@@ -66,15 +70,16 @@ function RootNavigator() {
       <Stack.Screen name= "LoginPsychologistScreen" component={LoginPsychologistScreen} />
       <Stack.Screen name= "PsychologistMenuScreen" component={PsychologistMenuScreen} />
       <Stack.Screen name= "UserMenuScreen" component={UserMenuScreen} />
-      <Stack.Screen name= "FirstScreen" component={FirstScreen} />
       <Stack.Screen name= "CalendarAgenda" component={CalendarAgenda} />
       <Stack.Screen name= "DatePickerScreen" component={DatePickerScreen} />
       <Stack.Screen name="TermsOfServiceScreen" component={TermsOfServiceScreen} />
-      <Stack.Screen name= "DateTimePickerScreen" component={DateTimePickerScreen} />
+
       <Stack.Screen name= "InformationPsychologistScreen" component={InformationPsychologistScreen} />
       <Stack.Screen name= "VideoPreCallScreen" component={VideoPreCallScreen} />
       <Stack.Screen name= "ScheduleScreen" component={ScheduleScreen}/>
       <Stack.Screen name= "SignUpDoctorScreen" component={SignUpDoctorScreen} />
+      <Stack.Screen name="DoctorListScreen" component={DoctorListScreen}/>
+      <Stack.Screen name="UserLoginScreen" component={UserLoginScreen}/>
       <Stack.Screen name={"UpdateProfileScreen"} component={UpdateProfileScreen}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>

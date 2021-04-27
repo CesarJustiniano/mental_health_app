@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import axios from "axios";
+import {UserType} from "../types"
+import {DoctorType} from "../types";
+import { useRoute, RouteProp } from '@react-navigation/native';
+import {Params} from "../types";
 
 import {Text, View, } from '../components/Themed';
 
@@ -30,6 +35,27 @@ export default function UserMenuScreen(){
     const onButtonPressBoard = () => {
         navigation.navigate('InformationBoardScreen');
     }
+
+    const [user, setUser] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const fetchUser = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get('/user');
+            //const response = await getDoctorList();
+            console.log(response.data)
+            setUser(response.data);
+
+        } catch (e){
+            console.log(e);
+        } finally {
+            setLoading(false);
+        }
+    }
+    useEffect(() => {
+        fetchUser().then();
+    }, [])
 
     return(
 

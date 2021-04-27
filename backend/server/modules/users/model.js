@@ -1,4 +1,8 @@
 import mongoose, { Schema } from "mongoose";
+import Doctor from '../doctors/model.js';
+import Schedule from '../scheduler/model.js';
+
+
 
 const UserSchema = new Schema ({
     firstName: {
@@ -42,9 +46,15 @@ const UserSchema = new Schema ({
 
 
     myDoctor: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.Mixed,
+        ref:'Doctor'
 
     },
+
+    myAppointment:{
+        type:mongoose.Schema.Types.Mixed,
+        ref:'Schedule'
+    }
 
 }, { timestamps: {createdAt: true, updatedAt: false} });
 

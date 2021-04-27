@@ -1,61 +1,53 @@
-import React from 'react';
-import {KeyboardAvoidingView, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import React, {useState} from "react";
+import {
+    KeyboardAvoidingView,
+    FlatList,
+    ScrollView,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity,
+    StatusBar, Animated, Linking
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {Text, View} from '../components/Themed';
+import axios from "axios";
 
-import {Text, View, } from '../components/Themed';
+import DoctorList from "../components/DoctorList";
+import ProfilePicture from "../components/ProfilePicture";
+const ITEM_SIZE = 160
 
-export default function InformationBoardScreen(){
+export default function DoctorListScreen(){
+
+
 
     const  navigation = useNavigation();
 
-        const onButtonPress = () => {
-            navigation.navigate('HelpCenterScreen');
-        }
-        const onButtonPress2 = () => {
-            navigation.navigate('DoctorListScreen');
-        }
 
-        const onButtonBack = () => {
-            navigation.navigate('UserMenuScreen');
-        }
+
+    const onButtonPress = () => {
+        navigation.navigate('InformationBoardScreen');
+    }
+
+    const onButtonPress2 = () => {
+        //navigation.navigate('TabTwoScreen');
+    }
+
 
     return(
 
-    <View style={styles.container}>
-
-           <View>
-           <TouchableOpacity >
-                         <Text style={styles.customButton} onPress={onButtonPress2} >DOCTOR LIST</Text>
-           </TouchableOpacity>
-
-           <TouchableOpacity >
-                         <Text style={styles.customButton} onPress={onButtonPress} >HELP CENTERS</Text>
-           </TouchableOpacity>
-
-           <TouchableOpacity >
-                 <Text style={styles.customButton} onPress={onButtonPress2} >PHONE NUMBERS</Text>
-           </TouchableOpacity>
-
-           <TouchableOpacity >
-                <Text style={styles.customButton} onPress={onButtonPress2} >FEEDBACK</Text>
-           </TouchableOpacity>
-           <TouchableOpacity >
-               <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
-           </TouchableOpacity>
-
-           </View>
+        <View style={styles.container}>
 
 
-
-            </View>
+            <DoctorList/>
+            <TouchableOpacity >
+                <Text style={styles.customButton} onPress={onButtonPress} >GO BACK</Text>
+            </TouchableOpacity>
 
 
 
 
-
+        </View>
     );
-
-
 }
 
 const styles = StyleSheet.create({
@@ -63,10 +55,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        //padding: 'SPACING',
+        //flexdirection: 'row',
+        //marginBottom: 'SPACING'
     },
 
     text: {
-
 
     },
     headings:{
@@ -100,10 +94,6 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         //color: '#fff',
         //borderBottomWidth: 1,
-
-
-
-
     },
 
     customButton:{
@@ -141,5 +131,20 @@ const styles = StyleSheet.create({
     },
     keyboard: {
         marginBottom: 100,
-    }
+    },
+
+    item: {
+        marginTop: 24,
+        padding: 30,
+        backgroundColor: 'rgb(0, 128, 128)',
+        fontSize: 24,
+        marginHorizontal:10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width:0,
+            height:10
+        },
+        shadowOpacity: .3,
+        shadowRadius: 20,
+    },
 });

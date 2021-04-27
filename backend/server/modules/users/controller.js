@@ -9,7 +9,7 @@ export const createUser = async (req, res) => {
         if (doc) res.send("Email Already Exists");
         if (!doc) {
 
-            const { firstName, lastName, username, email, phoneNumber, physicalAddress, age, gender } = req.body;
+            const { firstName, lastName, username, email, phoneNumber, physicalAddress, age, gender, myDoctor } = req.body;
             const saltPassword = await Bcrypt.genSalt(10)
             const securePassword = await Bcrypt.hash(req.body.password, saltPassword)
 
@@ -23,6 +23,7 @@ export const createUser = async (req, res) => {
                 physicalAddress,
                 age,
                 gender,
+                myDoctor,
             })
 
             try {
@@ -67,10 +68,30 @@ export const getUser = async (req, res) => {
 export const getAllUsers = async (req, res) => {
     try {
         return res.status(200).json(await User.find({} ));
+
     } catch {
         return res.status(404).json({ error: true, message: 'Error with User'});
     }
 }
+
+export const getAllEmails = async (req, res) => {
+    try {
+        return res.status(200).json(await User.find().select({ email: 1 }));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+}
+
+export const getMyEmail = async (req,res)=>{
+    try {
+        return res.status(200).json(await User.findOne({_id: req.params.id},{email:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+}
+
 
 export const updateUser = async (req, res) => {
     if (req.user){
@@ -93,6 +114,10 @@ export const updateUser = async (req, res) => {
 
                     if(req.body.physicalAddress) {
                         obj.physicalAddress = req.body.physicalAddress;
+                    }
+
+                    if(req.body.myDoctor){
+                        obj.myDoctor = req.body.myDoctor;
                     }
 
                     obj.save((err, updatedObj) => {
