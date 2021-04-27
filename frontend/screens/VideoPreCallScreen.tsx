@@ -9,7 +9,7 @@ import {
     KeyboardAvoidingView,
     Image,
     Linking,
-    FlatList, RefreshControl
+    FlatList, RefreshControl, SafeAreaView
 } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -21,8 +21,13 @@ import {UserType} from "../types";
 import {DoctorType} from "../types";
 import {useEffect, useRef, useState} from "react";
 import axios from "axios";
+
 import {getDoctorList, getPosts} from "../constants/api";
 import Post from "../components/Post";
+import VideoCall from "../components/VideoCall";
+import { useRoute } from '@react-navigation/native';
+
+
 
 
 export type VideoCallProps = {
@@ -30,33 +35,17 @@ export type VideoCallProps = {
     doctor: DoctorType
 }
 
-export default function VideoPreCallScreen({doctor,patient}:VideoCallProps){
+export default function VideoPreCallScreen(this: any, {doctor,patient}:VideoCallProps){
 
-    const  navigation = useNavigation();
-    const [doctors, setDoctors] = useState([]);
-    const [loading, setLoading] = useState(false);
-
-    const flatList = useRef<FlatList>(null);
-
-    const fetchDoctors = async () => {
-        setLoading(true);
-        try{
-            const postData = await getDoctorList();
-            setDoctors(postData);
-        } catch (e) {
-            console.log(e);
-        }
-        finally {
-            setLoading(false)
-        }
-    }
-
-    useEffect(() => {
-        fetchDoctors().then();
-    }, [])
 
 
 
+    const  navigation = useNavigation();
+    const route = useRoute();
+    console.log(route.params)
+
+    //const [doctors, setDoctors] = useState([]);
+    //const [loading, setLoading] = useState(false);
 
     //Dummy data
     let [username, setUsername] = useState('Jesse'); //Dummy initial
@@ -74,6 +63,9 @@ export default function VideoPreCallScreen({doctor,patient}:VideoCallProps){
         //navigation.navigate('CalendarAgenda');
         navigation.navigate('UserMenuScreen');
     }
+    const flatList = useRef<FlatList>(null);
+    const [user, setUser] = useState([]);
+    const [loading, setLoading] = useState(false);
 
 
     return (
@@ -84,6 +76,7 @@ export default function VideoPreCallScreen({doctor,patient}:VideoCallProps){
             <TouchableOpacity >
                 <Text style={styles.redButton} onPress={onButtonBack} >GO BACK</Text>
             </TouchableOpacity>
+            <VideoCall />
         </View>
 
 

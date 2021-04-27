@@ -39,12 +39,18 @@ const UserSchema = new Schema ({
     gender: {
         type: String
     },
-
-
-    myDoctor: {
-        type: mongoose.Schema.Types.ObjectId,
-
+    role: {
+        type: String,
+        default: 'user',
     },
+    myDoctor: {
+        type: mongoose.Schema.Types.Mixed,
+        ref:'Doctor'
+    },
+    myAppointment:{
+        type:mongoose.Schema.Types.Mixed,
+        ref:'Schedule'
+    }
 
 }, { timestamps: {createdAt: true, updatedAt: false} });
 

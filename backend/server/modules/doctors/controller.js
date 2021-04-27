@@ -1,6 +1,7 @@
 import Doctor from './model.js';
 import Bcrypt from 'bcrypt';
 import passport from 'passport';
+import User from "../users/model";
 
 export const createDoctor = async (req, res) => {
 
@@ -9,7 +10,7 @@ export const createDoctor = async (req, res) => {
         if (doc) res.send("Email Already Exists");
         if (!doc) {
 
-            const { firstName, lastName, username, email, phoneNumber,  age, gender } = req.body;
+            const { firstName, lastName, username, email, phoneNumber,  age, gender , myPatients} = req.body;
             const saltPassword = await Bcrypt.genSalt(10)
             const securePassword = await Bcrypt.hash(req.body.password, saltPassword)
 
@@ -21,7 +22,7 @@ export const createDoctor = async (req, res) => {
                 password: securePassword,
                 phoneNumber,
                 age,
-                gender
+                gender,
             })
 
             try {
@@ -38,15 +39,17 @@ export const createDoctor = async (req, res) => {
 }
 
 export const loginDoctor = async (req, res, next) => {
-    passport.authenticate('local', (err, doctor, info) => {
+    passport.authenticate('doctor-local', (err, doctor, info) => {
         if (err) throw err;
         if (!doctor) res.send("No Doctor Exists");
         else {
             req.logIn(doctor, (err) => {
                 if (err) throw err;
-                res.send("Successfully Authenticated");
+                doctor.isAuthenticated = true;
+                //res.send("Successfully Authenticated");
                 console.log(req.user.username);
-                //res.redirect('/')  redirect to home page
+                res.send(req.user);
+                //res.redirect('/')  //redirect to home page
             });
         }
     })(req, res, next);
@@ -64,11 +67,17 @@ export const getDoctor = async (req, res) => {
 
 export const getAllDoctors = async (req, res) => {
     try {
-        // return User.find({}).populate('post').exec((err, data) => {
-        //     if (err) throw err;
-        //     console.log(data);
-        // })
         return res.status(200).json(await Doctor.find({} ));
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with Doctor'});
+    }
+}
+
+export const getMyPatients = async (req, res) => {
+    try {
+        const doc = await Doctor.findOne({username:req.user.username})
+        return res.status(200).json(await User.find({myDoctor:doc}))
+        //return res.status(200).json(await Doctor.find().select({ myPatients: 1 }));
     } catch {
         return res.status(404).json({ error: true, message: 'Error with Doctor'});
     }
@@ -76,21 +85,38 @@ export const getAllDoctors = async (req, res) => {
 
 export const updateDoctor = async (req, res) => {
     if (req.user){
-        let user
 
-        user = await User.findById(req.params.id);
+        await Doctor.findOne({_id: req.user._id}, (err, obj) => {
+            if(err) {
+                console.log(err);
+                res.status(500).send();
+            } else {
+                if(!obj) {
+                    res.status(400).send();
+                } else {
+                    if(req.body.username) {
+                        obj.username = req.body.username;
+                    }
 
-        user.firstName = req.body.firstName
-        user.lastName = req.body.lastName
-        user.username = req.body.username
-        user.phoneNumber = req.body.phoneNumber
-        user.age = req.body.age
-        user.gender = req.body.gender
+                    if(req.body.phoneNumber) {
+                        obj.phoneNumber = req.body.phoneNumber;
+                    }
 
-        //await user.save();
-        return res.status(200).json(await user.save());
-        //res.redirect()  to some path
+                    if(req.body.myDoctor){
+                        obj.myDoctor = req.body.myDoctor;
+                    }
 
+                    obj.save((err, updatedObj) => {
+                        if(err) {
+                            console.log(err);
+                            res.status(500).send();
+                        } else {
+                            res.send(updatedObj);
+                        }
+                    })
+                }
+            }
+        })
     } else {
         return res.status(404).json({ error: true, message: 'Error with updating doctor'});
     }

@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         //cursor: 'pointer'
     },
+    keyboard: {
+        marginBottom: 100,
+    }
 })
 
 export default styles;

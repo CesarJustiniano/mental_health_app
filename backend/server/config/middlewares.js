@@ -15,7 +15,7 @@ export default app => {
    app.use(cors({
       credentials: true,
       origin: 'http://localhost:19006',
-      methods: 'GET, POST',
+      methods: 'GET, POST, PUT',
    }));
 
    app.use(cookieParser('secretCode'));

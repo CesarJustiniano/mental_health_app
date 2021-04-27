@@ -2,6 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 import Post from './model.js';
 import User from '../users/model.js';
+import Doctor from '../doctors/model.js';
 
 const routes = new Router();
 
@@ -31,34 +32,66 @@ const upload = multer({
 routes.post('/createPost', upload.single('image'), async (req, res) => {
     if(req.user) {
 
-        const user = await User.findOne({username: req.user.username}, function (err, userInfo){
-            if (err) throw err;
-            else
-                return userInfo;
-        });
+        if(req.user.role === 'user') {
 
-        if(req.file !== undefined) {
-
-            const { body } = req.body;
-            const newPost = new Post({
-                body,
-                postedBy: user,
-                image: req.file.path.replace(/\\/g, '/'),
+            const user = await User.findOne({username: req.user.username}, function (err, userInfo){
+                if (err) throw err;
+                else
+                    return userInfo;
             });
 
-            return res.status(200).json(await newPost.save());
+            if(req.file !== undefined) {
 
-        } else {
+                const { body } = req.body;
+                const newPost = new Post({
+                    body,
+                    postedBy: user,
+                    image: req.file.path.replace(/\\/g, '/'),
+                });
 
-            const {body} = req.body;
-            const newPost = new Post({
-                body,
-                postedBy: user,
+                return res.status(200).json(await newPost.save());
+
+            } else {
+
+                const {body} = req.body;
+                const newPost = new Post({
+                    body,
+                    postedBy: user,
+                });
+
+                return res.status(200).json(await newPost.save());
+            }
+
+        } else if (req.user.role === 'doctor') {
+
+            const doctor = await Doctor.findOne({username: req.user.username}, function (err, doctorInfo){
+                if (err) throw err;
+                else
+                    return doctorInfo;
             });
 
-            return res.status(200).json(await newPost.save());
+            if(req.file !== undefined) {
+
+                const { body } = req.body;
+                const newPost = new Post({
+                    body,
+                    postedBy: doctor,
+                    image: req.file.path.replace(/\\/g, '/'),
+                });
+
+                return res.status(200).json(await newPost.save());
+
+            } else {
+
+                const {body} = req.body;
+                const newPost = new Post({
+                    body,
+                    postedBy: doctor,
+                });
+
+                return res.status(200).json(await newPost.save());
+            }
         }
-
     } else {
         return res.status(404).json({ error: true, message: 'Error with Post'});
     }

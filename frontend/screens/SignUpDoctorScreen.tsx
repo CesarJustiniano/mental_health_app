@@ -7,9 +7,45 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import {  Text, View , } from '../components/Themed';
 import {useState} from "react";
 import {blue50} from "react-native-paper/lib/typescript/styles/colors";
+import axios from "axios";
 
 export default function SignUpDoctorScreen(){
+
+    const [register, setRegister] = useState({
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        username: '',
+        phoneNumber: '',
+        age: '',
+        gender: '',
+    })
     const  navigation = useNavigation();
+
+    const onButtonRegister = async ()=>{
+        try{
+            const fields = {
+                email: register.email,
+                password: register.password,
+                firstName: register.firstName,
+                lastName: register.lastName,
+                username: register.username,
+                phoneNumber: register.phoneNumber,
+                age: register.age,
+                gender: register.gender,
+            }
+            console.log(fields);
+            const response = await axios.post('/doctor_signup', fields);
+            console.log(response.data);
+            setRegister(response.data);
+            navigation.navigate('InformationBoardScreen');
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
 
     const onButtonPress = () => {
         navigation.navigate('PsychologistMenuScreen');
@@ -36,42 +72,66 @@ export default function SignUpDoctorScreen(){
                 contentContainerStyle={{flex:1}} bounces={false}
             >
                 <View style={styles.container}>
-
-
-
                     <Text style={styles.headings}>Enter Your Information</Text>
-                    <TextInput style={styles.customInput}  placeholder='E-Mail'
+                    <TextInput
+                               value={register.email || ''}
+                               onChangeText={(event) => setRegister({...register, email: event})}
+                               style={styles.customInput}
+                               placeholder='E-Mail'
                                placeholderTextColor='rgba(255,255,255,0.7'
                                underlineColorAndroid='transparent'>
                     </TextInput>
-                    <TextInput style={styles.customInput}  placeholder='Password'
+                    <TextInput
+                               value={register.password || ''}
+                               onChangeText={(event) => setRegister({...register, password: event})}
+                               style={styles.customInput}
+                               placeholder='Password'
                                placeholderTextColor='rgba(255,255,255,0.7'
                                underlineColorAndroid='transparent'
                                secureTextEntry={true}
                     >
-
                     </TextInput>
-                    <TextInput style={styles.customInput}  placeholder='First Name'
+                    <TextInput
+                               value={register.firstName || ''}
+                               onChangeText={(event) => setRegister({...register, firstName: event})}
+                               style={styles.customInput}
+                               placeholder='First Name'
                                placeholderTextColor='rgba(255,255,255,0.7'
                                underlineColorAndroid='transparent'>
                     </TextInput>
-                    <TextInput style={styles.customInput}  placeholder='Last Name'
+                    <TextInput
+                               value={register.lastName || ''}
+                                onChangeText={(event) => setRegister({...register, lastName: event})}
+                               style={styles.customInput}
+                               placeholder='Last Name'
                                placeholderTextColor='rgba(255,255,255,0.7'
                                underlineColorAndroid='transparent'>
                     </TextInput>
-                    <TextInput style={styles.customInput}  placeholder='Username'
+                    <TextInput
+                        value={register.username || ''}
+                        onChangeText={(event) => setRegister({...register, username: event})}
+                        style={styles.customInput}  placeholder='Username'
                                placeholderTextColor='rgba(255,255,255,0.7'
                                underlineColorAndroid='transparent'>
                     </TextInput>
-                    <TextInput style={styles.customInput}  placeholder='Phone Number'
+                    <TextInput
+                        value={register.phoneNumber || ''}
+                        onChangeText={(event) => setRegister({...register, phoneNumber: event})}
+                        style={styles.customInput}  placeholder='Phone Number'
                                placeholderTextColor='rgba(255,255,255,0.7'
                                underlineColorAndroid='transparent'>
                     </TextInput>
-                    <TextInput style={styles.customInput}  placeholder='Age'
+                    <TextInput
+                        value={register.age || ''}
+                        onChangeText={(event) => setRegister({...register, age: event})}
+                        style={styles.customInput}  placeholder='Age'
                                placeholderTextColor='rgba(255,255,255,0.7'
                                underlineColorAndroid='transparent'>
                     </TextInput>
-                    <TextInput style={styles.customInput}  placeholder='Gender'
+                    <TextInput
+                        value={register.gender || ''}
+                        onChangeText={(event) => setRegister({...register, gender: event})}
+                        style={styles.customInput}  placeholder='Gender'
                                placeholderTextColor='rgba(255,255,255,0.7'
                                underlineColorAndroid='transparent'>
                     </TextInput>
@@ -83,7 +143,7 @@ export default function SignUpDoctorScreen(){
                         </Text>
 
                         <TouchableOpacity >
-                            <Text style={styles.customButton} onPress={onButtonPress} >REGISTER</Text>
+                            <Text style={styles.customButton} onPress={onButtonRegister} >REGISTER</Text>
                         </TouchableOpacity>
                         <TouchableOpacity >
                             <Text style={styles.customButton} onPress={onButtonPress2} >GO BACK</Text>

@@ -6,7 +6,7 @@ import sessionStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
 import dbConfig from './config/db.js';
 import middlewareConfig from './config/middlewares.js';
-import { PostRoutes, UserRoutes, CommentRoutes, ChatRoomRoutes , DoctorRoutes} from './modules';
+import {PostRoutes, UserRoutes, CommentRoutes, ChatRoomRoutes, DoctorRoutes, SchedulerRoutes} from './modules';
 
 import User from '../server/modules/users/model.js';
 import Doctor from '../server/modules/doctors/model.js';
@@ -26,7 +26,7 @@ dbConfig();
 //Middlewares
 middlewareConfig(app);
 
-app.use('/api', [PostRoutes, UserRoutes, CommentRoutes, DoctorRoutes, ChatRoomRoutes]);
+app.use('/api', [PostRoutes, UserRoutes, CommentRoutes, DoctorRoutes, ChatRoomRoutes, SchedulerRoutes]);
 
 app.get("/newEndpoint",async (req,res)=> {
 
