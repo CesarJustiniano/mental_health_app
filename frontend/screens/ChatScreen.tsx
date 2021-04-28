@@ -37,7 +37,6 @@ export default function ChatScreen() {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.textDivider}>Group Chats</Text>
       <FlatList
           style={{width: '100%'}}
           data={chatRooms}
@@ -46,7 +45,6 @@ export default function ChatScreen() {
           refreshing={loading}
           onRefresh={fetchChatRooms}
       />
-        <Text style={styles.textDivider}>Chat with your Doctor</Text>
       <NewMessageButton />
     </View>
   );

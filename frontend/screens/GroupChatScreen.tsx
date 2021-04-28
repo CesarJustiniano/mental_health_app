@@ -23,7 +23,6 @@ export default function GroupChatScreen() {
         console.warn(`Group Chat: ${route.params.name}`)
         navigation.navigate('GroupChatRoom', {
             id: groupChats.id,
-
         });
     }
 

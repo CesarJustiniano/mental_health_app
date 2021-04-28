@@ -8,8 +8,11 @@ const messageSchema = new Schema({
     },
     user: {
         type: mongoose.Schema.Types.Mixed,
-        ref: 'User',
-        required: true
+        ref: 'User'
+    },
+    doctor: {
+        type: mongoose.Schema.Types.Mixed,
+        ref: 'Doctor'
     },
     content: {
         type: String,

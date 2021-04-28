@@ -103,8 +103,9 @@ export type Message = {
   _id: string,
   content: string,
   createdAt: string,
-  user: UserType,
-  chatRoom?: ChatRoom
+  user?: UserType,
+  doctor?: DoctorType,
+  chatRoom?: ChatRoom,
 }
 
 export type ChatRoom = {
