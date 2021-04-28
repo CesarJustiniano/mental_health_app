@@ -33,6 +33,7 @@ import ScheduleScreen from "../screens/ScheduleScreen";
 import DoctorListScreen from "../screens/DoctorListScreen";
 import UpdateProfileScreen from "../screens/UpdateProfileScreen";
 import UserLoginScreen from "../screens/UserLoginScreen";
+import DoctorVideoScreen from "../screens/DoctorVideoScreen";
 
 
 // If you are not familiar with React Navigation, we recommend going through the
@@ -80,6 +81,7 @@ function RootNavigator() {
       <Stack.Screen name= "SignUpDoctorScreen" component={SignUpDoctorScreen} />
       <Stack.Screen name="DoctorListScreen" component={DoctorListScreen}/>
       <Stack.Screen name="UserLoginScreen" component={UserLoginScreen}/>
+      <Stack.Screen name="DoctorVideoScreen" component={DoctorVideoScreen}/>
       <Stack.Screen name={"UpdateProfileScreen"} component={UpdateProfileScreen}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>

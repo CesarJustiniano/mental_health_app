@@ -9,6 +9,8 @@ import styles from "../VideoCall/styles";
 import axios from "axios";
 import Comment from "../Comment";
 import {getAuthUser, getDoctorList} from "../../constants/api";
+
+import PatientList from "./PatientList";
 export type VideoCallProps ={
     patient: UserType
     doctor: DoctorType
@@ -16,7 +18,7 @@ export type VideoCallProps ={
 
 const VideoDoctor= ()=>{
     const flatList = useRef<FlatList>(null);
-    const [myPatient, setPatient] = useState([]);
+    const [Patients, setPatient] = useState([]);
     const [user, setUser] = useState([]);
     const [fName, setFName] = useState([]);
     const [Dname,setDname] = useState([]);
@@ -31,15 +33,21 @@ const VideoDoctor= ()=>{
             console.log("this is the Doctor with DoctorName:")
             console.log(info)
 
-            setFName(info.firstName);
-            setLName(info.lastName);
-            setPatient(info.myPatient);
+
+            setPatient(info.myPatients);
+
             console.log("This is My Patient:")
-            console.log(info.myPatient)
-            console.log(myPatient)
+            console.log(info.myPatients)
+            console.log(Patients)
             console.log("First in Array is:")
-            console.log(info.myPatient[0]['firstName'])
-            setDname(info.myPatient[0]['firstName'])
+            console.log("My patient length"+info.myPatients.length)
+            let i;
+            for(i=0;i<info.myPatients.length;i++){
+                //console.log(i)
+            }
+
+            console.log(info.myPatients[0]['firstName'])
+            setDname(info.myPatients[0]['firstName'])
             //console.log(myDoctor[0]['firstName'])
 
         }
@@ -61,13 +69,19 @@ const VideoDoctor= ()=>{
 
     return (
         <View style={{ width: '100%'}}>
-            <Text> The First Name of user is {fName}</Text>
-            <Text>The Last Name of user is {lName}</Text>
-            <Text>The Doctor of the user is is {Dname} </Text>
-
-
-
-
+            <Text> The First Name of doctor is {fName}</Text>
+            <Text>The Last Name of doctor is {lName}</Text>
+            <Text>The Patient of the doctor is is {Dname} </Text>
+            <FlatList
+                data={Patients}
+                renderItem={({item}) => (
+                    <PatientList User={item}/>
+                )}
+                keyExtractor={(item) => item._id}
+                ref={flatList}
+                refreshing={loading}
+                onRefresh={fetchFDoctor}
+            />
         </View>
     );
 }

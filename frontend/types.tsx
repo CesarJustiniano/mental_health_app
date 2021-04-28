@@ -26,6 +26,7 @@ export type RootStackParamList = {
   ScheduleScreen: undefined;
   UpdateProfileScreen: undefined;
   UserLoginScreen:undefined;
+  DoctorVideoScreen:undefined;
 
   DoctorListScreen:undefined;
 };
@@ -61,6 +62,7 @@ export type TabTwoParamList = {
 export type UserType = {
   _id: string,
   firstName: string,
+  lastName:string,
   username: string,
   image?: string,
   status?: string,
@@ -79,6 +81,7 @@ export type DoctorType = {
   status?: string,
   phoneNumber: string,
   email:string,
+  myPatients:object
 
 }
 

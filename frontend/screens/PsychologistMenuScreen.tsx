@@ -8,8 +8,8 @@ export default function PsychologistMenuScreen(){
 
     const  navigation = useNavigation();
 
-    const onButtonPress = () => {
-        //navigation.navigate('HelpCenterScreen');
+    const onButtonVideoScreen = () => {
+        navigation.navigate('DoctorVideoScreen');
     }
     const onButtonBack = () => {
         navigation.navigate('LoginPsychologistScreen');
@@ -33,11 +33,11 @@ export default function PsychologistMenuScreen(){
                 </TouchableOpacity>
 
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPress} >VIDEO CHAT WITH PATIENT</Text>
+                    <Text style={styles.customButton} onPress={onButtonVideoScreen} >VIDEO CHAT WITH PATIENT</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPress} >GROUP CHATS</Text>
+                    <Text style={styles.customButton} onPress={onButtonVideoScreen} >GROUP CHATS</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity >
