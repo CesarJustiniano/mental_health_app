@@ -50,7 +50,7 @@ export default function SignUpDoctorScreen(){
     const onButtonPress = () => {
         navigation.navigate('PsychologistMenuScreen');
     }
-    const onButtonPress2 = () => {
+    const onButtonBack = () => {
         navigation.navigate('LoginPsychologistScreen');
     }
 
@@ -146,7 +146,7 @@ export default function SignUpDoctorScreen(){
                             <Text style={styles.customButton} onPress={onButtonRegister} >REGISTER</Text>
                         </TouchableOpacity>
                         <TouchableOpacity >
-                            <Text style={styles.customButton} onPress={onButtonPress2} >GO BACK</Text>
+                            <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
                         </TouchableOpacity>
 
                     </View>

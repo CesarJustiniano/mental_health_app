@@ -74,12 +74,15 @@ export const getAllDoctors = async (req, res) => {
 }
 
 export const getMyPatients = async (req, res) => {
+
+    const doctorId = await Doctor.findById(req.user._id);
+
     try {
-        //const doc = await Doctor.findOne({username:req.user.username})
-        //return res.status(200).json(await User.find({myDoctor:doc}))
-        return res.status(200).json(await Doctor.find().select({ myPatients: 1 }));
+        //const doc = await Doctor.findOne({username: req.user.username})
+        return res.status(200).json(await User.find({ myDoctor: doctorId }));
+        //return res.status(200).json(await Doctor.find().select({ myPatients: 1 }));
     } catch {
-        return res.status(404).json({ error: true, message: 'Error with Doctor'});
+        return res.status(404).json({error: true, message: 'Error with Doctor'});
     }
 }
 
@@ -100,10 +103,6 @@ export const updateDoctor = async (req, res) => {
 
                     if(req.body.phoneNumber) {
                         obj.phoneNumber = req.body.phoneNumber;
-                    }
-
-                    if(req.body.myDoctor){
-                        obj.myDoctor = req.body.myDoctor;
                     }
 
                     obj.save((err, updatedObj) => {
