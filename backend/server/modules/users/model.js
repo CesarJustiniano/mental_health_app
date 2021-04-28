@@ -1,8 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import Doctor from '../doctors/model.js';
-import Schedule from '../scheduler/model.js';
-
-
 
 const UserSchema = new Schema ({
     firstName: {
@@ -43,14 +39,14 @@ const UserSchema = new Schema ({
     gender: {
         type: String
     },
-
-
+    role: {
+        type: String,
+        default: 'user',
+    },
     myDoctor: {
         type: mongoose.Schema.Types.Mixed,
         ref:'Doctor'
-
     },
-
     myAppointment:{
         type:mongoose.Schema.Types.Mixed,
         ref:'Schedule'

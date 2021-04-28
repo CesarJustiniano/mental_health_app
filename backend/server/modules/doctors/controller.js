@@ -23,9 +23,6 @@ export const createDoctor = async (req, res) => {
                 phoneNumber,
                 age,
                 gender,
-                myPatients,
-
-
             })
 
             try {
@@ -42,15 +39,17 @@ export const createDoctor = async (req, res) => {
 }
 
 export const loginDoctor = async (req, res, next) => {
-    passport.authenticate('local', (err, doctor, info) => {
+    passport.authenticate('doctor-local', (err, doctor, info) => {
         if (err) throw err;
         if (!doctor) res.send("No Doctor Exists");
         else {
             req.logIn(doctor, (err) => {
                 if (err) throw err;
-                res.send("Successfully Authenticated");
+                doctor.isAuthenticated = true;
+                //res.send("Successfully Authenticated");
                 console.log(req.user.username);
-                //res.redirect('/')  redirect to home page
+                res.send(req.user);
+                //res.redirect('/')  //redirect to home page
             });
         }
     })(req, res, next);
@@ -68,10 +67,6 @@ export const getDoctor = async (req, res) => {
 
 export const getAllDoctors = async (req, res) => {
     try {
-        // return User.find({}).populate('post').exec((err, data) => {
-        //     if (err) throw err;
-        //     console.log(data);
-        // })
         return res.status(200).json(await Doctor.find({} ));
     } catch {
         return res.status(404).json({ error: true, message: 'Error with Doctor'});
@@ -90,22 +85,38 @@ export const getMyPatients = async (req, res) => {
 
 export const updateDoctor = async (req, res) => {
     if (req.user){
-        let user
 
-        user = await Doctor.findById(req.params.id);
+        await Doctor.findOne({_id: req.user._id}, (err, obj) => {
+            if(err) {
+                console.log(err);
+                res.status(500).send();
+            } else {
+                if(!obj) {
+                    res.status(400).send();
+                } else {
+                    if(req.body.username) {
+                        obj.username = req.body.username;
+                    }
 
-        user.firstName = req.body.firstName
-        user.lastName = req.body.lastName
-        user.username = req.body.username
-        user.phoneNumber = req.body.phoneNumber
-        user.age = req.body.age
-        user.gender = req.body.gender
-        user.myPatients = req.body.myPatients
+                    if(req.body.phoneNumber) {
+                        obj.phoneNumber = req.body.phoneNumber;
+                    }
 
-        //await user.save();
-        return res.status(200).json(await user.save());
-        //res.redirect()  to some path
+                    if(req.body.myDoctor){
+                        obj.myDoctor = req.body.myDoctor;
+                    }
 
+                    obj.save((err, updatedObj) => {
+                        if(err) {
+                            console.log(err);
+                            res.status(500).send();
+                        } else {
+                            res.send(updatedObj);
+                        }
+                    })
+                }
+            }
+        })
     } else {
         return res.status(404).json({ error: true, message: 'Error with updating doctor'});
     }

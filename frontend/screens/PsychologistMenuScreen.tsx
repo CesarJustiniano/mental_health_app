@@ -19,6 +19,10 @@ export default function PsychologistMenuScreen(){
         navigation.navigate('InformationPsychologistScreen');
     }
 
+    const onButtonRoot = () => {
+        navigation.navigate('Root');
+    }
+
     return(
 
         <View style={styles.container}>
@@ -37,7 +41,7 @@ export default function PsychologistMenuScreen(){
                 </TouchableOpacity>
 
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonBack} >POST MOTIVATIONAL VIDEOS</Text>
+                    <Text style={styles.customButton} onPress={onButtonRoot} >MAKE A POST</Text>
                 </TouchableOpacity>
                 <TouchableOpacity >
                     <Text style={styles.customButton} onPress={onButtonInfo} >INFORMATION ABOUT OUR APP</Text>

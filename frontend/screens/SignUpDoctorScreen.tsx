@@ -20,7 +20,6 @@ export default function SignUpDoctorScreen(){
         phoneNumber: '',
         age: '',
         gender: '',
-
     })
     const  navigation = useNavigation();
 
@@ -35,7 +34,6 @@ export default function SignUpDoctorScreen(){
                 phoneNumber: register.phoneNumber,
                 age: register.age,
                 gender: register.gender,
-
             }
             console.log(fields);
             const response = await axios.post('/doctor_signup', fields);
@@ -74,9 +72,6 @@ export default function SignUpDoctorScreen(){
                 contentContainerStyle={{flex:1}} bounces={false}
             >
                 <View style={styles.container}>
-
-
-
                     <Text style={styles.headings}>Enter Your Information</Text>
                     <TextInput
                                value={register.email || ''}
@@ -95,7 +90,6 @@ export default function SignUpDoctorScreen(){
                                underlineColorAndroid='transparent'
                                secureTextEntry={true}
                     >
-
                     </TextInput>
                     <TextInput
                                value={register.firstName || ''}
