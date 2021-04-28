@@ -39,6 +39,11 @@ const VideoCall = () =>{
             setDoctor(info.myDoctor);
             console.log("This is My Doctor:")
             console.log(info.myDoctor)
+            console.log(myDoctor)
+            console.log("First in Array is:")
+            console.log(info.myDoctor[0]['firstName'])
+            setDname(info.myDoctor[0]['firstName'])
+            //console.log(myDoctor[0]['firstName'])
 
 
 
@@ -62,7 +67,7 @@ return (
     <View style={{ width: '100%'}}>
         <Text> The First Name of user is {fName}</Text>
         <Text>The Last Name of user is {lName}</Text>
-        <Text>The Doctor of the user is </Text>
+        <Text>The Doctor of the user is is {Dname} </Text>
 
 
 

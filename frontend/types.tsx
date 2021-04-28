@@ -65,7 +65,8 @@ export type UserType = {
   image?: string,
   status?: string,
   phoneNumber: string,
-  myDoctor: object,
+  //myDoctor: [object],
+  myDoctor: object
 
 }
 
