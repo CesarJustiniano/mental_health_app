@@ -45,7 +45,6 @@ const UserSchema = new Schema ({
     },
     myDoctor: {
         type: mongoose.Schema.Types.Mixed,
-        ref:'Doctor'
     },
     myAppointment:{
         type:mongoose.Schema.Types.Mixed,

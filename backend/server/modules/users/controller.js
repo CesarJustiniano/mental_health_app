@@ -1,6 +1,7 @@
 import User from './model.js';
 import Bcrypt from 'bcrypt';
 import passport from 'passport';
+import Doctor from '../doctors/model.js';
 
 export const createUser = async (req, res) => {
 
@@ -115,10 +116,6 @@ export const updateUser = async (req, res) => {
                         obj.physicalAddress = req.body.physicalAddress;
                     }
 
-                    if(req.body.myDoctor){
-                        obj.myDoctor = req.body.myDoctor;
-                    }
-
                     obj.save((err, updatedObj) => {
                         if(err) {
                             console.log(err);
@@ -132,5 +129,57 @@ export const updateUser = async (req, res) => {
         })
     } else {
         return res.status(404).json({ error: true, message: 'Error with updating user'});
+    }
+}
+
+export const assignDoctor = async (req, res) => {
+    if(req.user){
+
+        const doctorId = await Doctor.findById(req.params.id);
+        const userId = await User.findById(req.user._id);
+
+        if(req.user.role === 'user'){
+            await User.findOne({_id: userId}, (err, obj) => {
+                if(err) {
+                    console.log(err);
+                    res.status(500).send();
+                } else {
+                    if(!obj){
+                        res.status(400).send();
+                    } else {
+                        obj.myDoctor = doctorId;
+
+                        obj.save((err, updatedField) => {
+                            if(err) {
+                                console.log(err);
+                                res.status(500).send();
+                            } else {
+                                res.send(updatedField);
+                            }
+                        })
+                    }
+                }
+            })
+
+            await Doctor.findOne({_id: doctorId}, (err, obj) => {
+                if(err) {
+                    console.log(err);
+                    res.status(500).send();
+                } else {
+                    if(!obj){
+                        res.status(400).send();
+                    } else {
+                        obj.myPatients.push(userId);
+                        obj.save();
+                    }
+                }
+            })
+
+        } else {
+            return res.status(404).json({error: true, message: 'Error, not a user'});
+        }
+
+    } else {
+        return res.status(404).json({error: true, message: 'Error assigning a doctor'});
     }
 }

@@ -48,7 +48,7 @@ export default function SignUpScreen(){
         }
     }
 
-    const onButtonPress2 = () => {
+    const onButtonBack = () => {
         navigation.navigate('UserLoginScreen');
     }
 
@@ -157,7 +157,7 @@ export default function SignUpScreen(){
                 <Text style={styles.customButton} onPress={onButtonRegister} >REGISTER</Text>
             </TouchableOpacity>
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonPress2} >GO BACK</Text>
+                    <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
                 </TouchableOpacity>
 
             </View>

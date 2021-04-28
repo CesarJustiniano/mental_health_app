@@ -9,7 +9,7 @@ routes.post('/doctor_login', DoctorController.loginDoctor);
 routes.get('/doctor_logout', DoctorController.logoutDoctor);
 routes.get('/doctor', DoctorController.getDoctor);
 routes.get('/allDoctors', DoctorController.getAllDoctors);
-routes.patch('/doctor/:_id', DoctorController.updateDoctor);
+routes.put('/updateDoctor', DoctorController.updateDoctor);
 routes.get('/doctor_myPatients',DoctorController.getMyPatients);
 
 export default routes;

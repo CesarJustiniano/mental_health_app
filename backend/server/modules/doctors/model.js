@@ -41,9 +41,7 @@ const DoctorSchema = new Schema ({
         default: 'doctor',
     },
     myPatients: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-
+        type: mongoose.Schema.Types.Mixed,
     }],
 
 }, { timestamps: {createdAt: true, updatedAt: false} });

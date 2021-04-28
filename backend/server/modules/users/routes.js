@@ -11,6 +11,6 @@ routes.get('/allUsers', UserController.getAllUsers);
 routes.put('/updateUser', UserController.updateUser);
 routes.get('/allEmails',UserController.getAllEmails)
 routes.get('/myEmail',UserController.getMyEmail);
-
+routes.put('/doctor/:id/assignDoctor', UserController.assignDoctor);
 
 export default routes;
