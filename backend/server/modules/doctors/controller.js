@@ -80,9 +80,9 @@ export const getAllDoctors = async (req, res) => {
 
 export const getMyPatients = async (req, res) => {
     try {
-        const doc = await Doctor.findOne({username:req.user.username})
-        return res.status(200).json(await User.find({myDoctor:doc}))
-        //return res.status(200).json(await Doctor.find().select({ myPatients: 1 }));
+        //const doc = await Doctor.findOne({username:req.user.username})
+        //return res.status(200).json(await User.find({myDoctor:doc}))
+        return res.status(200).json(await Doctor.find().select({ myPatients: 1 }));
     } catch {
         return res.status(404).json({ error: true, message: 'Error with Doctor'});
     }
