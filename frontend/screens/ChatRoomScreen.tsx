@@ -59,7 +59,6 @@ export default function ChatRoomScreen() {
     console.log(route.params)
 
     const onCloseButton = () => {
-        //socket.emit('leaveRoom', route.params.chatRoom);
         navigation.navigate('Root');
     }
 

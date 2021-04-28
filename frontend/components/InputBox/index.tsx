@@ -6,16 +6,27 @@ import {
 } from "react-native";
 import styles from "./styles";
 import { MaterialIcons} from "@expo/vector-icons";
-
+import axios from "axios";
+import {RouteProp, useRoute} from "@react-navigation/native";
+import {Params} from "../../types";
 
 const InputBox = () => {
     const [message, setMessage] = useState('');
 
-    const onSendPress = () => {
-        console.log(`Sending: ${message}`);
+    const route = useRoute<RouteProp<Params, 'A'>>();
 
-        //send the message to the backend
-        setMessage('');
+    const onSendPress = async () => {
+        try {
+            const newMessage = {
+                content: message,
+            }
+            const response = await axios.post(`/chatRoom/${route.params.id}/createMessage`, newMessage, {withCredentials: true});
+            setMessage(response.data);
+            console.log(response.data);
+            setMessage('');
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     return(

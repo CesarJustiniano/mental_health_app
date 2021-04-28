@@ -10,6 +10,11 @@ const chatRoomSchema = new Schema({
         type: mongoose.Schema.Types.Mixed,
         ref: 'User'
     }],
+    doctor: {
+        type: mongoose.Schema.Types.Mixed,
+        ref: 'Doctor',
+        required: true
+    },
     messages: [{
        type: mongoose.Schema.Types.Mixed,
        ref: 'Message'

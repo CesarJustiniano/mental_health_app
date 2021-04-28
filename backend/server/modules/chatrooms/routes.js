@@ -3,6 +3,7 @@ import ChatRoom from './chatRoomModel.js';
 import User from "../users/model";
 import Message from "./messageModel";
 import Post from "../posts/model";
+import Doctor from "../doctors/model";
 
 const routes = new Router();
 
@@ -19,10 +20,13 @@ routes.post('/createChatroom', async (req, res) => {
                         return userInfo;
                 });
 
+                const doctor = await Doctor.findById(user.myDoctor.id);
+
                 const { name } = req.body;
                 const newChatroom = new ChatRoom({
                     name: name,
-                    users: [{user}]
+                    users: [{user}],
+                    doctor: doctor
                 });
 
                 //await newChatroom.save();
