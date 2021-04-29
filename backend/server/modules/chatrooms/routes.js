@@ -28,6 +28,8 @@ routes.post('/createChatroom', async (req, res) => {
                     doctor: {doctor}
                 });
 
+                //user.joinedChatRooms.push(newChatroom);
+
                 //await newChatroom.save();
                 //res.redirect('/chatRooms');
                 return res.status(200).json(await newChatroom.save());
@@ -141,7 +143,7 @@ routes.post('/groupChatroom/:id/addUser', async (req, res) => {
                 return ChatRoom.findById(req.params.id);
             })
             .then(chatRoom => {
-                chatRoom.users.push(user);
+                chatRoom.users.push({user});
                 return chatRoom.save();
             })
             .catch(err => {
@@ -209,12 +211,18 @@ routes.delete('/groupChatroom/remove/:id', async (req, res) => {
             else
                 return userInfo;
         });
+        const chatRoom = await ChatRoom.findById(req.params.id);
 
         if(user){
+            if(chatRoom.users.user){
+                if(chatRoom.users.user._id.equals(user._id)){
+                    return res.status(200).json(await ChatRoom.findByIdAndDelete(req.params.id));
+                }
+            }
+
             return res.status(500).json({ error: true, message: 'User cannot delete group chats'});
         }
 
-        const chatRoom = await ChatRoom.findById(req.params.id);
 
         const doctor = await Doctor.findOne({username: req.user.username}, function (err, doctorInfo){
             if (err) throw err;
