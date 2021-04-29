@@ -1,13 +1,12 @@
 import React from 'react';
-import { Text, View, Image, TouchableWithoutFeedback } from "react-native";
-import { GroupChatRoom } from "../../types";
+import { Text, View, TouchableWithoutFeedback } from "react-native";
+import {ChatRoom} from "../../types";
 import styles from "./styles";
-import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import ProfilePicture from "../ProfilePicture";
 
 export type GroupChatListItemProps = {
-    groupChat: GroupChatRoom;
+    groupChat: ChatRoom;
 }
 
 const GroupChatListItem = (props: GroupChatListItemProps) => {
@@ -18,7 +17,7 @@ const GroupChatListItem = (props: GroupChatListItemProps) => {
     const onClick = () => {
         //navigate to Group Chat's room
         navigation.navigate('GroupChatRoom', {
-            id: groupChat.id,
+            id: groupChat._id,
             name: groupChat.name,
             users: groupChat.users,
             image: groupChat.image
@@ -32,7 +31,8 @@ const GroupChatListItem = (props: GroupChatListItemProps) => {
                     <ProfilePicture image={groupChat.image} size={60} />
                     <View style={styles.midContainer}>
                         <Text style={styles.groupName}>{groupChat.name}</Text>
-                        <Text numberOfLines={1} style={styles.description}>{groupChat.description}</Text>
+                        <Text numberOfLines={1} style={styles.description}>{groupChat.description ? groupChat.description : 'No Description'}</Text>
+                        <Text>{groupChat.users ? groupChat.users.length + 1 : 1}/10</Text>
                     </View>
                 </View>
             </View>

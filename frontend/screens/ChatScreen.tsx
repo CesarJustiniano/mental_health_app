@@ -1,14 +1,13 @@
 import * as React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 
-import { Text, View } from '../components/Themed';
+import { View } from '../components/Themed';
 
 import ChatListItem from "../components/ChatListItem";
 
-import chatRooms from "../data/ChatRooms";
 import NewMessageButton from "../components/NewMessageButton";
-import {getChatRoomList, getPosts} from "../constants/api";
-import {useEffect, useRef, useState} from "react";
+import {getChatRoomList} from "../constants/api";
+import {useEffect, useState} from "react";
 import Colors from "../constants/Colors";
 
 export default function ChatScreen() {

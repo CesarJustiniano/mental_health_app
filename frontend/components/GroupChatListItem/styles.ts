@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     },
     midContainer: {
         justifyContent: "space-around",
-        //backgroundColor: 'red',
         marginHorizontal: 5,
     },
     avatar: {

@@ -116,26 +116,26 @@ routes.post('/createGroupChatroom/:category', async (req, res) => {
     }
 });
 
-// routes.post('/chatRoom/:id/addUser', async (req, res) => {
-//     if(req.user){
-//         const chatRoom = await ChatRoom.findById(req.params.id);
-//
-//         const user = await User.findOne({username: req.user.username}, function (err, userInfo){
-//             if (err) throw err;
-//             else
-//                 return userInfo;
-//         });
-//
-//         if(chatRoom.users.contains(user)){
-//             return res.status(500).json({ error: true, message: 'User already in this chat room'});
-//         }
-//
-//         await chatRoom.users.push(user)
-//         return res.status(200).json(await chatRoom.save());
-//     } else {
-//         return res.status(404).json({ error: true, message: 'Error with Chatroom'});
-//     }
-// });
+routes.post('/groupChatroom/:id/addUser', async (req, res) => {
+    if(req.user){
+        const chatRoom = await ChatRoom.findById(req.params.id);
+
+        const user = await User.findOne({username: req.user.username}, function (err, userInfo){
+            if (err) throw err;
+            else
+                return userInfo;
+        });
+
+        if(chatRoom.users.contains(user)){
+            return res.status(500).json({ error: true, message: 'User already in this chat room'});
+        }
+
+        await chatRoom.users.push(user)
+        return res.status(200).json(await chatRoom.save());
+    } else {
+        return res.status(404).json({ error: true, message: 'Error with Chatroom'});
+    }
+});
 
 routes.get('/chatRooms', async (req, res) => {
     if(req.user) {

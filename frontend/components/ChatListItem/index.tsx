@@ -4,12 +4,7 @@ import { ChatRoom } from "../../types";
 import styles from "./styles";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
-import io from "socket.io-client";
 import ProfilePicture from "../ProfilePicture";
-
-const ENDPOINT = 'http://10.0.0.121:3000/api'; //must be same as axios baseURL
-
-let socket = io(ENDPOINT);
 
 export type ChatListItemProps = {
     chatRoom: ChatRoom;
