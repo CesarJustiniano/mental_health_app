@@ -21,9 +21,8 @@ routes.post('/createChatroom', async (req, res) => {
 
                 const doctor = await Doctor.findById(user.myDoctor);
 
-                const { name } = req.body;
                 const newChatroom = new ChatRoom({
-                    name: name,
+                    name: `Therapy: ${user.username} & ${doctor.username}`,
                     users: [{user}],
                     doctor: {doctor}
                 });
@@ -105,10 +104,10 @@ routes.post('/createGroupChatroom/:category', async (req, res) => {
                 return doctorInfo;
         });
 
-        const { name } = req.body;
+        const category = req.params.category;
         const newGroupChatroom = new ChatRoom({
-            name: name,
-            category: req.params.category,
+            name: `${category}: ${doctor.username}`,
+            category: category,
             doctor: {doctor}
         });
 
@@ -214,8 +213,8 @@ routes.delete('/groupChatroom/remove/:id', async (req, res) => {
         const chatRoom = await ChatRoom.findById(req.params.id);
 
         if(user){
-            if(chatRoom.users.user){
-                if(chatRoom.users.user._id.equals(user._id)){
+            if(chatRoom.users[0].user){
+                if(chatRoom.users[0].user._id.equals(user._id)){
                     return res.status(200).json(await ChatRoom.findByIdAndDelete(req.params.id));
                 }
             }

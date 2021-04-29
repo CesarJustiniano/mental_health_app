@@ -3,15 +3,13 @@ import {FlatList, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 
 import { Text, View } from '../components/Themed';
 
-//import groupChats from "../data/GroupChats";
-import {AntDesign} from "@expo/vector-icons";
+import {AntDesign, Ionicons} from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import {RouteProp, useNavigation, useRoute} from "@react-navigation/native";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import ChatListItem from "../components/ChatListItem";
 import {Params} from "../types";
-import GroupChatListItem from "../components/GroupChatListItem";
 
 export default function GroupChatScreen() {
     const navigation = useNavigation();
@@ -49,19 +47,22 @@ export default function GroupChatScreen() {
         navigation.navigate('ChatCategory');
     }
 
-    const onClick = () => {
-        //GroupChatRoom
-        navigation.navigate('ChatRoom', {
-            id: groupChatRooms._id,
-        });
+    const onAddNewChatButton = async () => {
+        try{
+            const newGroupChat = await axios.post(`/createGroupChatroom/${routeID.params.name}`);
+            return newGroupChat.data;
+        } catch (e) {
+            console.log(e);
+            console.warn('Only Doctors can create group chats');
+        }
     }
 
     return (
-        <TouchableWithoutFeedback onPress={onClick}>
             <View style={styles.container}>
                 <View style={styles.headerContainer}>
                     <AntDesign name={'close'} size={30} color={Colors.light.tint} onPress={onCloseButton}/>
                     <Text style={styles.headerText}>{route.params.name}</Text>
+                    <Ionicons name="add" size={30} color={Colors.light.tint} onPress={onAddNewChatButton} />
                 </View>
                 <FlatList
                     style={{width: '100%'}}
@@ -72,7 +73,6 @@ export default function GroupChatScreen() {
                     onRefresh={fetchGroupChatRooms}
                 />
             </View>
-        </TouchableWithoutFeedback>
     );
 }
 

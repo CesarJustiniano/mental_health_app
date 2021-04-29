@@ -50,11 +50,7 @@ const UserSchema = new Schema ({
     myAppointment:{
         type:mongoose.Schema.Types.Mixed,
         ref:'Schedule'
-    },
-    joinedChatRooms: [{
-        type: mongoose.Schema.Types.Mixed,
-        ref: 'ChatRoom'
-    }]
+    }
 
 }, { timestamps: {createdAt: true, updatedAt: false} });
 
