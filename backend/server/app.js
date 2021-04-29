@@ -84,13 +84,18 @@ io.on('connection', (socket) => {
                 content: message,
             });
 
+            // io.to(chatRoomId).emit('newMessage', {
+            //     message: message,
+            //     name: user,
+            //     user: socket.request.user,
+            // });
+
             io.to(chatRoomId).emit('newMessage', {
-                message: message,
-                name: user,
-                user: socket.request.user,
+               messages: newMessage
             });
 
-            await newMessage.save();
+            chatRoomId.messages.push(await newMessage.save());
+            await chatRoomId.save();
         }
     });
 })
