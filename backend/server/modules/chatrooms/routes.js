@@ -126,12 +126,27 @@ routes.post('/groupChatroom/:id/addUser', async (req, res) => {
                 return userInfo;
         });
 
-        if(chatRoom.users.contains(user)){
-            return res.status(500).json({ error: true, message: 'User already in this chat room'});
+        const doctor = await Doctor.findOne({username: req.user.username}, function (err, doctorInfo){
+            if (err) throw err;
+            else
+                return doctorInfo;
+        });
+
+        if(doctor){
+            return res.status(500).json({ error: true, message: 'Doctor cannot join other group chats'});
         }
 
-        await chatRoom.users.push(user)
-        return res.status(200).json(await chatRoom.save());
+        return res.status(200).json(await chatRoom.save()
+            .then(user => {
+                return ChatRoom.findById(req.params.id);
+            })
+            .then(chatRoom => {
+                chatRoom.users.push(user);
+                return chatRoom.save();
+            })
+            .catch(err => {
+                console.log(err);
+            }));
     } else {
         return res.status(404).json({ error: true, message: 'Error with Chatroom'});
     }
@@ -174,6 +189,44 @@ routes.get('/chatRoom/:id/messages', async (req, res) => {
 routes.get('/groupChatroom/:category', async (req, res) => {
     if(req.user){
         return res.status(200).json(await ChatRoom.find({category: req.params.category}));
+    } else {
+        return res.status(404).json({ error: true, message: 'Error with group chat'});
+    }
+});
+
+routes.delete('/chatRoom/remove/:id', async (req, res) => {
+   if(req.user){
+       return res.status(200).json(await ChatRoom.findByIdAndDelete(req.params.id));
+   } else {
+       return res.status(404).json({ error: true, message: 'Error with group chat'});
+   }
+});
+
+routes.delete('/groupChatroom/remove/:id', async (req, res) => {
+    if(req.user){
+        const user = await User.findOne({username: req.user.username}, function (err, userInfo){
+            if (err) throw err;
+            else
+                return userInfo;
+        });
+
+        if(user){
+            return res.status(500).json({ error: true, message: 'User cannot delete group chats'});
+        }
+
+        const chatRoom = await ChatRoom.findById(req.params.id);
+
+        const doctor = await Doctor.findOne({username: req.user.username}, function (err, doctorInfo){
+            if (err) throw err;
+            else
+                return doctorInfo;
+        });
+
+        if(chatRoom.doctor.doctor._id.equals(doctor._id)){
+            return res.status(200).json(await ChatRoom.findByIdAndDelete(req.params.id));
+        }
+
+        return res.status(500).json({ error: true, message: 'Cannot delete group chats from other Doctors'})
     } else {
         return res.status(404).json({ error: true, message: 'Error with group chat'});
     }
