@@ -21,6 +21,8 @@ import {
 import ProfilePicture from "../components/ProfilePicture";
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
+import {useEffect, useState} from "react";
+import {getAuthUser} from "../constants/api";
 
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -84,6 +86,23 @@ const TabOneStack = createStackNavigator<FeedNavigatorParamList>();
 function HomeNavigator() {
     const navigation = useNavigation();
 
+    const [username, setUsername] = useState([]);
+
+    const fetchUsername = async () => {
+        try{
+            const info = await getAuthUser();
+
+            setUsername(info.username);
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
+    useEffect(() => {
+        fetchUsername().then();
+    }, [])
+
     const onProfilePress = () => {
         navigation.navigate('ProfileSettings');
     }
@@ -113,8 +132,9 @@ function HomeNavigator() {
             ),
 
             headerLeft: () => (
-                <TouchableOpacity onPress={onProfilePress}>
+                <TouchableOpacity onPress={onProfilePress} style={styles.container}>
                     <ProfilePicture size={40} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
+                    <Text style={styles.containerHeader}>{username}</Text>
                 </TouchableOpacity>
             )
 
@@ -142,6 +162,23 @@ const ChatStack = createStackNavigator<ChatNavigatorParamList>()
 
 function ChatNavigator() {
     const navigation = useNavigation();
+
+    const [username, setUsername] = useState([]);
+
+    const fetchUsername = async () => {
+        try{
+            const info = await getAuthUser();
+
+            setUsername(info.username);
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
+    useEffect(() => {
+        fetchUsername().then();
+    }, [])
 
     const onProfilePress = () => {
         navigation.navigate('ProfileSettings');
@@ -172,8 +209,9 @@ function ChatNavigator() {
                     ),
 
                     headerLeft: () => (
-                        <TouchableOpacity onPress={onProfilePress}>
+                        <TouchableOpacity onPress={onProfilePress} style={styles.container}>
                             <ProfilePicture size={40} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
+                            <Text style={styles.containerHeader}>{username}</Text>
                         </TouchableOpacity>
                     )
 
@@ -187,6 +225,23 @@ const ScheduleStack = createStackNavigator<ScheduleNavigatorParamList>()
 
 function ScheduleNavigator() {
     const navigation = useNavigation();
+
+    const [username, setUsername] = useState([]);
+
+    const fetchUsername = async () => {
+        try{
+            const info = await getAuthUser();
+
+            setUsername(info.username);
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
+    useEffect(() => {
+        fetchUsername().then();
+    }, [])
 
     const onProfilePress = () => {
         navigation.navigate('ProfileSettings');
@@ -217,8 +272,9 @@ function ScheduleNavigator() {
                     ),
 
                     headerLeft: () => (
-                        <TouchableOpacity onPress={onProfilePress}>
+                        <TouchableOpacity onPress={onProfilePress} style={styles.container}>
                             <ProfilePicture size={40} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
+                            <Text style={styles.containerHeader}>{username}</Text>
                         </TouchableOpacity>
                     )
 
@@ -232,6 +288,23 @@ const InformationBoardStack = createStackNavigator<InformationBoardNavigatorPara
 
 function InformationBoardNavigator() {
     const navigation = useNavigation();
+
+    const [username, setUsername] = useState([]);
+
+    const fetchUsername = async () => {
+        try{
+            const info = await getAuthUser();
+
+            setUsername(info.username);
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
+    useEffect(() => {
+        fetchUsername().then();
+    }, [])
 
     const onProfilePress = () => {
         navigation.navigate('ProfileSettings');
@@ -262,8 +335,9 @@ function InformationBoardNavigator() {
                     ),
 
                     headerLeft: () => (
-                        <TouchableOpacity onPress={onProfilePress}>
+                        <TouchableOpacity onPress={onProfilePress} style={styles.container}>
                             <ProfilePicture size={40} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
+                            <Text style={styles.containerHeader}>{username}</Text>
                         </TouchableOpacity>
                     )
 
@@ -276,6 +350,10 @@ function InformationBoardNavigator() {
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: 'space-around',
+        width: '100%',
     },
     containerHeader: {
         color: Colors.light.tint,

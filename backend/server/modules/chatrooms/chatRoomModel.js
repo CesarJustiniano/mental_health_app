@@ -8,8 +8,13 @@ const chatRoomSchema = new Schema({
     },
     users: [{
         type: mongoose.Schema.Types.Mixed,
-        ref: 'User',
+        ref: 'User'
     }],
+    doctor: {
+        type: mongoose.Schema.Types.Mixed,
+        ref: 'Doctor',
+        required: true
+    },
     messages: [{
        type: mongoose.Schema.Types.Mixed,
        ref: 'Message'
@@ -22,6 +27,9 @@ const chatRoomSchema = new Schema({
         type: String
     },
     description: {
+        type: String
+    },
+    category: {
         type: String
     }
 });

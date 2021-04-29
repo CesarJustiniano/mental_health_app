@@ -4,11 +4,7 @@ import { ChatRoom } from "../../types";
 import styles from "./styles";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
-import io from "socket.io-client";
-
-const ENDPOINT = 'http://10.0.0.121:3000/api'; //must be same as axios baseURL
-
-let socket = io(ENDPOINT);
+import ProfilePicture from "../ProfilePicture";
 
 export type ChatListItemProps = {
     chatRoom: ChatRoom;
@@ -19,18 +15,12 @@ const ChatListItem = (props: ChatListItemProps) => {
 
     const navigation = useNavigation();
 
-    const user = chatRoom.users[1]; //dummy getter
-
     const onClick = () => {
-        socket.emit('joinRoom', { chatRoom: chatRoom }, (error) => {
-            if (error) {
-                alert(error);
-            }
-        });
         navigation.navigate('ChatRoom', {
             chatRoom: chatRoom,
-            username: user.username,
-            image: user.image
+            id: chatRoom._id,
+            name: chatRoom.name,
+            image: chatRoom.image
         });
     }
 
@@ -38,15 +28,13 @@ const ChatListItem = (props: ChatListItemProps) => {
         <TouchableWithoutFeedback onPress={onClick}>
             <View style={styles.container}>
                 <View style={styles.leftContainer}>
-                    <Image source={{uri: user.image}} style={styles.avatar}/>
+                    <ProfilePicture image={chatRoom.image} size={70}/>
                     <View style={styles.midContainer}>
-                        <Text style={styles.username}>{user.username}</Text>
-                        <Text numberOfLines={2} style={styles.lastMessage}>{chatRoom.lastMessage.content}</Text>
+                        <Text style={styles.username}>{chatRoom.name}</Text>
+                        <Text numberOfLines={2} style={styles.lastMessage}>{chatRoom.lastMessage ? chatRoom.lastMessage.message.content : 'No messages...'}</Text>
                     </View>
                 </View>
-                <Text style={styles.time}>
-                    {moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY")}
-                </Text>
+                <Text style={styles.time}>{chatRoom.lastMessage ? moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY") : ''}</Text>
             </View>
         </TouchableWithoutFeedback>
     )

@@ -1,15 +1,18 @@
 import mongoose, { Schema } from "mongoose";
 
 const messageSchema = new Schema({
-    chatroom: {
+    chatRoom: {
         type: mongoose.Schema.Types.Mixed,
         ref: 'ChatRoom',
         required: true
     },
     user: {
         type: mongoose.Schema.Types.Mixed,
-        ref: 'User',
-        required: true
+        ref: 'User'
+    },
+    doctor: {
+        type: mongoose.Schema.Types.Mixed,
+        ref: 'Doctor'
     },
     content: {
         type: String,
