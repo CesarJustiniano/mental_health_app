@@ -79,7 +79,7 @@ export default function SignUpScreen(){
                 onChangeText={(event) => setRegister({...register, email: event})}
                 style={styles.customInput}
                 placeholder='E-Mail'
-                placeholderTextColor='rgba(255,255,255,0.7'
+                placeholderTextColor='rgba(0,128,128,0.6)'
                 underlineColorAndroid='transparent'>
             </TextInput>
             <TextInput
@@ -87,7 +87,7 @@ export default function SignUpScreen(){
                 onChangeText={(event) => setRegister({...register, password: event})}
                 style={styles.customInput}
                 placeholder='Password'
-                placeholderTextColor='rgba(255,255,255,0.7'
+                placeholderTextColor='rgba(0,128,128,0.6)'
                 underlineColorAndroid='transparent'
                 secureTextEntry={true}>
             </TextInput>
@@ -96,7 +96,7 @@ export default function SignUpScreen(){
                 onChangeText={(event) => setRegister({...register, firstName: event})}
                 style={styles.customInput}
                 placeholder='First Name'
-                placeholderTextColor='rgba(255,255,255,0.7'
+                placeholderTextColor='rgba(0,128,128,0.6)'
                 underlineColorAndroid='transparent'>
             </TextInput>
             <TextInput
@@ -104,7 +104,7 @@ export default function SignUpScreen(){
                 onChangeText={(event) => setRegister({...register, lastName: event})}
                 style={styles.customInput}
                 placeholder='Last Name'
-                placeholderTextColor='rgba(255,255,255,0.7'
+                placeholderTextColor='rgba(0,128,128,0.6)'
                 underlineColorAndroid='transparent'>
             </TextInput>
             <TextInput
@@ -112,15 +112,15 @@ export default function SignUpScreen(){
                 onChangeText={(event) => setRegister({...register, username: event})}
                 style={styles.customInput}
                 placeholder='Username'
-                placeholderTextColor='rgba(255,255,255,0.7'
+                placeholderTextColor='rgba(0,128,128,0.6)'
                 underlineColorAndroid='transparent'>
             </TextInput>
             <TextInput
                 value={register.phoneNumber || ''}
                 onChangeText={(event) => setRegister({...register, phoneNumber: event})}
                 style={styles.customInput}
-                placeholder='Phone Number'
-                placeholderTextColor='rgba(255,255,255,0.7'
+                placeholder='Phone Number, e.g: 17875557777'
+                placeholderTextColor='rgba(0,128,128,0.6)'
                 underlineColorAndroid='transparent'>
             </TextInput>
             <TextInput
@@ -128,7 +128,7 @@ export default function SignUpScreen(){
                 onChangeText={(event) => setRegister({...register, age: event})}
                 style={styles.customInput}
                 placeholder='Age'
-                placeholderTextColor='rgba(255,255,255,0.7'
+                placeholderTextColor='rgba(0,128,128,0.6)'
                 underlineColorAndroid='transparent'>
             </TextInput>
             <TextInput
@@ -136,7 +136,7 @@ export default function SignUpScreen(){
                 onChangeText={(event) => setRegister({...register, gender: event})}
                 style={styles.customInput}
                 placeholder='Gender'
-                placeholderTextColor='rgba(255,255,255,0.7'
+                placeholderTextColor='rgba(0,128,128,0.6)'
                 underlineColorAndroid='transparent'>
             </TextInput>
             <TextInput
@@ -144,7 +144,7 @@ export default function SignUpScreen(){
                 onChangeText={(event) => setRegister({...register, physicalAddress: event})}
                 style={styles.customInput}
                 placeholder='Address'
-                placeholderTextColor='rgba(255,255,255,0.7'
+                placeholderTextColor='rgba(0,128,128,0.6)'
                 underlineColorAndroid='transparent'>
             </TextInput>
             <View>
@@ -154,20 +154,15 @@ export default function SignUpScreen(){
                 </Text>
 
             <TouchableOpacity >
-                <Text style={styles.customButton} onPress={onButtonRegister} >REGISTER</Text>
+                <Text style={styles.customButton} onPress={onButtonRegister} >                 REGISTER</Text>
             </TouchableOpacity>
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
+                    <Text style={styles.customButton} onPress={onButtonBack} >                 GO BACK</Text>
                 </TouchableOpacity>
-
             </View>
-
-
         </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-
-
     );
 
 }
@@ -190,7 +185,7 @@ const styles = StyleSheet.create({
         lineHeight: 40,
         fontWeight: 'normal',
         textTransform: 'uppercase',
-        fontFamily: 'Orienta',
+        //fontFamily: 'Orienta',
         letterSpacing: 1,
         fontStyle: 'italic',
 
