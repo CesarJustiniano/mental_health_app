@@ -34,7 +34,7 @@ const ChatListItem = (props: ChatListItemProps) => {
                         <Text numberOfLines={2} style={styles.lastMessage}>{chatRoom.lastMessage ? chatRoom.lastMessage.message.content : 'No messages...'}</Text>
                     </View>
                 </View>
-                <Text style={styles.time}>{chatRoom.lastMessage ? moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY") : ''}</Text>
+                <Text style={styles.time} numberOfLines={2}>{chatRoom.lastMessage ? moment(chatRoom.lastMessage.message.createdAt).fromNow() : ''}</Text>
             </View>
         </TouchableWithoutFeedback>
     )

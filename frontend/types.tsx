@@ -33,7 +33,7 @@ export type RootStackParamList = {
 
 export type BottomTabParamList = {
   Post: undefined;
-  TabTwo: undefined;
+  Call: undefined;
   Chat: undefined;
   Schedule: undefined;
   Info: undefined;
@@ -49,6 +49,10 @@ export type ChatNavigatorParamList = {
 
 export type ScheduleNavigatorParamList = {
   ScheduleScreen: undefined;
+};
+
+export type VideoCallNavigatorParamList = {
+  VideoPreCallScreen: undefined;
 };
 
 export type InformationBoardNavigatorParamList = {

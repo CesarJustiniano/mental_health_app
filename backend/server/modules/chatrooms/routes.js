@@ -21,17 +21,25 @@ routes.post('/createChatroom', async (req, res) => {
 
                 const doctor = await Doctor.findById(user.myDoctor);
 
-                const newChatroom = new ChatRoom({
-                    name: `Therapy: ${user.username} & ${doctor.username}`,
-                    users: [{user}],
-                    doctor: {doctor}
-                });
+                if(doctor){
+                    const newChatroom = new ChatRoom({
+                        name: `Therapy: ${user.username} & ${doctor.username}`,
+                        doctor
+                    });
 
-                //user.joinedChatRooms.push(newChatroom);
-
-                //await newChatroom.save();
-                //res.redirect('/chatRooms');
-                return res.status(200).json(await newChatroom.save());
+                    return res.status(200).json(await newChatroom.save()
+                        .then(user => {
+                            return newChatroom;
+                        })
+                        .then(chatRoom => {
+                            chatRoom.users.push(user);
+                            return chatRoom.save();
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        }))
+                }
+                return res.status(500).json({ error: true, message: 'Error with Chatroom'})
             }
         });
     } else {
@@ -108,48 +116,12 @@ routes.post('/createGroupChatroom/:category', async (req, res) => {
         const newGroupChatroom = new ChatRoom({
             name: `${category}: ${doctor.username}`,
             category: category,
-            doctor: {doctor}
+            doctor
         });
 
         return res.status(200).json(await newGroupChatroom.save());
     } else {
         return res.status(404).json({ error: true, message: 'Error with Group Chatroom'});
-    }
-});
-
-routes.post('/groupChatroom/:id/addUser', async (req, res) => {
-    if(req.user){
-        const chatRoom = await ChatRoom.findById(req.params.id);
-
-        const user = await User.findOne({username: req.user.username}, function (err, userInfo){
-            if (err) throw err;
-            else
-                return userInfo;
-        });
-
-        const doctor = await Doctor.findOne({username: req.user.username}, function (err, doctorInfo){
-            if (err) throw err;
-            else
-                return doctorInfo;
-        });
-
-        if(doctor){
-            return res.status(500).json({ error: true, message: 'Doctor cannot join other group chats'});
-        }
-
-        return res.status(200).json(await chatRoom.save()
-            .then(user => {
-                return ChatRoom.findById(req.params.id);
-            })
-            .then(chatRoom => {
-                chatRoom.users.push({user});
-                return chatRoom.save();
-            })
-            .catch(err => {
-                console.log(err);
-            }));
-    } else {
-        return res.status(404).json({ error: true, message: 'Error with Chatroom'});
     }
 });
 
@@ -162,7 +134,7 @@ routes.get('/chatRooms', async (req, res) => {
         });
 
         if(user){
-            return res.status(200).json(await ChatRoom.find({users: [{user}]}));
+            return res.status(200).json(await ChatRoom.find({users: user._id}));
         }
 
         const doctor = await Doctor.findOne({username: req.user.username}, function (err, doctorInfo){
@@ -171,7 +143,7 @@ routes.get('/chatRooms', async (req, res) => {
                 return doctorInfo;
         });
 
-        return res.status(200).json(await ChatRoom.find({doctor: {doctor}}));
+        return res.status(200).json(await ChatRoom.find({doctor: doctor._id}));
     } else {
         return res.status(404).json({ error: true, message: 'Error with Chatroom'});
     }
@@ -213,8 +185,8 @@ routes.delete('/groupChatroom/remove/:id', async (req, res) => {
         const chatRoom = await ChatRoom.findById(req.params.id);
 
         if(user){
-            if(chatRoom.users[0].user){
-                if(chatRoom.users[0].user._id.equals(user._id)){
+            if(chatRoom.users[0]){
+                if(chatRoom.users[0].equals(user._id)){
                     return res.status(200).json(await ChatRoom.findByIdAndDelete(req.params.id));
                 }
             }
@@ -229,7 +201,7 @@ routes.delete('/groupChatroom/remove/:id', async (req, res) => {
                 return doctorInfo;
         });
 
-        if(chatRoom.doctor.doctor._id.equals(doctor._id)){
+        if(chatRoom.doctor.equals(doctor._id)){
             return res.status(200).json(await ChatRoom.findByIdAndDelete(req.params.id));
         }
 
