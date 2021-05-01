@@ -39,7 +39,7 @@ export default function SignUpDoctorScreen(){
             const response = await axios.post('/doctor_signup', fields);
             console.log(response.data);
             setRegister(response.data);
-            navigation.navigate('InformationBoardScreen');
+            navigation.navigate('LoginPsychologistScreen');
         } catch (e) {
             console.log(e)
         }

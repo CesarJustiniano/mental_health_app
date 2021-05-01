@@ -69,9 +69,6 @@ const VideoDoctor= ()=>{
 
     return (
         <View style={{ width: '100%'}}>
-            <Text> The First Name of doctor is {fName}</Text>
-            <Text>The Last Name of doctor is {lName}</Text>
-            <Text>The Patient of the doctor is is {Dname} </Text>
             <FlatList
                 data={Patients}
                 renderItem={({item}) => (

@@ -54,13 +54,10 @@ export default function DoctorVideoScreen(){
 
     return (
         <View style={styles.container}>
-            <Text style={styles.headings}>IF YOUR APPOINTMENT IS READY THEN WAIT FOR YOUR DOCTOR TO CALL YOU</Text>
-            <Text>Your Appointment is {appointmentDate}</Text>
-            <Text onPress={onButtonPressVideoChat}> Doctor: {myDoctor}| Phone: {phoneNumber}</Text>
+            <VideoDoctor/>
             <TouchableOpacity >
                 <Text style={styles.redButton} onPress={onButtonBack} >GO BACK</Text>
             </TouchableOpacity>
-            <VideoDoctor/>
         </View>
 
 

@@ -11,6 +11,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 
 import {Text, View, } from '../components/Themed';
+import {getAuthUser} from "../constants/api";
 
 //const ITEM_SIZE= 70 +20*3
 const ITEM_SIZE= 160
@@ -82,14 +83,20 @@ export default function HelpCenterScreen(){
 
     ])
 
+
     const  navigation = useNavigation();
 
-    const onButtonPress = () => {
-        navigation.navigate('InformationBoardScreen');
+    const onButtonPress = async () => {
+        const info = await getAuthUser();
+        if(info.role=="doctor"){
+            navigation.navigate('InformationPsychologistScreen');
+        }
+        else {
+            navigation.navigate('InformationBoardScreen');
+        }
+
     }
-    const onButtonPress2 = () => {
-        //navigation.navigate('TabTwoScreen');
-    }
+
 
     return(
 
