@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         marginLeft: 10,
+        width: '85%',
     },
     postInput: {
         height: 100,
