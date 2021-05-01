@@ -74,66 +74,70 @@ export default function SignUpDoctorScreen(){
                 <View style={styles.container}>
                     <Text style={styles.headings}>Enter Your Information</Text>
                     <TextInput
-                               value={register.email || ''}
-                               onChangeText={(event) => setRegister({...register, email: event})}
-                               style={styles.customInput}
-                               placeholder='E-Mail'
-                               placeholderTextColor='rgba(255,255,255,0.7'
-                               underlineColorAndroid='transparent'>
+                       value={register.email || ''}
+                       onChangeText={(event) => setRegister({...register, email: event})}
+                       style={styles.customInput}
+                       placeholder='E-Mail'
+                       placeholderTextColor='rgba(0,128,128,0.6)'
+                       underlineColorAndroid='transparent'>
                     </TextInput>
                     <TextInput
-                               value={register.password || ''}
-                               onChangeText={(event) => setRegister({...register, password: event})}
-                               style={styles.customInput}
-                               placeholder='Password'
-                               placeholderTextColor='rgba(255,255,255,0.7'
-                               underlineColorAndroid='transparent'
-                               secureTextEntry={true}
+                       value={register.password || ''}
+                       onChangeText={(event) => setRegister({...register, password: event})}
+                       style={styles.customInput}
+                       placeholder='Password'
+                       placeholderTextColor='rgba(0,128,128,0.6)'
+                       underlineColorAndroid='transparent'
+                       secureTextEntry={true}
                     >
                     </TextInput>
                     <TextInput
-                               value={register.firstName || ''}
-                               onChangeText={(event) => setRegister({...register, firstName: event})}
-                               style={styles.customInput}
-                               placeholder='First Name'
-                               placeholderTextColor='rgba(255,255,255,0.7'
-                               underlineColorAndroid='transparent'>
+                       value={register.firstName || ''}
+                       onChangeText={(event) => setRegister({...register, firstName: event})}
+                       style={styles.customInput}
+                       placeholder='First Name'
+                       placeholderTextColor='rgba(0,128,128,0.6)'
+                       underlineColorAndroid='transparent'>
                     </TextInput>
                     <TextInput
-                               value={register.lastName || ''}
-                                onChangeText={(event) => setRegister({...register, lastName: event})}
-                               style={styles.customInput}
-                               placeholder='Last Name'
-                               placeholderTextColor='rgba(255,255,255,0.7'
-                               underlineColorAndroid='transparent'>
+                       value={register.lastName || ''}
+                       onChangeText={(event) => setRegister({...register, lastName: event})}
+                       style={styles.customInput}
+                       placeholder='Last Name'
+                       placeholderTextColor='rgba(0,128,128,0.6)'
+                       underlineColorAndroid='transparent'>
                     </TextInput>
                     <TextInput
                         value={register.username || ''}
                         onChangeText={(event) => setRegister({...register, username: event})}
-                        style={styles.customInput}  placeholder='Username'
-                               placeholderTextColor='rgba(255,255,255,0.7'
-                               underlineColorAndroid='transparent'>
+                        style={styles.customInput}
+                        placeholder='Username'
+                        placeholderTextColor='rgba(0,128,128,0.6)'
+                        underlineColorAndroid='transparent'>
                     </TextInput>
                     <TextInput
                         value={register.phoneNumber || ''}
                         onChangeText={(event) => setRegister({...register, phoneNumber: event})}
-                        style={styles.customInput}  placeholder='Phone Number'
-                               placeholderTextColor='rgba(255,255,255,0.7'
-                               underlineColorAndroid='transparent'>
+                        style={styles.customInput}
+                        placeholder='Phone Number, e.g: 17875557777'
+                        placeholderTextColor='rgba(0,128,128,0.6)'
+                        underlineColorAndroid='transparent'>
                     </TextInput>
                     <TextInput
                         value={register.age || ''}
                         onChangeText={(event) => setRegister({...register, age: event})}
-                        style={styles.customInput}  placeholder='Age'
-                               placeholderTextColor='rgba(255,255,255,0.7'
-                               underlineColorAndroid='transparent'>
+                        style={styles.customInput}
+                        placeholder='Age'
+                        placeholderTextColor='rgba(0,128,128,0.6)'
+                        underlineColorAndroid='transparent'>
                     </TextInput>
                     <TextInput
                         value={register.gender || ''}
                         onChangeText={(event) => setRegister({...register, gender: event})}
-                        style={styles.customInput}  placeholder='Gender'
-                               placeholderTextColor='rgba(255,255,255,0.7'
-                               underlineColorAndroid='transparent'>
+                        style={styles.customInput}
+                        placeholder='Gender'
+                        placeholderTextColor='rgba(0,128,128,0.6)'
+                        underlineColorAndroid='transparent'>
                     </TextInput>
 
                     <View>
@@ -143,10 +147,10 @@ export default function SignUpDoctorScreen(){
                         </Text>
 
                         <TouchableOpacity >
-                            <Text style={styles.customButton} onPress={onButtonRegister} >REGISTER</Text>
+                            <Text style={styles.customButton} onPress={onButtonRegister}>                 REGISTER</Text>
                         </TouchableOpacity>
                         <TouchableOpacity >
-                            <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
+                            <Text style={styles.customButton} onPress={onButtonBack}>                 GO BACK</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -179,7 +183,7 @@ const styles = StyleSheet.create({
         lineHeight: 40,
         fontWeight: 'normal',
         textTransform: 'uppercase',
-        fontFamily: 'Orienta',
+        //fontFamily: 'Orienta',
         letterSpacing: 1,
         fontStyle: 'italic',
 

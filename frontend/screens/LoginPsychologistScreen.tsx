@@ -59,12 +59,12 @@ export default function LoginPsychologistScreen() {
                 <View style={styles.container}>
 
                     <View>
-                        <Text style={styles.headings}>REGISTER AS PROFESSIONAL</Text>
+                        <Text style={styles.headings}>REGISTER AS A PROFESSIONAL</Text>
 
 
                         <View >
                             <TouchableOpacity>
-                                <Text style={styles.redButton} onPress={onButtonPress}>REGISTER</Text>
+                                <Text style={styles.redButton} onPress={onButtonPress}>                               REGISTER</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -74,13 +74,13 @@ export default function LoginPsychologistScreen() {
 
                     <View>
 
-                        <Text style={styles.headings}>LOGIN</Text>
+                        <Text style={styles.headings}>            SIGN IN</Text>
                         <TextInput
                                    value={uLogin.username||''}
                                    onChangeText={(event) => setUserLogin({...uLogin, username: event})}
                                    style={styles.customInput}
                                    placeholder='Username'
-                                   placeholderTextColor='rgba(255,255,255,0.7'
+                                   placeholderTextColor='rgba(0,128,128,0.6)'
                                    underlineColorAndroid='transparent'>
 
 
@@ -92,13 +92,13 @@ export default function LoginPsychologistScreen() {
                                    style={styles.customInput}
                                    placeholder={'Password'}
                                    secureTextEntry={true}
-                                   placeholderTextColor='rgba(255,255,255,0.7'
+                                   placeholderTextColor='rgba(0,128,128,0.6)'
                                    underlineColorAndroid='transparent'
                         >
 
                         </TextInput>
                         <TouchableOpacity>
-                            <Text style={styles.redButton} onPress={onButtonLogin}>LOGIN</Text>
+                            <Text style={styles.redButton} onPress={onButtonLogin}>                       LOGIN</Text>
                         </TouchableOpacity>
 
 
@@ -107,7 +107,7 @@ export default function LoginPsychologistScreen() {
                     <View>
                         <Text style={styles.headings}>-----------0R-----------</Text>
                         <TouchableOpacity >
-                            <Text style={styles.redButton} onPress={onButtonPressFirst} >GO BACK</Text>
+                            <Text style={styles.redButton} onPress={onButtonPressFirst}>                      GO BACK</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
         lineHeight: 40,
         fontWeight: 'normal',
         textTransform: 'uppercase',
-        fontFamily: 'Orienta',
+        //fontFamily: 'Orienta',
         letterSpacing: 1,
         fontStyle: 'italic',
 

@@ -3,45 +3,76 @@ import {FlatList, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 
 import { Text, View } from '../components/Themed';
 
-import groupChats from "../data/GroupChats";
-import {AntDesign} from "@expo/vector-icons";
+import {AntDesign, Ionicons} from "@expo/vector-icons";
 import Colors from "../constants/Colors";
-import {useNavigation, useRoute} from "@react-navigation/native";
-import GroupChatListItem from "../components/GroupChatListItem";
+import {RouteProp, useNavigation, useRoute} from "@react-navigation/native";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import ChatListItem from "../components/ChatListItem";
+import {Params} from "../types";
 
 export default function GroupChatScreen() {
     const navigation = useNavigation();
     const route = useRoute();
 
+
+    //add useRouteID
+    const routeID = useRoute<RouteProp<Params, 'A'>>();
+
+
     console.log(route.params);
+
+    const [groupChatRooms, setGroupChatRooms] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const fetchGroupChatRooms = async () => {
+        setLoading(true);
+        try{
+            const groupChatRoomData = await axios.get(`/groupChatroom/${routeID.params.name}`);
+            console.log(groupChatRoomData.data);
+            setGroupChatRooms(groupChatRoomData.data);
+        } catch (e) {
+            console.log(e);
+        }
+        finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchGroupChatRooms().then();
+    }, [])
 
     const onCloseButton = () => {
         navigation.navigate('ChatCategory');
     }
 
-    const onClick = () => {
-        console.warn(`Group Chat: ${route.params.name}`)
-        navigation.navigate('GroupChatRoom', {
-            id: groupChats.id,
-
-        });
+    const onAddNewChatButton = async () => {
+        try{
+            const newGroupChat = await axios.post(`/createGroupChatroom/${routeID.params.name}`);
+            return newGroupChat.data;
+        } catch (e) {
+            console.log(e);
+            console.warn('Only Doctors can create group chats');
+        }
     }
 
     return (
-        <TouchableWithoutFeedback onPress={onClick}>
             <View style={styles.container}>
                 <View style={styles.headerContainer}>
                     <AntDesign name={'close'} size={30} color={Colors.light.tint} onPress={onCloseButton}/>
                     <Text style={styles.headerText}>{route.params.name}</Text>
+                    <Ionicons name="add" size={30} color={Colors.light.tint} onPress={onAddNewChatButton} />
                 </View>
                 <FlatList
                     style={{width: '100%'}}
-                    data={groupChats}
-                    renderItem={({item}) => <GroupChatListItem groupChat={item}/>}
-                    keyExtractor={(item) => item.id}
+                    data={groupChatRooms}
+                    renderItem={({item}) => <ChatListItem chatRoom={item}/>}
+                    keyExtractor={(item) => item._id}
+                    refreshing={loading}
+                    onRefresh={fetchGroupChatRooms}
                 />
             </View>
-        </TouchableWithoutFeedback>
     );
 }
 

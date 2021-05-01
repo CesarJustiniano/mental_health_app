@@ -4,7 +4,7 @@ import {StyleSheet,Platform,ScrollView, TextInput, Dimensions, TouchableOpacity,
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View , } from '../components/Themed';
 import {useNavigation} from "@react-navigation/native";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 const {width: WIDTH} = Dimensions.get('window')
 
@@ -22,9 +22,7 @@ export default function UserLoginScreen(){
                 username: uLogin.username,
                 password: uLogin.password,
             }
-            console.log(loginCredentials);
             const response = await axios.post('/login', loginCredentials, {withCredentials: true});
-            console.log(response.data);
             setUserLogin(response.data);
             navigation.navigate('Root');
             // navigation.navigate('UserMenuScreen');
@@ -58,33 +56,26 @@ export default function UserLoginScreen(){
                 contentContainerStyle={{flex:1}} bounces={false}>
                 <View style={styles.container}>
 
-
-
-
-
                     <View>
                         <Text style={styles.headings}>CREATE AN ACCOUNT</Text>
 
-
                         <View >
                             <TouchableOpacity>
-                                <Text style={styles.redButton} onPress={onButtonPress}>SIGN UP</Text>
+                                <Text style={styles.redButton} onPress={onButtonPress}>                   SIGN UP</Text>
                             </TouchableOpacity>
                         </View>
-
-
 
                     </View>
 
                     <View>
 
-                        <Text style={styles.headings}>LOGIN</Text>
+                        <Text style={styles.headings}>            SIGN IN</Text>
                         <TextInput
                             value={uLogin.username || ''}
                             onChangeText={(event) => setUserLogin({...uLogin, username: event})}
                             style={styles.customInput}
                             placeholder='Username'
-                            placeholderTextColor='rgba(255,255,255,0.7'
+                            placeholderTextColor='rgba(0,128,128,0.6)'
                             underlineColorAndroid='transparent'>
                         </TextInput>
 
@@ -94,36 +85,24 @@ export default function UserLoginScreen(){
                             style={styles.customInput}
                             placeholder={'Password'}
                             secureTextEntry={true}
-                            placeholderTextColor='rgba(255,255,255,0.7'
+                            placeholderTextColor='rgba(0,128,128,0.6)'
                             underlineColorAndroid='transparent'>
 
                         </TextInput>
                         <View>
-                            <Text style={styles.redButton} onPress={onButtonLogin} >LOGIN</Text>
+                            <Text style={styles.redButton} onPress={onButtonLogin} >                        LOGIN</Text>
                         </View>
 
                         <View>
                             <Text style={styles.headings}>-----------0R-----------</Text>
                             <TouchableOpacity >
-                                <Text style={styles.redButton} onPress={onButtonPressFirst} >GO BACK</Text>
+                                <Text style={styles.redButton} onPress={onButtonPressFirst}>                      GO BACK</Text>
                             </TouchableOpacity>
                         </View>
-
-
-
                     </View>
-
-
-
-
-
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
-
-
-
-
     );
 
 }
@@ -149,7 +128,7 @@ const styles = StyleSheet.create({
         lineHeight: 40,
         fontWeight: 'normal',
         textTransform: 'uppercase',
-        fontFamily: 'Orienta',
+        //fontFamily: 'Orienta',
         letterSpacing: 1,
         fontStyle: 'italic',
 

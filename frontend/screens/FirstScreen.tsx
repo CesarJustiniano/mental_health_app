@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         lineHeight: 40,
         fontWeight: 'normal',
         textTransform: 'uppercase',
-        fontFamily: 'Orienta',
+        //fontFamily: 'Orienta',
         letterSpacing: 1,
         fontStyle: 'italic',
 
