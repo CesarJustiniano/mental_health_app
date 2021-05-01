@@ -7,7 +7,7 @@ const chatRoomSchema = new Schema({
         unique: true
     },
     users: [{
-        type: mongoose.Schema.Types.Mixed,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
     doctor: {

@@ -16,8 +16,6 @@ import axios from "axios";
 
 export default function NewPostScreen() {
     const [post, setPost] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
-    const [videoUrl, setVideoUrl] = useState('');
     const navigation = useNavigation();
 
     const onPostButton = async () => {
@@ -56,18 +54,6 @@ export default function NewPostScreen() {
                         numberOfLines={3}
                         style={styles.postInput}
                         placeholder={'How are you today?'}
-                    />
-                    <TextInput
-                        value={imageUrl}
-                        onChangeText={value => setImageUrl(value)}
-                        style={styles.imageInput}
-                        placeholder={'Image url (optional)'}
-                    />
-                    <TextInput
-                        value={videoUrl}
-                        onChangeText={value => setVideoUrl(value)}
-                        style={styles.videoInput}
-                        placeholder={'Video url (optional)'}
                     />
                 </View>
             </View>
