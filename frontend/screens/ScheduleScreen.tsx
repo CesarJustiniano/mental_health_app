@@ -10,7 +10,37 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {useState} from "react";
 
+import axios from "axios";
+import {getAuthUser} from "../constants/api";
+
 export default function ScheduleScreen() {
+    const [User, setUser] = useState([]);
+    const [Doctor, setDoctor] = useState([]);
+    const [DateApp, setDateApp] = useState([]);
+
+
+    const onButtonAppoint= async ()=>{
+        try{
+            const info = await getAuthUser();
+            console.log("The User is ")
+            console.log(info.firstName)
+            setUser(info)
+            setDoctor(info.myDoctor)
+
+            const newAppointment = {
+                // appointment: date,
+                requestedBy: User,
+                yourDoctor: Doctor
+            }
+            const response = await axios.post('/createSchedule',newAppointment,{withCredentials:true})
+            //setPost(response.data);
+            console.log(response.data);
+
+            //look into newpost component
+        }catch (e){
+            console.log(e);
+        }
+    }
 
 
 
@@ -31,7 +61,8 @@ export default function ScheduleScreen() {
             }}
                 defaultDate= "2021-01-01"
                 //showDatepicker
-                onDateChange={(value)=>console.log('Date changed: '+value)}
+                onDateChange={(value)=>console.log('DATE CHANGED TO : '+value)}
+
             >
             </CustomDatePicker>
             </View>
@@ -47,9 +78,7 @@ export default function ScheduleScreen() {
 
 
             </View>
-            <View>
-                <Text style={styles.redButton}  >CONFIRM</Text>
-            </View>
+
         </View>
 
     );

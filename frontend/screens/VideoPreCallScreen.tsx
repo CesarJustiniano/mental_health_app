@@ -26,6 +26,7 @@ import {getDoctorList, getPosts} from "../constants/api";
 import Post from "../components/Post";
 import VideoCall from "../components/VideoCall";
 import { useRoute } from '@react-navigation/native';
+import ProfilePicture from "../components/ProfilePicture";
 
 
 
@@ -73,10 +74,12 @@ export default function VideoPreCallScreen(this: any, {doctor,patient}:VideoCall
             <Text style={styles.headings}>IF YOUR APPOINTMENT IS READY THEN WAIT FOR YOUR DOCTOR TO CALL YOU</Text>
             <Text>Your Appointment is {appointmentDate}</Text>
             <Text onPress={onButtonPressVideoChat}> Doctor: {myDoctor}| Phone: {phoneNumber}</Text>
+
+            <ProfilePicture></ProfilePicture>
+            <VideoCall />
             <TouchableOpacity >
                 <Text style={styles.redButton} onPress={onButtonBack} >GO BACK</Text>
             </TouchableOpacity>
-            <VideoCall />
         </View>
 
 

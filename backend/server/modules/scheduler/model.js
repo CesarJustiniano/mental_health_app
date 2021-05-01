@@ -6,7 +6,7 @@ const SchedulerSchema = new Schema({
 
         appointment:{
             type:Date,
-            required: true,
+            //required: true,
         },
 
         requestedBy:{

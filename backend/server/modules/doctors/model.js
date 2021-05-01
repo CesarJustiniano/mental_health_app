@@ -44,6 +44,11 @@ const DoctorSchema = new Schema ({
         type: mongoose.Schema.Types.Mixed,
     }],
 
+    myAppointment:[{
+        type:mongoose.Schema.Types.Mixed,
+        ref:'Schedule'
+    }],
+
 }, { timestamps: {createdAt: true, updatedAt: false} });
 
 export default mongoose.model('Doctor', DoctorSchema);

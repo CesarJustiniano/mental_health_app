@@ -46,10 +46,10 @@ const UserSchema = new Schema ({
     myDoctor: {
         type: mongoose.Schema.Types.Mixed,
     },
-    myAppointment:{
+    myAppointment:[{
         type:mongoose.Schema.Types.Mixed,
         ref:'Schedule'
-    }
+    }]
 
 }, { timestamps: {createdAt: true, updatedAt: false} });
 

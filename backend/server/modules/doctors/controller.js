@@ -104,6 +104,13 @@ export const updateDoctor = async (req, res) => {
                     if(req.body.phoneNumber) {
                         obj.phoneNumber = req.body.phoneNumber;
                     }
+                    //new
+                    if(req.body.myAppointment){
+                        obj.myAppointment.push(req.body.myAppointment)
+                    }
+
+
+
 
                     obj.save((err, updatedObj) => {
                         if(err) {

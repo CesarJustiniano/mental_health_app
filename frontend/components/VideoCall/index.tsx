@@ -9,6 +9,7 @@ import styles from "./styles";
 import axios from "axios";
 import Comment from "../Comment";
 import {getAuthUser, getDoctorList} from "../../constants/api";
+import ProfilePicture from "../ProfilePicture";
 export type VideoCallProps ={
     patient: UserType
     doctor: DoctorType
@@ -21,7 +22,9 @@ const VideoCall = () =>{
     const [user, setUser] = useState([]);
     const [fName, setFName] = useState([]);
     const [Dname,setDname] = useState([]);
+    const [DLname,setDLname] = useState([]);
     const [lName, setLName] = useState([]);
+    const [phoneNumber,setPhoneNumber] = useState([]);
     const [loading, setLoading] = useState(false);
     const route = useRoute();
     console.log(route.params)
@@ -41,8 +44,11 @@ const VideoCall = () =>{
             console.log(info.myDoctor)
             console.log(myDoctor)
             console.log("First in Array is:")
-            console.log(info.myDoctor[0]['firstName'])
-            setDname(info.myDoctor[0]['firstName'])
+            console.log(info.myDoctor['firstName'])
+            setDname(info.myDoctor['firstName'])
+            setDLname(info.myDoctor['lastName'])
+            setPhoneNumber(info.myDoctor['phoneNumber'])
+
             //console.log(myDoctor[0]['firstName'])
 
 
@@ -64,13 +70,9 @@ const VideoCall = () =>{
         //await?
     }
 return (
-    <View style={{ width: '100%'}}>
-        <Text> The First Name of user is {fName}</Text>
-        <Text>The Last Name of user is {lName}</Text>
-        <Text>The Doctor of the user is is {Dname} </Text>
-
-
-
+    <View>
+        <Text>Your Doctor`s Name is {Dname} {DLname}</Text>
+        <Text>Your Doctor`s Phone: {phoneNumber} </Text>
 
     </View>
 );
