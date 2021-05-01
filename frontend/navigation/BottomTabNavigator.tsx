@@ -1,4 +1,4 @@
-import { Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import {AntDesign, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -6,7 +6,6 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import FeedScreen from '../screens/FeedScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import ChatScreen from "../screens/ChatScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
 import InformationBoardScreen from "../screens/InformationBoardScreen";
@@ -16,13 +15,14 @@ import {
     FeedNavigatorParamList,
     ScheduleNavigatorParamList,
     InformationBoardNavigatorParamList,
-    TabTwoParamList
+    VideoCallNavigatorParamList
 } from '../types';
 import ProfilePicture from "../components/ProfilePicture";
-import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import {useEffect, useState} from "react";
 import {getAuthUser} from "../constants/api";
+import VideoPreCallScreen from "../screens/VideoPreCallScreen";
 
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -41,13 +41,7 @@ export default function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <MaterialCommunityIcons name="post" color={color} size={30}/>,
         }}
       />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
+
         <BottomTab.Screen
             name="Chat"
             component={ChatNavigator}
@@ -60,6 +54,13 @@ export default function BottomTabNavigator() {
             component={ScheduleNavigator}
             options={{
                 tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />,
+            }}
+        />
+        <BottomTab.Screen
+            name="Call"
+            component={TabTwoNavigator}
+            options={{
+                tabBarIcon: ({ color }) => <AntDesign name="phone" color={color} size={28} />,
             }}
         />
         <BottomTab.Screen
@@ -144,17 +145,65 @@ function HomeNavigator() {
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const VideoPreCallStack = createStackNavigator<VideoCallNavigatorParamList>()
 
 function TabTwoNavigator() {
+    const navigation = useNavigation();
+
+    const [username, setUsername] = useState([]);
+
+    const fetchUsername = async () => {
+        try{
+            const info = await getAuthUser();
+
+            setUsername(info.username);
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
+    useEffect(() => {
+        fetchUsername().then();
+    }, [])
+
+    const onProfilePress = () => {
+        navigation.navigate('ProfileSettings');
+    }
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <VideoPreCallStack.Navigator>
+      <VideoPreCallStack.Screen
+        name="VideoPreCallScreen"
+        component={VideoPreCallScreen}
+        options={{
+            headerRightContainerStyle: {
+                marginRight: 15,
+            },
+
+            headerLeftContainerStyle: {
+                marginLeft: 15,
+            },
+
+            headerTitle: () => (
+                <MaterialCommunityIcons name={'brain'} size={30} color={Colors.light.tint}/>
+            ),
+
+            headerRight: () => (
+                <View style={styles.container}>
+                    <Text style={styles.containerHeader}>Feel Good</Text>
+                </View>
+            ),
+
+            headerLeft: () => (
+                <TouchableOpacity onPress={onProfilePress} style={styles.container}>
+                    <ProfilePicture size={40} image={'https://www.clipartkey.com/mpngs/m/146-1461473_default-profile-picture-transparent.png'}/>
+                    <Text style={styles.containerHeader}>{username}</Text>
+                </TouchableOpacity>
+            )
+
+        }}
       />
-    </TabTwoStack.Navigator>
+    </VideoPreCallStack.Navigator>
   );
 }
 

@@ -60,7 +60,7 @@ const VideoCall = () =>{
     }
 return (
     <View style={{ width: '100%'}}>
-        <Text> The First Name of user is {fName}</Text>
+        <Text>The First Name of user is {fName}</Text>
         <Text>The Last Name of user is {lName}</Text>
         <Text>The Doctor of the user is </Text>
 
