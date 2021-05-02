@@ -36,7 +36,7 @@ export default function NewCommentScreen() {
     };
 
     const onCloseButton = () => {
-        navigation.navigate('Root');
+        navigation.navigate('Feed');
     };
 
     return (

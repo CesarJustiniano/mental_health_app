@@ -15,7 +15,7 @@ export default function CommentListScreen() {
   console.log(route.params)
 
   const onCloseButton = () => {
-    navigation.navigate('Root');
+    navigation.navigate('Feed');
   }
 
   return (

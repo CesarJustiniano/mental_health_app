@@ -16,7 +16,11 @@ const PostSchema = new Schema({
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment',
-    }]
+    }],
+    category: {
+        type: String,
+        required: true
+    }
 }, { timestamps: {createdAt: true, updatedAt: false} } );
 
 export default mongoose.model('Post', PostSchema);

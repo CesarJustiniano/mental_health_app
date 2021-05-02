@@ -33,6 +33,8 @@ import ScheduleScreen from "../screens/ScheduleScreen";
 import DoctorListScreen from "../screens/DoctorListScreen";
 import UpdateProfileScreen from "../screens/UpdateProfileScreen";
 import UserLoginScreen from "../screens/UserLoginScreen";
+import FeedScreen from "../screens/FeedScreen";
+import FeedCategoriesScreen from "../screens/FeedCategoryScreen";
 
 
 // If you are not familiar with React Navigation, we recommend going through the
@@ -58,6 +60,8 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen name="NewPost" component={NewPostScreen} />
       <Stack.Screen name="NewComment" component={NewCommentScreen} />
+        <Stack.Screen name="Feed" component={FeedScreen} />
+        <Stack.Screen name="FeedCategory" component={FeedCategoriesScreen}/>
       <Stack.Screen name="CommentList" component={CommentListScreen} />
       <Stack.Screen name="ChatRoom" component={ChatRoomScreen} />
       <Stack.Screen name="ChatCategory" component={ChatCategoriesScreen} />

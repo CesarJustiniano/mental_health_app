@@ -23,6 +23,7 @@ import {useNavigation} from "@react-navigation/native";
 import {useEffect, useState} from "react";
 import {getAuthUser} from "../constants/api";
 import VideoPreCallScreen from "../screens/VideoPreCallScreen";
+import FeedCategoriesScreen from "../screens/FeedCategoryScreen";
 
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -112,7 +113,7 @@ function HomeNavigator() {
     <TabOneStack.Navigator>
       <TabOneStack.Screen
         name="FeedScreen"
-        component={FeedScreen}
+        component={FeedCategoriesScreen}
         options={{
             headerRightContainerStyle: {
                 marginRight: 15,
