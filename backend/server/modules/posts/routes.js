@@ -5,6 +5,9 @@ import Doctor from '../doctors/model.js';
 
 const routes = new Router();
 
+// This function creates a post in a category of choice.
+// This function works only if a current user or doctor is logged in.
+// Both users and doctors can make a post in the different categories.
 routes.post('/createPost/:category', async (req, res) => {
     if(req.user) {
 
@@ -49,6 +52,7 @@ routes.post('/createPost/:category', async (req, res) => {
     }
 });
 
+// This function gets all the posts in a specific category.
 routes.get('/posts/:category', async (req, res) => {
     try {
         return res.status(200).json(await Post.find({category: req.params.category} ));

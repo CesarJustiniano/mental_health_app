@@ -3,6 +3,9 @@ import Bcrypt from 'bcrypt';
 import passport from 'passport';
 import Doctor from '../doctors/model.js';
 
+// Creation of a user with the different fields.
+// The function searches in the list of users by filtering the input email address, if email already exists, sends error.
+// The password of a user enters is protected in the database, cannot be seen by anyone who has access to the database.
 export const createUser = async (req, res) => {
 
     User.findOne({ email: req.body.email }, async (err, doc) => {
@@ -10,7 +13,7 @@ export const createUser = async (req, res) => {
         if (doc) res.send("Email Already Exists");
         if (!doc) {
 
-            const { firstName, lastName, username, email, phoneNumber, physicalAddress, age, gender, myDoctor } = req.body;
+            const { firstName, lastName, username, email, phoneNumber, physicalAddress, age, gender } = req.body;
             const saltPassword = await Bcrypt.genSalt(10)
             const securePassword = await Bcrypt.hash(req.body.password, saltPassword)
 
@@ -24,21 +27,18 @@ export const createUser = async (req, res) => {
                 physicalAddress,
                 age,
                 gender,
-                role: 'user'
             })
 
             try {
-                //await newUser.save();
-                //res.redirect(`/login`);
                 return res.status(201).json(await newUser.save());
             } catch {
-                //res.redirect('/signup')
                 return res.status(404).json({ error: true, message: 'Error with user'})
             }
         }
     });
 }
 
+// This function uses the passport authentication in the passport configuration to log in a user.
 export const loginUser = async (req, res, next) => {
     passport.authenticate('user-local', (err, user, info) => {
         if (err) throw err;
@@ -47,25 +47,25 @@ export const loginUser = async (req, res, next) => {
             req.logIn(user, (err) => {
                 if (err) throw err;
                 user.isAuthenticated = true;
-                //res.send("Successfully Authenticated");
                 console.log(req.user.username);
                 res.send(req.user);
-                //res.redirect('/')  //redirect to home page
             });
         }
     })(req, res, next);
 }
 
+// Along with the log in user function, this function logs out the current logged user.
 export const logoutUser = async (req, res) => {
     req.logout();
     res.send("You are logged out");
-    //res.redirect('/login');
 }
 
+// This function gets the current user that has been authenticated.
 export const getUser = async (req, res) => {
     res.send(req.user);  // The req.user stores the entire user that has been authenticated inside of it.
 }
 
+// This function gets all users saved in the database.
 export const getAllUsers = async (req, res) => {
     try {
         return res.status(200).json(await User.find({} ));
@@ -93,7 +93,9 @@ export const getMyEmail = async (req,res)=>{
     }
 }
 
-
+// This function updates the logged current user.
+// This can update any of the fields (username, phone number, and physical address).
+// There is no need to update all the fields at the same time. It can update one, or two, or three at a time.
 export const updateUser = async (req, res) => {
     if (req.user){
 
@@ -133,6 +135,7 @@ export const updateUser = async (req, res) => {
     }
 }
 
+// This function assigns the current logged user a doctor of their choice (using the id of the doctor)
 export const assignDoctor = async (req, res) => {
     if(req.user){
 

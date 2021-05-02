@@ -5,9 +5,10 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import passportConfig from './passportConfig.js';
-import express from "express";
 
 export default app => {
+
+   // Middlewares used for the application
 
    app.use(morgan('dev'));
 

@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 require('dotenv/config');
 
 export default () => {
+
+    // Connection to the MongoDB database
+
     mongoose.Promise = global.Promise;
     mongoose.connect('mongodb://localhost/MHA', {
         useNewUrlParser: true,

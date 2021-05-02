@@ -3,6 +3,9 @@ import Bcrypt from 'bcrypt';
 import passport from 'passport';
 import User from "../users/model";
 
+// Creation of a doctor with the different fields.
+// The function searches in the list of doctors by filtering the input email address, if email already exists, sends error.
+// The password of a doctor enters is protected in the database, cannot be seen by anyone who has access to the database.
 export const createDoctor = async (req, res) => {
 
     Doctor.findOne({ email: req.body.email }, async (err, doc) => {
@@ -23,15 +26,11 @@ export const createDoctor = async (req, res) => {
                 phoneNumber,
                 age,
                 gender,
-                role: 'doctor'
             })
 
             try {
-
-                //res.redirect(`/login`);
                 return res.status(201).json(await newDoctor.save());
             } catch {
-                //res.redirect('/signup')
                 return res.status(404).json({ error: true, message: 'Error with doctor'})
             }
         }
@@ -39,6 +38,7 @@ export const createDoctor = async (req, res) => {
 
 }
 
+// This function uses the passport authentication in the passport configuration to log in a doctor.
 export const loginDoctor = async (req, res, next) => {
     passport.authenticate('doctor-local', (err, doctor, info) => {
         if (err) throw err;
@@ -56,16 +56,18 @@ export const loginDoctor = async (req, res, next) => {
     })(req, res, next);
 }
 
+// Along with the log in doctor function, this function logs out the current logged doctor.
 export const logoutDoctor = async (req, res) => {
     req.logout();
     res.send("You are logged out");
-    //res.redirect('/login');
 }
 
+// This function gets the current doctor that has been authenticated.
 export const getDoctor = async (req, res) => {
     res.send(req.user);  // The req.user stores the entire user that has been authenticated inside of it.
 }
 
+// This function gets all doctors saved in the database.
 export const getAllDoctors = async (req, res) => {
     try {
         return res.status(200).json(await Doctor.find({} ));
@@ -87,6 +89,9 @@ export const getMyPatients = async (req, res) => {
     }
 }
 
+// This function updates the logged current doctor.
+// This can update any of the fields (username, phone number).
+// There is no need to update all the fields at the same time. It can update one, or two at a time.
 export const updateDoctor = async (req, res) => {
     if (req.user){
 

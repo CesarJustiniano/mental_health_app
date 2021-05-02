@@ -6,6 +6,9 @@ import Doctor from '../doctors/model.js';
 
 const routes = new Router();
 
+// This function creates a comment in a specific post, given the post id.
+// This function works only if a current user or doctor is logged in.
+// Both users and doctors can make a comment in the different posts.
 routes.post('/post/:id/createComment', async (req, res) => {
     if(req.user){
 
@@ -68,6 +71,7 @@ routes.post('/post/:id/createComment', async (req, res) => {
     }
 });
 
+// This functions gets all the comments of a specific post.
 routes.get('/post/:id/comments', async (req, res) => {
 
     const postId = await Post.findById(req.params.id);
