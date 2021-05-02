@@ -27,8 +27,12 @@ export default function LoginPsychologistScreen() {
             const response = await  axios.post('/doctor_login',loginCredentials, {withCredentials:true});
             console.log(response.data)
             setUserLogin(response.data)
-            navigation.navigate('PsychologistMenuScreen')
-            //navigation.navigate('Root');
+            if(response.data == 'No Doctor Exists'){
+                console.warn(response.data);
+            } else {
+                navigation.navigate('PsychologistMenuScreen')
+                //navigation.navigate('Root');
+            }
         }catch (e){
             console.log(e)
         }

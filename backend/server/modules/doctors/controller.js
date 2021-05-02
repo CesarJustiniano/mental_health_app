@@ -23,6 +23,7 @@ export const createDoctor = async (req, res) => {
                 phoneNumber,
                 age,
                 gender,
+                role: 'doctor'
             })
 
             try {

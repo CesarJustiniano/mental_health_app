@@ -24,6 +24,7 @@ export const createUser = async (req, res) => {
                 physicalAddress,
                 age,
                 gender,
+                role: 'user'
             })
 
             try {

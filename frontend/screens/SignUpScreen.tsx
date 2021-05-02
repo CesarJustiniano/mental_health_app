@@ -42,6 +42,12 @@ export default function SignUpScreen(){
             const response = await axios.post('/signup', fields);
             console.log(response.data);
             setRegister(response.data);
+            const loginCredentials = {
+                username: fields.username,
+                password: fields.password,
+            }
+            const loginStatus = await axios.post('/login', loginCredentials, {withCredentials: true});
+            console.log(loginStatus.data);
             navigation.navigate('InformationBoardScreen');
         } catch (e) {
             console.log(e)

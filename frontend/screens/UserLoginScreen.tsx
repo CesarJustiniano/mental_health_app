@@ -24,8 +24,12 @@ export default function UserLoginScreen(){
             }
             const response = await axios.post('/login', loginCredentials, {withCredentials: true});
             setUserLogin(response.data);
-            navigation.navigate('Root');
-            // navigation.navigate('UserMenuScreen');
+            if (response.data == 'No User Exists'){
+                console.warn(response.data);
+            } else {
+                navigation.navigate('Root');
+                // navigation.navigate('UserMenuScreen');
+            }
         } catch (e) {
             console.log(e)
         }
