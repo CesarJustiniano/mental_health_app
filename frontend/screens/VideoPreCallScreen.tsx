@@ -37,17 +37,9 @@ export type VideoCallProps = {
 }
 
 export default function VideoPreCallScreen(this: any, {doctor,patient}:VideoCallProps){
-
-
-
-
     const  navigation = useNavigation();
     const route = useRoute();
     console.log(route.params)
-
-    //const [doctors, setDoctors] = useState([]);
-    //const [loading, setLoading] = useState(false);
-
     //Dummy data
     let [username, setUsername] = useState('Jesse'); //Dummy initial
     let [phoneNumber, setPhoneNumber] = useState("17874094429"); //Dummy initial

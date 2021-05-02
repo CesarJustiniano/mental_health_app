@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet,Platform,ScrollView, TextInput, Dimensions, TouchableOpacity, KeyboardAvoidingView, Image} from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
+
 import { Text, View , } from '../components/Themed';
 import {useNavigation} from "@react-navigation/native";
 import {useState} from "react";
@@ -28,8 +28,8 @@ export default function LoginPsychologistScreen() {
             console.log(response.data)
             setUserLogin(response.data)
 
-            navigation.navigate('PsychologistMenuScreen')
-            //navigation.navigate('Root');
+            //navigation.navigate('PsychologistMenuScreen')
+            navigation.navigate('Root');
         }catch (e){
             console.log(e)
         }
@@ -42,8 +42,6 @@ export default function LoginPsychologistScreen() {
     const onButtonPressFirst = ()=>{
         navigation.navigate('FirstScreen')
     }
-
-
 
     // @ts-ignore
     return (
@@ -113,23 +111,10 @@ export default function LoginPsychologistScreen() {
                     </View>
 
                 </View>
-
-
-
-
-
-
             </ScrollView>
         </KeyboardAvoidingView>
-
-
-
-
     );
 }
-
-
-
 
 
 const styles = StyleSheet.create({
@@ -163,35 +148,20 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderColor: 'black',
         borderStyle: 'solid',
-        //WebkitAppearance: 'none',
-        //msAppearance: 'none',
-        //MozAppearance: 'none',
-        //appearance: 'none',
         backgroundColor: "#f2f2f2",
         padding: 12,
         borderRadius: 3,
         width: 250,
-        //outline: 'none',
         fontSize: 14,
         borderBottomWidth: 1,
         borderBottomColor: 'black',
-        //borderBottom: "1px solid black"
         marginBottom:15,
-        //alt
-        //width: WIDTH-55,
-        //height: 45,
-        //borderRadius: 25,
-        //fontSize: 16,
-        //paddingLeft: 45,
-        //backgroundColor: 'rgba(0,0,0,0.35)',
-        //color: 'rgba(255,255,255,0.7)',
-        //marginHorizontal:25
+
 
 
     },
     redButton:{
         alignItems: 'center',
-        //userSelect: 'none',
         display: 'flex',
         justifyContent: 'center',
         paddingTop: 6,
@@ -219,7 +189,7 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: 6,
         marginBottom: 12,
-        //cursor: 'pointer'
+
     },
     keyboard: {
         marginBottom: 100,

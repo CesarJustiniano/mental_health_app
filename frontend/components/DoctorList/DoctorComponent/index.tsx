@@ -1,14 +1,12 @@
 import React, {useRef} from "react";
 import {View, Text, Linking, TouchableOpacity, FlatList} from "react-native";
 
-import {UserType} from "../../../types";
+
 import {DoctorType} from "../../../types";
-import { useRoute, RouteProp } from '@react-navigation/native';
-import {Params} from "../../../types";
+
 import styles from "./styles";
 import axios from "axios";
-import Comment from "../../Comment";
-import {getDoctorList} from "../../../constants/api";
+
 import ProfilePicture from "../../ProfilePicture";
 import {useState,useEffect} from "react";
 import {useNavigation} from "@react-navigation/native";
@@ -22,14 +20,6 @@ const onButtonPressVideoChat = (phoneNumber) => {
     Linking.openURL("tel:+"+phoneNumber);
     //await?
 }
-
-
-
-
-
-
-
-
 
 
 const DoctorListComp = ({doctor}:DoctorProps) => {

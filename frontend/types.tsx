@@ -29,6 +29,7 @@ export type RootStackParamList = {
   DoctorVideoScreen:undefined;
 
   DoctorListScreen:undefined;
+  DoctorSchedule:undefined;
 };
 
 export type BottomTabParamList = {

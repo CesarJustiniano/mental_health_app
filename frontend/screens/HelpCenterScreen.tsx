@@ -13,7 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Text, View, } from '../components/Themed';
 import {getAuthUser} from "../constants/api";
 
-//const ITEM_SIZE= 70 +20*3
+
 const ITEM_SIZE= 160
 
 export default function HelpCenterScreen(){
@@ -70,17 +70,6 @@ export default function HelpCenterScreen(){
         {name: 'Hospital Menonita Aibonito', id: '48',phone:'(787) 735-8001',web:'http://sistemamenonita.com/'},
         {name: 'Hospital Menonita Guayama', id: '49',phone:'(787) 864-4300',web:'http://sistemamenonita.com/'},
         {name: 'Hospital Menonita Cayey', id: '50',phone:' (787) 852-0505',web:''},
-
-
-
-
-
-
-
-
-
-
-
     ])
 
 
@@ -96,7 +85,6 @@ export default function HelpCenterScreen(){
         }
 
     }
-
 
     return(
 
@@ -187,11 +175,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        //padding: 'SPACING',
-        //flexdirection: 'row',
-        //marginBottom: 'SPACING'
-
-
     },
 
     text: {
@@ -224,11 +207,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: 'black',
 
-        //alignSelf: 'stretch',
-        //height: 40,
         marginBottom: 15,
-        //color: '#fff',
-        //borderBottomWidth: 1,
+
 
 
 

@@ -7,14 +7,13 @@ import { useRoute, RouteProp } from '@react-navigation/native';
 
 import {getAuthUser, getDoctorList} from "../../constants/api";
 
-import PatientList from "./PatientList";
-import List from "../MyPatients/List";
+import List from"../MyPatients/List/index"
 export type VideoCallProps ={
     patient: UserType
     doctor: DoctorType
 }
 
-const VideoDoctor= ()=>{
+const MyPatients = ()=>{
     const flatList = useRef<FlatList>(null);
     const [Patients, setPatient] = useState([]);
     const [user, setUser] = useState([]);
@@ -64,13 +63,12 @@ const VideoDoctor= ()=>{
         //await?
     }
 
-
-    return (
-        <View style={{ width: '100%'}}>
+    return(
+        <View>
             <FlatList
                 data={Patients}
                 renderItem={({item}) => (
-                    <PatientList User={item}/>
+                    <List User={item}/>
                 )}
                 keyExtractor={(item) => item._id}
                 ref={flatList}
@@ -78,7 +76,8 @@ const VideoDoctor= ()=>{
                 onRefresh={fetchFDoctor}
             />
         </View>
-    );
+    )
+
 }
 
-export default VideoDoctor
+export default MyPatients

@@ -51,14 +51,7 @@ export default function PsychologistMenuScreen(){
                 </TouchableOpacity>
 
             </View>
-
-
-
         </View>
-
-
-
-
 
     );
 
@@ -92,22 +85,14 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderColor: 'black',
         borderStyle: 'solid',
-
         backgroundColor: "#f2f2f2",
         padding: 12,
         borderRadius: 3,
         width: 250,
-
         fontSize: 14,
         borderBottomWidth: 1,
         borderBottomColor: 'black',
-
-
         marginBottom: 15,
-
-
-
-
     },
 
     customButton:{

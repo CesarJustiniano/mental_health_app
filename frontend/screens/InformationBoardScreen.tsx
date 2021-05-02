@@ -15,8 +15,12 @@ export default function InformationBoardScreen(){
             navigation.navigate('DoctorListScreen');
         }
 
+        const onFeedBack = () => {
+                    //navigation.navigate('DoctorListScreen');
+                }
+
         const onButtonBack = () => {
-            navigation.navigate('UserMenuScreen');
+            navigation.navigate('Root');
         }
 
     return(
@@ -37,10 +41,10 @@ export default function InformationBoardScreen(){
            </TouchableOpacity>
 
            <TouchableOpacity >
-                <Text style={styles.customButton} onPress={onButtonPress2} >FEEDBACK</Text>
+                <Text style={styles.customButton} onPress={onFeedBack} >FEEDBACK</Text>
            </TouchableOpacity>
            <TouchableOpacity >
-               <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
+               <Text style={styles.customButton} onPress={onButtonBack} >GO TO MAIN</Text>
            </TouchableOpacity>
 
            </View>

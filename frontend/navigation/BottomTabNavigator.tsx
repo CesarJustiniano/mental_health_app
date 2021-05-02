@@ -7,6 +7,8 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import FeedScreen from '../screens/FeedScreen';
 import ChatScreen from "../screens/ChatScreen";
+import InformationPsychologistScreen from "../screens/InformationPsychologistScreen";
+
 import ScheduleScreen from "../screens/ScheduleScreen";
 import InformationBoardScreen from "../screens/InformationBoardScreen";
 import {
@@ -23,6 +25,8 @@ import {useNavigation} from "@react-navigation/native";
 import {useEffect, useState} from "react";
 import {getAuthUser} from "../constants/api";
 import VideoPreCallScreen from "../screens/VideoPreCallScreen";
+import DoctorVideoScreen from "../screens/DoctorVideoScreen";
+import DoctorSchedule from "../screens/DoctorSchedule";
 
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -151,12 +155,14 @@ function TabTwoNavigator() {
     const navigation = useNavigation();
 
     const [username, setUsername] = useState([]);
+    const [userRole, setUserRole] = useState([]);
 
     const fetchUsername = async () => {
         try{
             const info = await getAuthUser();
 
             setUsername(info.username);
+            setUserRole(info.role);
         }
         catch (e) {
             console.log(e);
@@ -174,7 +180,10 @@ function TabTwoNavigator() {
     <VideoPreCallStack.Navigator>
       <VideoPreCallStack.Screen
         name="VideoPreCallScreen"
-        component={VideoPreCallScreen}
+        component={
+            userRole=="user"?
+            VideoPreCallScreen:DoctorVideoScreen
+        }
         options={{
             headerRightContainerStyle: {
                 marginRight: 15,
@@ -276,12 +285,14 @@ function ScheduleNavigator() {
     const navigation = useNavigation();
 
     const [username, setUsername] = useState([]);
+    const [userRole, setUserRole] = useState([]);
 
     const fetchUsername = async () => {
         try{
             const info = await getAuthUser();
 
             setUsername(info.username);
+            setUserRole(info.role)
         }
         catch (e) {
             console.log(e);
@@ -300,7 +311,10 @@ function ScheduleNavigator() {
         <ScheduleStack.Navigator>
             <ScheduleStack.Screen
                 name="ScheduleScreen"
-                component={ScheduleScreen}
+                component={
+                    userRole=="user"?
+                    ScheduleScreen:DoctorSchedule
+                }
                 options={{
                     headerRightContainerStyle: {
                         marginRight: 15,
@@ -339,12 +353,14 @@ function InformationBoardNavigator() {
     const navigation = useNavigation();
 
     const [username, setUsername] = useState([]);
+    const [userRole, setUserRole] = useState([]);
 
     const fetchUsername = async () => {
         try{
             const info = await getAuthUser();
 
             setUsername(info.username);
+            setUserRole(info.role);
         }
         catch (e) {
             console.log(e);
@@ -363,7 +379,10 @@ function InformationBoardNavigator() {
         <InformationBoardStack.Navigator>
             <InformationBoardStack.Screen
                 name="InformationBoardScreen"
-                component={InformationBoardScreen}
+                component={
+                    userRole =="user"?
+                    InformationBoardScreen:InformationPsychologistScreen
+                }
                 options={{
                     headerRightContainerStyle: {
                         marginRight: 15,

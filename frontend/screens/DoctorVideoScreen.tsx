@@ -16,14 +16,9 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View , } from '../components/Themed';
 import {useNavigation} from "@react-navigation/native";
 const {width: WIDTH} = Dimensions.get('window')
-//import { PostType } from "../../types";
-import {UserType} from "../types";
-import {DoctorType} from "../types";
-import {useEffect, useRef, useState} from "react";
-import axios from "axios";
 
-import {getDoctorList, getPosts} from "../constants/api";
-import Post from "../components/Post";
+import {useEffect, useRef, useState} from "react";
+
 
 import VideoDoctor from "../components/VideoDoctor";
 import { useRoute } from '@react-navigation/native';
@@ -55,9 +50,7 @@ export default function DoctorVideoScreen(){
     return (
         <View style={styles.container}>
             <VideoDoctor/>
-            <TouchableOpacity >
-                <Text style={styles.redButton} onPress={onButtonBack} >GO BACK</Text>
-            </TouchableOpacity>
+
         </View>
 
 

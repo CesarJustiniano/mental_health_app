@@ -1,12 +1,9 @@
 import React from 'react';
 import {CheckBox, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-//import CheckBox from '@react-native-community/checkbox';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import {  Text, View , } from '../components/Themed';
 import {useState} from "react";
-import {blue50} from "react-native-paper/lib/typescript/styles/colors";
 import axios from "axios";
 
 export default function SignUpScreen(){
@@ -204,20 +201,12 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: 'black',
 
-        //alignSelf: 'stretch',
-        //height: 40,
         marginBottom: 15,
-        //color: '#fff',
-        //borderBottomWidth: 1,
-
-
-
 
     },
 
     customButton:{
         alignItems: 'center',
-        //userSelect: 'none',
         display: 'flex',
         justifyContent: 'center',
         paddingTop: 6,

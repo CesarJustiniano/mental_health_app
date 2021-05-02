@@ -12,7 +12,11 @@ export default function InformationPsychologistScreen(){
         navigation.navigate('HelpCenterScreen');
     }
     const onButtonBack = () => {
-        navigation.navigate('PsychologistMenuScreen');
+        navigation.navigate('Root');
+    }
+
+    const onFeedBack = () => {
+        //navigation.navigate('PsychologistMenuScreen');
     }
 
     const onButtonPrivacy = ()=>{
@@ -36,25 +40,17 @@ export default function InformationPsychologistScreen(){
 
 
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonBack} >FEEDBACK</Text>
+                    <Text style={styles.customButton} onPress={onFeedBack} >FEEDBACK</Text>
                 </TouchableOpacity>
 
 
 
                 <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonBack} >GO BACK</Text>
+                    <Text style={styles.customButton} onPress={onButtonBack} >GO TO MAIN</Text>
                 </TouchableOpacity>
 
             </View>
-
-
-
         </View>
-
-
-
-
-
     );
 
 
@@ -92,19 +88,10 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 3,
         width: 250,
-
         fontSize: 14,
         borderBottomWidth: 1,
         borderBottomColor: 'black',
-
-        //alignSelf: 'stretch',
-        //height: 40,
         marginBottom: 15,
-        //color: '#fff',
-        //borderBottomWidth: 1,
-
-
-
 
     },
 
