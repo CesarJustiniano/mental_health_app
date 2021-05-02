@@ -143,5 +143,6 @@ export type Category = {
 export type Params = {
   A: {
     id: string,
+    name: string,
   };
 }

@@ -10,7 +10,6 @@ import express from "express";
 export default app => {
 
    app.use(morgan('dev'));
-   app.use('/uploads', express.static(process.cwd() + 'uploads'));
 
    app.use(cors({
       credentials: true,
