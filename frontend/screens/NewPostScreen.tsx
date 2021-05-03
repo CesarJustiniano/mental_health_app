@@ -4,7 +4,7 @@ import {
     Text,
     TouchableOpacity,
     SafeAreaView,
-    TextInput
+    TextInput, Alert
 } from 'react-native';
 
 import { View } from '../components/Themed';
@@ -21,6 +21,15 @@ export default function NewPostScreen() {
 
     const route = useRoute<RouteProp<Params, 'A'>>();
 
+    const createOneButtonSuccessAlert = () =>
+        Alert.alert(
+            "Posted Successfully!",
+            "Please refresh your screen to see your new post.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
     const onPostButton = async () => {
         try {
             const newPost = {
@@ -28,6 +37,7 @@ export default function NewPostScreen() {
             }
             const response = await axios.post(`/createPost/${route.params.name}`, newPost, {withCredentials: true});
             setPost(response.data);
+            createOneButtonSuccessAlert();
             onCloseButton();
         } catch (e) {
             console.log(e);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Alert, FlatList, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import { View } from '../components/Themed';
 
@@ -39,11 +39,35 @@ export default function ChatScreen() {
         fetchChatRooms().then();
     }, [])
 
+    const createOneButtonErrorNameAlert = () =>
+        Alert.alert(
+            "Unable to create chat",
+            "You already created a chat with your doctor.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
+    const createOneButtonErrorAlert = () =>
+        Alert.alert(
+            "Unable to create chat",
+            "You do not have an assigned doctor.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
     const onChatButton = async () => {
         try {
-            await axios.post('/createChatroom');
+            const result = await axios.post('/createChatroom');
+            if(result.data){
+                await fetchChatRooms();
+            } else {
+                createOneButtonErrorNameAlert();
+            }
         } catch (e) {
             console.log(e);
+            createOneButtonErrorAlert();
         }
     }
 
