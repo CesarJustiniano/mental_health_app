@@ -47,6 +47,7 @@ const DoctorSchema = new Schema ({
     myAppointment:[{
         type:mongoose.Schema.Types.Mixed,
         ref:'Schedule'
+
     }],
 
 }, { timestamps: {createdAt: true, updatedAt: false} });

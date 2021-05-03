@@ -24,7 +24,7 @@ const CustomDatePicker =(props)=>{
     }
 
     const onCloseButton = () => {
-        navigation.navigate('UserMenuScreen');
+        navigation.navigate('Root');
     }
 
     const onButtonAppoint= async ()=>{
@@ -36,6 +36,8 @@ const CustomDatePicker =(props)=>{
             console.log("The doctor of the User is")
             console.log(info.myDoctor.firstName)
             setDoctor(info.myDoctor)
+            console.log("THIS IS THE DATE")
+            console.log(date)
             const newAppointment = {
                 appointment: date,
                 requestedBy: User,
@@ -54,13 +56,13 @@ const CustomDatePicker =(props)=>{
             setUserApp(responseUser.data.myAppointment)
             console.log("RESPONSE OF THE UPDATED USER")
             console.log(responseUser.data);
-            //setPost(response.data);
+
 
             const updateDoctor ={
                 myAppointment: response.data,
             }
             const responseDoctor = await axios.put('/updateDoctor', updateDoctor, {withCredentials: true});
-            setDoctorApp(responseDoctor.data)
+            setDoctorApp(responseDoctor.data.myAppointment)
             console.log("RESPONSE OF THE DOCTOR")
             console.log(responseDoctor.data)
 

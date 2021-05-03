@@ -74,6 +74,8 @@ export type UserType = {
   phoneNumber: string,
   //myDoctor: [object],
   myDoctor: object
+  myAppointment:object,
+  physicalAddress: string,
 
 }
 

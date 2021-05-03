@@ -74,6 +74,8 @@ export const getAllUsers = async (req, res) => {
     }
 }
 
+
+
 export const getAllEmails = async (req, res) => {
     try {
         return res.status(200).json(await User.find().select({ email: 1 }));
@@ -90,6 +92,55 @@ export const getMyEmail = async (req,res)=>{
     } catch {
         return res.status(404).json({ error: true, message: 'Error with User'});
     }
+}
+
+export const getFirstName = async (req,res)=>{
+    try {
+        return res.status(200).json(await User.findOne({_id: req.params.id},{firstName:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
+}
+export const getLastName = async (req,res)=>{
+    try {
+        return res.status(200).json(await User.findOne({_id: req.params.id},{lastName:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
+}
+
+export const getPhoneNumber = async (req,res)=>{
+    try {
+        return res.status(200).json(await User.findOne({_id: req.params.id},{phoneNumber:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
+}
+
+export const getAddress = async (req,res)=>{
+    try {
+        return res.status(200).json(await User.findOne({_id: req.params.id},{physicalAddress:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
+}
+
+export const getAppointment = async (req,res)=>{
+    try {
+        return res.status(200).json(await User.findOne({_id: req.params.id},{myAppointment:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
 }
 
 

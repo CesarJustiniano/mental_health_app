@@ -6,6 +6,7 @@ import {DoctorType} from "../../types";
 import { useRoute, RouteProp } from '@react-navigation/native';
 
 import {getAuthUser, getDoctorList} from "../../constants/api";
+import axios from "axios";
 
 import List from"../MyPatients/List/index"
 export type VideoCallProps ={
@@ -36,16 +37,48 @@ const MyPatients = ()=>{
             console.log("This is My Patient:")
             console.log(info.myPatients)
             console.log(Patients)
-            console.log("First in Array is:")
+
             console.log("My patient length"+info.myPatients.length)
             let i;
             for(i=0;i<info.myPatients.length;i++){
                 //console.log(i)
             }
+            //const mypat = info.myPatients[2]
+            //console.log("THE MYPAT IS")
+            //console.log(mypat)
+            //console.log(info.myPatients[2]['firstName'])
+            //const firstNamed = await axios.get(`/user/${mypat}/getFirstName`)
 
-            console.log(info.myPatients[0]['firstName'])
-            setDname(info.myPatients[0]['firstName'])
+            //console.log("First in Array is:")
+            //console.log(firstNamed.data.firstName)
+
+            //const lastNamed = await axios.get(`/user/${mypat}/getLastName`)
+
+            //console.log("Last Name is:")
+            //console.log(lastNamed.data.lastName)
+
+            //const phoneNumby = await axios.get(`/user/${mypat}/getPhoneNumber`)
+
+           // console.log("PhoneNumber is:")
+            //console.log(phoneNumby.data.phoneNumber)
+
+            //const address = await axios.get(`/user/${mypat}/getAddress`)
+
+            //console.log("Address is:")
+            //console.log(address.data.physicalAddress)
+
+            //const appoin= await axios.get(`/user/${mypat}/getAppointment`)
+
+            //console.log("Appointment is is:")
+            //console.log(appoin.data.myAppointment.appointment)
+
+
+
+            //setDname(info.myPatients[2]['firstName'])
             //console.log(myDoctor[0]['firstName'])
+
+            //console.log(info.myPatients[2]['myAppointment']['appointment'])
+
 
         }
         catch (e){
@@ -63,12 +96,15 @@ const MyPatients = ()=>{
         //await?
     }
 
+    // @ts-ignore
     return(
+
         <View>
             <FlatList
                 data={Patients}
                 renderItem={({item}) => (
                     <List User={item}/>
+
                 )}
                 keyExtractor={(item) => item._id}
                 ref={flatList}

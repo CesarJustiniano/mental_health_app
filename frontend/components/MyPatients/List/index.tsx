@@ -4,6 +4,7 @@ import { View ,Text, Linking, TouchableOpacity} from "react-native";
 import {UserType} from "../../../types";
 import styles from "../../VideoCall/styles";
 import ProfilePicture from "../../ProfilePicture";
+import axios from "axios";
 
 export type UserProps = {
     User: UserType
@@ -19,17 +20,37 @@ const onCloseButton = () => {
     // navigation.navigate('UserMenuScreen');
 }
 
-const List = ({User}:UserProps) =>(
+const getAtrributes = async (User)=>{
+    const firstNamed = await axios.get(`/user/${User}/getFirstName`)
+    const lastNamed = await axios.get(`/user/${User}/getLastName`)
+    const phoneNumby = await axios.get(`/user/${User}/getPhoneNumber`)
+    const address = await axios.get(`/user/${User}/getAddress`)
+    const appoin= await axios.get(`/user/${User}/getAppointment`)
+
+    let mystring = "Patient"+firstNamed.data.firstName+" "+lastNamed.data.lastName+"\n"+
+        "Phone Number "+phoneNumby.data.phoneNumber+"\n"+
+        "Address "+address.data.physicalAddress+"\n"+
+        "APPOINTMENT ON "+appoin.data.myAppointment.appointment
+    return "Patient"
+}
+
+
+const List =   ({User}:UserProps) => {
+
+    getAtrributes(User)
+
+
+return(
     <View style={styles.container}>
-        <TouchableOpacity >
+        <TouchableOpacity>
             <ProfilePicture></ProfilePicture>
             <Text>Patient: {User.firstName} {User.lastName} </Text>
-
             <Text>Phone Number: {User.phoneNumber}</Text>
-            <Text style={styles.redButton} >APPOINTMENT ON:</Text>
+            <Text>Address: {User.physicalAddress}</Text>
+            <Text style={styles.redButton}>APPOINTMENT ON: </Text>
         </TouchableOpacity>
     </View>
-
-
 )
+
+}
 export default List

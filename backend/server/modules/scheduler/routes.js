@@ -20,7 +20,7 @@ routes.post('/createSchedule', async (req, res) => {
 
                 //const {body} = req.body;
                 const newAppointment = new Schedule({
-                    appointment: req.params.appointment,
+                    appointment: req.body.appointment,
                     requestedBy: user,
                     yourDoctor: req.user.myDoctor
                 });
@@ -61,5 +61,7 @@ routes.get('/appointment', async (req, res) => {
         return res.status(404).json({ error: true, message: 'Error with Post'});
     }
 });
+
+
 
 export default routes;
