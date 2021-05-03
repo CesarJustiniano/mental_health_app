@@ -1,8 +1,8 @@
 import React, {useRef, useState, useEffect} from 'react';
-import {FlatList, StyleSheet, Text, ImageBackground, Alert} from "react-native";
+import {FlatList, StyleSheet, Text, ImageBackground, Alert, TextInput, TouchableOpacity} from "react-native";
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {View} from "../components/Themed";
-import {AntDesign} from "@expo/vector-icons";
+import {AntDesign, MaterialIcons} from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import ProfilePicture from "../components/ProfilePicture";
 import ChatMessage from '../components/ChatMessage'
@@ -21,6 +21,7 @@ export default function ChatRoomScreen() {
     const routeId = useRoute<RouteProp<Params, 'A'>>();
 
     const [message, setMessage] = useState([]);
+    const [textMessage, setTextMessage] = useState('');
     const [loading, setLoading] = useState(false);
 
     const fetchMessages = async () => {
@@ -84,6 +85,20 @@ export default function ChatRoomScreen() {
         }
     }
 
+    const onSendPress = async () => {
+        try {
+            const newMessage = {
+                content: textMessage,
+            }
+            const response = await axios.post(`/chatRoom/${routeId.params.id}/createMessage`, newMessage, {withCredentials: true});
+            //setTextMessage(response.data);
+            setTextMessage('');
+            await fetchMessages();
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     return (
             <View style={styles.container}>
                 <View style={styles.headerContainer}>
@@ -113,7 +128,22 @@ export default function ChatRoomScreen() {
                                 refreshing={loading}
                                 onRefresh={fetchMessages}
                             />
-                            <InputBox />
+                            <View style={styles.inputContainer}>
+                                <View style={styles.mainContainer}>
+                                    <TextInput
+                                        style={styles.textInput}
+                                        multiline
+                                        value={textMessage}
+                                        onChangeText={setTextMessage}
+                                        placeholder={'Type a message'}
+                                    />
+                                </View>
+                                <TouchableOpacity onPress={onSendPress}>
+                                    <View style={styles.buttonContainer}>
+                                        <MaterialIcons name={'send'} size={28} color={'white'} />
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
                             <KeyboardSpacer />
                         </ImageBackground>
             </View>
@@ -170,5 +200,36 @@ const styles = StyleSheet.create({
         marginBottom: 100,
     },
     listContainer: {
-    }
+    },
+
+    inputContainer: {
+        flexDirection: "row",
+        margin: 10,
+        alignItems: "flex-end",
+        backgroundColor: 'transparent'
+    },
+    mainContainer: {
+        flexDirection: "row",
+        backgroundColor: 'white',
+        padding: 10,
+        borderRadius: 25,
+        marginRight: 10,
+        flex: 1,
+        alignItems: "flex-end",
+    },
+    textInput: {
+        flex: 1,
+        marginHorizontal: 10,
+    },
+    icon: {
+        marginHorizontal: 5,
+    },
+    buttonContainer: {
+        backgroundColor: Colors.light.tint,
+        borderRadius: 50,
+        width: 50,
+        height: 50,
+        justifyContent: "center",
+        alignItems: "center",
+    },
 });
