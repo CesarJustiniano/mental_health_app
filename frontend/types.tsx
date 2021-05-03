@@ -74,9 +74,13 @@ export type UserType = {
   phoneNumber: string,
   //myDoctor: [object],
   myDoctor: object
-  myAppointment:object,
+  myAppointment: Date,
   physicalAddress: string,
 
+}
+
+export type AppointmentType ={
+  appointment: Date,
 }
 
 export type DoctorType = {

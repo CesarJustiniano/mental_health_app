@@ -29,7 +29,7 @@ const DoctorListComp = ({doctor}:DoctorProps) => {
     const  navigation = useNavigation();
 
     const onCloseButton = () => {
-        navigation.navigate('UserMenuScreen');
+        navigation.navigate('Root');
     }
 
     const onButtonAssign = async (Doctor)=>{

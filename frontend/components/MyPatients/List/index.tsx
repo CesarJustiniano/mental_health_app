@@ -47,7 +47,7 @@ return(
             <Text>Patient: {User.firstName} {User.lastName} </Text>
             <Text>Phone Number: {User.phoneNumber}</Text>
             <Text>Address: {User.physicalAddress}</Text>
-            <Text style={styles.redButton}>APPOINTMENT ON: </Text>
+            <Text style={styles.redButton}>APPOINTMENT ON: {User.myAppointment} </Text>
         </TouchableOpacity>
     </View>
 )
