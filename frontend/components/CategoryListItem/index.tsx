@@ -1,8 +1,7 @@
 import React from 'react';
-import { Text, View, Image, TouchableWithoutFeedback } from "react-native";
-import {Category, ChatRoom} from "../../types";
+import { Text, View, TouchableWithoutFeedback } from "react-native";
+import {Category} from "../../types";
 import styles from "./styles";
-import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 
 export type CategoryListItemProps = {

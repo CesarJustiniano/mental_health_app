@@ -1,5 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react';
-import {FlatList, StyleSheet, Text, ImageBackground} from "react-native";
+import {FlatList, StyleSheet, Text, ImageBackground, Alert} from "react-native";
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {View} from "../components/Themed";
 import {AntDesign} from "@expo/vector-icons";
@@ -48,7 +48,25 @@ export default function ChatRoomScreen() {
         fetchMessages().then();
     }, [])
 
-    console.log(route.params)
+    console.log(route.params);
+
+    const createOneButtonErrorAlert = () =>
+        Alert.alert(
+            "Unable to delete Group Chat",
+            "You are not the owner of this group chat",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
+    const createOneButtonSuccessAlert = () =>
+        Alert.alert(
+            "Chat Successfully deleted!",
+            "This chat has been deleted. Please refresh your screen.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
 
     const onCloseButton = () => {
         navigation.navigate('Root');
@@ -58,10 +76,11 @@ export default function ChatRoomScreen() {
         try{
             const response = await axios.delete(`/groupChatroom/remove/${routeId.params.id}`, {withCredentials: true});
             navigation.navigate('Root');
+            createOneButtonSuccessAlert();
             return response.data;
         } catch (e) {
             console.log(e);
-            console.warn('This User cannot delete this chat');
+            createOneButtonErrorAlert();
         }
     }
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FlatList, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import {Alert, FlatList, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 
 import { Text, View } from '../components/Themed';
 
@@ -43,6 +43,24 @@ export default function GroupChatScreen() {
         fetchGroupChatRooms().then();
     }, [])
 
+    const createOneButtonSuccessAlert = () =>
+        Alert.alert(
+            "Group Chat Created!",
+            "Please refresh your screen to see the new group chats.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
+    const createOneButtonErrorAlert = () =>
+        Alert.alert(
+            "Group chat not created",
+            "Only doctors can create group chats.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
     const onCloseButton = () => {
         navigation.navigate('ChatCategory');
     }
@@ -50,10 +68,11 @@ export default function GroupChatScreen() {
     const onAddNewChatButton = async () => {
         try{
             const newGroupChat = await axios.post(`/createGroupChatroom/${routeID.params.name}`);
+            createOneButtonSuccessAlert();
             return newGroupChat.data;
         } catch (e) {
             console.log(e);
-            console.warn('Only Doctors can create group chats');
+            createOneButtonErrorAlert();
         }
     }
 
