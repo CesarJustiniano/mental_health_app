@@ -74,14 +74,19 @@ export const getAllDoctors = async (req, res) => {
 }
 
 export const getMyPatients = async (req, res) => {
+    if(req.user.role === 'doctor') {
 
-    const doctorId = await Doctor.findById(req.user._id);
+        const doctor = await Doctor.findById(req.user._id);
 
-    try {
-        //const doc = await Doctor.findOne({username: req.user.username})
-        return res.status(200).json(await User.find({ myDoctor: doctorId }));
-        //return res.status(200).json(await Doctor.find().select({ myPatients: 1 }));
-    } catch {
+        try {
+            //const doc = await Doctor.findOne({username: req.user.username})
+            return res.status(200).json(await User.find({ myDoctor: doctor}));
+            //return res.status(200).json(await Doctor.find().select({ myPatients: 1 }));
+        } catch {
+            return res.status(404).json({error: true, message: 'Error with Doctor'});
+        }
+    }
+    else {
         return res.status(404).json({error: true, message: 'Error with Doctor'});
     }
 }

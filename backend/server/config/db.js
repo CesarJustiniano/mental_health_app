@@ -3,10 +3,10 @@ require('dotenv/config');
 
 export default () => {
     mongoose.Promise = global.Promise;
-    //mongoose.connect('mongodb://localhost/MHA', {
-      //  useNewUrlParser: true,
-        //useUnifiedTopology: true,
-        //useCreateIndex: true});
+    // mongoose.connect('mongodb://localhost/MHA', {
+    //    useNewUrlParser: true,
+    //     useUnifiedTopology: true,
+    //     useCreateIndex: true});
      mongoose.connect(process.env.DB_CONNECTION,
          {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true},
          () => console.log('Connected to DB'));
