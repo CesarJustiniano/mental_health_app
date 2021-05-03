@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text} from "../components/Themed";
-import {Modal, StyleSheet, TouchableHighlight, Platform} from "react-native";
+import {Modal, StyleSheet, TouchableHighlight, Platform, Alert} from "react-native";
 import moment from "moment";
 import {useState} from "react";
 //import DateTimePicker from "react-native-modal-datetime-picker";
@@ -23,6 +23,16 @@ const CustomDatePicker =(props)=>{
         setDate(moment(selectedDate))
     }
 
+    const createPopUp = ()=>{
+        Alert.alert(
+            "Your Appointment has been created",
+            " Please Wait for your appointment date",
+            [
+
+                {text: "OK",onPress: () => console.log("OK Pressed") }
+            ]
+        )
+    }
     const onCloseButton = () => {
         navigation.navigate('Root');
     }
@@ -66,6 +76,7 @@ const CustomDatePicker =(props)=>{
             console.log("RESPONSE OF THE DOCTOR")
             console.log(responseDoctor.data)
 
+            createPopUp()
             onCloseButton()
 
             //look into newpost component

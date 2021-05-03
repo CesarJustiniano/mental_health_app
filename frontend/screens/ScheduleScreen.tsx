@@ -8,6 +8,8 @@ import CustomDatePicker from "./CustomDatePicker";
 
 export default function ScheduleScreen() {
 
+
+
     return (
         <View style={{flex:1,marginTop:50,alignItems: 'center',
             justifyContent: 'center',}}>
@@ -30,14 +32,7 @@ export default function ScheduleScreen() {
             </CustomDatePicker>
             </View>
             <View>
-                <TextInput style={styles.customInput}  placeholder='Enter Your Name'
-                           placeholderTextColor='rgba(255,255,255,0.7'
-                           underlineColorAndroid='transparent'>
-                </TextInput>
-                <TextInput style={styles.customInput}  placeholder='Email'
-                           placeholderTextColor='rgba(255,255,255,0.7'
-                           underlineColorAndroid='transparent'>
-                </TextInput>
+
 
 
             </View>

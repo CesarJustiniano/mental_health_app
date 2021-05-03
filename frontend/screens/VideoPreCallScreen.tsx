@@ -65,13 +65,10 @@ export default function VideoPreCallScreen(this: any, {doctor,patient}:VideoCall
         <View style={styles.container}>
             <Text style={styles.headings}>IF YOUR APPOINTMENT IS READY THEN WAIT FOR YOUR DOCTOR TO CALL YOU</Text>
             <Text>Your Appointment is {appointmentDate}</Text>
-            <Text onPress={onButtonPressVideoChat}> Doctor: {myDoctor}| Phone: {phoneNumber}</Text>
 
             <ProfilePicture></ProfilePicture>
             <VideoCall />
-            <TouchableOpacity >
-                <Text style={styles.redButton} onPress={onButtonBack} >GO BACK</Text>
-            </TouchableOpacity>
+
         </View>
 
 

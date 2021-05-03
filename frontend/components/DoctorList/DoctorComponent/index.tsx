@@ -1,5 +1,5 @@
 import React, {useRef} from "react";
-import {View, Text, Linking, TouchableOpacity, FlatList} from "react-native";
+import {View, Text, Linking, TouchableOpacity, FlatList, Alert} from "react-native";
 
 
 import {DoctorType} from "../../../types";
@@ -28,6 +28,17 @@ const DoctorListComp = ({doctor}:DoctorProps) => {
 
     const  navigation = useNavigation();
 
+    const createPopUp = ()=>{
+        Alert.alert(
+            "Your Doctor has been assigned",
+            "Return to the menu and select a Date for Appointment",
+            [
+
+                {text: "OK",onPress: () => console.log("OK Pressed") }
+            ]
+        )
+    }
+
     const onCloseButton = () => {
         navigation.navigate('Root');
     }
@@ -43,7 +54,8 @@ const DoctorListComp = ({doctor}:DoctorProps) => {
             const response = await axios.put(`/doctor/${Doctor._id}/assignDoctor`, update, {withCredentials:true})
             setDoctor(response.data.myDoctor)
             console.log(response)
-            onCloseButton()
+            createPopUp();
+            onCloseButton();
 
         }catch (e){
             console.log(e)

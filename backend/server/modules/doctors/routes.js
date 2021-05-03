@@ -11,5 +11,8 @@ routes.get('/doctor', DoctorController.getDoctor);
 routes.get('/allDoctors', DoctorController.getAllDoctors);
 routes.put('/updateDoctor', DoctorController.updateDoctor);
 routes.get('/doctor_myPatients',DoctorController.getMyPatients);
+routes.get('/doctor/:id/getFirstName',DoctorController.getFirstName)
+routes.get('/doctor/:id/getLastName',DoctorController.getLastName)
+routes.get('/doctor/:id/getPhoneNumber',DoctorController.getPhoneNumber)
 
 export default routes;

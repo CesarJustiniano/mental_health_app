@@ -91,6 +91,35 @@ export const getMyPatients = async (req, res) => {
     }
 }
 
+export const getFirstName = async (req,res)=>{
+    try {
+        return res.status(200).json(await Doctor.findOne({_id: req.params.id},{firstName:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
+}
+export const getLastName = async (req,res)=>{
+    try {
+        return res.status(200).json(await Doctor.findOne({_id: req.params.id},{lastName:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
+}
+
+export const getPhoneNumber = async (req,res)=>{
+    try {
+        return res.status(200).json(await Doctor.findOne({_id: req.params.id},{phoneNumber:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
+}
+
 export const updateDoctor = async (req, res) => {
     if (req.user){
 

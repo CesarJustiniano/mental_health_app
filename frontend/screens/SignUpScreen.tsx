@@ -1,5 +1,5 @@
 import React from 'react';
-import {CheckBox, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {CheckBox, Button, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {  Text, View , } from '../components/Themed';
@@ -21,6 +21,16 @@ export default function SignUpScreen(){
     })
 
     const  navigation = useNavigation();
+    const createPopUp = ()=>{
+        Alert.alert(
+            "Your Account has been created",
+            "Go Back to the Login Page",
+            [
+
+                {text: "OK",onPress: () => console.log("OK Pressed") }
+                ]
+        )
+    }
 
     const onButtonRegister = async () => {
         try{
@@ -39,7 +49,8 @@ export default function SignUpScreen(){
             const response = await axios.post('/signup', fields);
             console.log(response.data);
             setRegister(response.data);
-            navigation.navigate('InformationBoardScreen');
+            createPopUp();
+            navigation.navigate('UserLoginScreen');
         } catch (e) {
             console.log(e)
         }
@@ -156,6 +167,7 @@ export default function SignUpScreen(){
                 <TouchableOpacity >
                     <Text style={styles.customButton} onPress={onButtonBack} >                 GO BACK</Text>
                 </TouchableOpacity>
+
             </View>
         </View>
                 </ScrollView>

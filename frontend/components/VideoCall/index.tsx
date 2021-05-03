@@ -6,7 +6,7 @@ import {DoctorType} from "../../types";
 import { useRoute, RouteProp } from '@react-navigation/native';
 
 import {getAuthUser, getDoctorList} from "../../constants/api";
-
+import axios from "axios";
 export type VideoCallProps ={
     patient: UserType
     doctor: DoctorType
@@ -32,19 +32,24 @@ const VideoCall = () =>{
         try{
             const info = await getAuthUser();
             console.log("this is the user with Fname:")
-            console.log(info)
+            console.log(info.firstName)
+
+            setDoctor(info.myDoctor);
+            const firstNamed = await axios.get(`/doctor/${info.myDoctor}/getFirstName`)
+            const lastNamed = await axios.get(`/doctor/${info.myDoctor}/getLastName`)
+            const phoneNumby = await axios.get(`/doctor/${info.myDoctor}/getPhoneNumber`)
 
             setFName(info.firstName);
             setLName(info.lastName);
-            setDoctor(info.myDoctor);
+
             console.log("This is My Doctor:")
             console.log(info.myDoctor)
-            console.log(myDoctor)
+
             console.log("First in Array is:")
             console.log(info.myDoctor['firstName'])
-            setDname(info.myDoctor['firstName'])
-            setDLname(info.myDoctor['lastName'])
-            setPhoneNumber(info.myDoctor['phoneNumber'])
+            setDname(firstNamed.data.firstName)
+            setDLname(lastNamed.data.lastName)
+            setPhoneNumber(phoneNumby.data.phoneNumber)
 
             //console.log(myDoctor[0]['firstName'])
 

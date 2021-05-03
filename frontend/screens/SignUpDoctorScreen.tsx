@@ -1,5 +1,14 @@
 import React from 'react';
-import {CheckBox, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {
+    Alert,
+    CheckBox,
+    KeyboardAvoidingView,
+    Linking,
+    ScrollView,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {  Text, View , } from '../components/Themed';
@@ -20,6 +29,17 @@ export default function SignUpDoctorScreen(){
     })
     const  navigation = useNavigation();
 
+    const createPopUp = ()=>{
+        Alert.alert(
+            "Your Account has been created",
+            "Go Back to the Login Page",
+            [
+
+                {text: "OK",onPress: () => console.log("OK Pressed") }
+            ]
+        )
+    }
+
     const onButtonRegister = async ()=>{
         try{
             const fields = {
@@ -36,6 +56,7 @@ export default function SignUpDoctorScreen(){
             const response = await axios.post('/doctor_signup', fields);
             console.log(response.data);
             setRegister(response.data);
+            createPopUp()
             navigation.navigate('LoginPsychologistScreen');
         } catch (e) {
             console.log(e)
