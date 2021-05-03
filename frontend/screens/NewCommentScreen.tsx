@@ -4,7 +4,7 @@ import {
     Text,
     TouchableOpacity,
     SafeAreaView,
-    TextInput
+    TextInput, Alert
 } from 'react-native';
 
 import { View } from '../components/Themed';
@@ -21,6 +21,15 @@ export default function NewCommentScreen() {
     const navigation = useNavigation();
     const route = useRoute<RouteProp<Params, 'A'>>();
 
+    const createOneButtonSuccessAlert = () =>
+        Alert.alert(
+            "Posted new comment!",
+            "Please refresh your screen to see your new comment.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
     const onPostButton = async () => {
         try{
             const newComment = {
@@ -28,7 +37,7 @@ export default function NewCommentScreen() {
             }
             const response = await axios.post(`/post/${route.params.id}/createComment`, newComment, {withCredentials: true});
             setComment(response.data);
-            console.log(response.data);
+            createOneButtonSuccessAlert();
             onCloseButton();
         } catch (e) {
             console.log(e);
@@ -36,7 +45,7 @@ export default function NewCommentScreen() {
     };
 
     const onCloseButton = () => {
-        navigation.navigate('Root');
+        navigation.navigate('Feed');
     };
 
     return (
@@ -93,7 +102,7 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         marginLeft: 10,
-
+        width: '85%',
     },
     postInput: {
         height: 100,

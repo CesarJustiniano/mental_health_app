@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {Alert, FlatList, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import { View } from '../components/Themed';
 
@@ -9,19 +9,24 @@ import NewMessageButton from "../components/NewMessageButton";
 import {getChatRoomList} from "../constants/api";
 import {useEffect, useState} from "react";
 import Colors from "../constants/Colors";
+import axios from "axios";
+import {getAuthUser} from "../constants/api";
 
 export default function ChatScreen() {
     const [chatRooms, setChatRooms] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [role, setRole] = useState('');
 
     //const flatList = useRef<FlatList>(null);
 
     const fetchChatRooms = async () => {
         setLoading(true);
         try{
+            const info = await getAuthUser();
             const chatRoomData = await getChatRoomList();
-            console.log(chatRoomData);
+
             setChatRooms(chatRoomData);
+            setRole(info.role);
         } catch (e) {
             console.log(e);
         }
@@ -34,7 +39,39 @@ export default function ChatScreen() {
         fetchChatRooms().then();
     }, [])
 
-  return (
+    const createOneButtonErrorNameAlert = () =>
+        Alert.alert(
+            "Unable to create chat",
+            "You already created a chat with your doctor.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
+    const createOneButtonErrorAlert = () =>
+        Alert.alert(
+            "Unable to create chat",
+            "You do not have an assigned doctor.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
+    const onChatButton = async () => {
+        try {
+            const result = await axios.post('/createChatroom');
+            if(result.data){
+                await fetchChatRooms();
+            } else {
+                createOneButtonErrorNameAlert();
+            }
+        } catch (e) {
+            console.log(e);
+            createOneButtonErrorAlert();
+        }
+    }
+
+    return (
     <View style={styles.container}>
       <FlatList
           style={{width: '100%'}}
@@ -44,6 +81,11 @@ export default function ChatScreen() {
           refreshing={loading}
           onRefresh={fetchChatRooms}
       />
+        {role === 'user' ? <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button} onPress={onChatButton}>
+                <Text style={styles.buttonText}>Chat with your doctor</Text>
+            </TouchableOpacity>
+        </View> : <View></View>}
       <NewMessageButton />
     </View>
   );
@@ -58,5 +100,20 @@ const styles = StyleSheet.create({
     textDivider: {
         fontWeight: "bold",
         color: Colors.light.tint,
-    }
+    },
+    buttonContainer: {
+        padding: 15
+    },
+    button: {
+        backgroundColor: Colors.light.tint,
+        borderRadius: 30,
+    },
+    buttonText: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        color: 'white',
+        fontWeight: "bold",
+        fontSize: 16,
+
+    },
 });

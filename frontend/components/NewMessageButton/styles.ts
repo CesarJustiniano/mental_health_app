@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 50,
         position: "absolute",
-        bottom: 20,
-        right: 20,
+        bottom: 24,
+        right: 15,
     }
 })
 

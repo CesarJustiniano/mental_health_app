@@ -1,7 +1,9 @@
 import React, {useState, useEffect, useRef} from "react";
 import {View, FlatList, ScrollView, RefreshControl} from "react-native";
 import Post from "../Post";
-import { getPosts } from '../../constants/api';
+import axios from "axios";
+import {Params} from "../../types";
+import {RouteProp, useRoute} from "@react-navigation/native";
 
 const Feed = () => {
 
@@ -10,11 +12,13 @@ const Feed = () => {
 
     const flatList = useRef<FlatList>(null);
 
+    const route = useRoute<RouteProp<Params, 'A'>>();
+
     const fetchPosts = async () => {
         setLoading(true);
         try{
-            const postData = await getPosts();
-            setPosts(postData);
+            const postData = await axios.get(`/posts/${route.params.name}`);
+            setPosts(postData.data);
         } catch (e) {
             console.log(e);
         }
@@ -32,7 +36,7 @@ const Feed = () => {
             contentContainerStyle={{
                 flexDirection: 'row',
                 alignSelf: 'flex-end',
-                flexGrow: 1
+                flexGrow: 1,
             }}
             refreshControl={<RefreshControl refreshing={loading} onRefresh={fetchPosts} />}
         >

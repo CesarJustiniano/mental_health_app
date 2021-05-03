@@ -25,7 +25,4 @@ export default [{
 }, {
     id: 'gcc9',
     name: 'University or College',
-}, {
-    id: 'gcc10',
-    name: 'Other'
 }]

@@ -4,28 +4,40 @@ import {
     Text,
     TouchableOpacity,
     SafeAreaView,
-    TextInput
+    TextInput, Alert
 } from 'react-native';
 
 import { View } from '../components/Themed';
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import ProfilePicture from "../components/ProfilePicture";
-import {useNavigation} from "@react-navigation/native";
+import {RouteProp, useNavigation, useRoute} from "@react-navigation/native";
 import axios from "axios";
+import {Params} from "../types";
 
 export default function NewPostScreen() {
     const [post, setPost] = useState('');
     const navigation = useNavigation();
+
+    const route = useRoute<RouteProp<Params, 'A'>>();
+
+    const createOneButtonSuccessAlert = () =>
+        Alert.alert(
+            "Posted Successfully!",
+            "Please refresh your screen to see your new post.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
 
     const onPostButton = async () => {
         try {
             const newPost = {
                 body: post,
             }
-            const response = await axios.post('/createPost', newPost, {withCredentials: true});
+            const response = await axios.post(`/createPost/${route.params.name}`, newPost, {withCredentials: true});
             setPost(response.data);
-            console.log(response.data);
+            createOneButtonSuccessAlert();
             onCloseButton();
         } catch (e) {
             console.log(e);
@@ -33,7 +45,7 @@ export default function NewPostScreen() {
     }
 
     const onCloseButton = () => {
-        navigation.navigate('Root');
+        navigation.navigate('Feed');
     };
 
     return (
@@ -64,7 +76,7 @@ export default function NewPostScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         backgroundColor: 'white',
     },
     headerContainer: {
@@ -96,11 +108,5 @@ const styles = StyleSheet.create({
         height: 100,
         maxHeight: 300,
         fontSize: 18,
-    },
-    imageInput: {
-
-    },
-    videoInput: {
-
     },
 });

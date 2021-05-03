@@ -1,23 +1,23 @@
 import React from 'react';
-import { Text, View, TouchableWithoutFeedback } from "react-native";
 import {Category} from "../../types";
+import {useNavigation} from "@react-navigation/native";
+import {Text, TouchableWithoutFeedback, View} from "react-native";
 import styles from "./styles";
-import { useNavigation } from "@react-navigation/native";
 
 export type CategoryListItemProps = {
     category: Category;
 }
 
-const CategoryListItem = (props: CategoryListItemProps) => {
+const PostCategoryListItem = (props: CategoryListItemProps) => {
     const { category } = props;
 
     const navigation = useNavigation();
 
-    const onClick = () => {
-        navigation.navigate('GroupChatList', {
+    const onClick = () =>{
+        navigation.navigate('Feed', {
             id: category.id,
             name: category.name,
-            groupChats: category.groupChats,
+            posts: category.posts,
         });
     }
 
@@ -28,6 +28,6 @@ const CategoryListItem = (props: CategoryListItemProps) => {
             </View>
         </TouchableWithoutFeedback>
     )
-};
+}
 
-export default CategoryListItem;
+export default PostCategoryListItem;

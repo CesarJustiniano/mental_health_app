@@ -10,9 +10,12 @@ import {
     TouchableOpacity
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+//import CheckBox from '@react-native-community/checkbox';
 
+import EditScreenInfo from '../components/EditScreenInfo';
 import {  Text, View , } from '../components/Themed';
 import {useState} from "react";
+import {blue50} from "react-native-paper/lib/typescript/styles/colors";
 import axios from "axios";
 
 export default function SignUpDoctorScreen(){
@@ -58,6 +61,13 @@ export default function SignUpDoctorScreen(){
             setRegister(response.data);
             createPopUp()
             navigation.navigate('LoginPsychologistScreen');
+            const loginCredentials ={
+                username: fields.username,
+                password: fields.password
+            }
+            const loginStatus = await axios.post('/doctor_login',loginCredentials, {withCredentials:true});
+            console.log(loginStatus.data);
+            navigation.navigate('InformationBoardScreen');
         } catch (e) {
             console.log(e)
         }

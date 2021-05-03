@@ -11,7 +11,7 @@ export default function ScheduleScreen() {
 
 
     return (
-        <View style={{flex:1,marginTop:50,alignItems: 'center',
+        <View style={{flex:1,alignItems: 'center',
             justifyContent: 'center',}}>
             <View style={{marginHorizontal:20}}>
             <Text>Choose a Date</Text>

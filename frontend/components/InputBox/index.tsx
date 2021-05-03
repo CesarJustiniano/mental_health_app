@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+    Alert,
     TextInput,
     TouchableOpacity,
     View
@@ -15,6 +16,15 @@ const InputBox = () => {
 
     const route = useRoute<RouteProp<Params, 'A'>>();
 
+    const createOneButtonSuccessAlert = () =>
+        Alert.alert(
+            "Message sent successfully!",
+            "Please refresh your screen to see the new messages.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
     const onSendPress = async () => {
         try {
             const newMessage = {
@@ -22,8 +32,8 @@ const InputBox = () => {
             }
             const response = await axios.post(`/chatRoom/${route.params.id}/createMessage`, newMessage, {withCredentials: true});
             setMessage(response.data);
-            console.log(response.data);
             setMessage('');
+            createOneButtonSuccessAlert();
         } catch (e) {
             console.log(e);
         }
