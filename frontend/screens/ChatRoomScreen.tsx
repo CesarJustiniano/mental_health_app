@@ -90,8 +90,7 @@ export default function ChatRoomScreen() {
             const newMessage = {
                 content: textMessage,
             }
-            const response = await axios.post(`/chatRoom/${routeId.params.id}/createMessage`, newMessage, {withCredentials: true});
-            //setTextMessage(response.data);
+            await axios.post(`/chatRoom/${routeId.params.id}/createMessage`, newMessage, {withCredentials: true});
             setTextMessage('');
             await fetchMessages();
         } catch (e) {

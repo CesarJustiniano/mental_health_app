@@ -39,15 +39,6 @@ export default function ChatScreen() {
         fetchChatRooms().then();
     }, [])
 
-    const createOneButtonSuccessAlert = () =>
-        Alert.alert(
-            "Chat with your doctor created!",
-            "You may chat with your doctor now.",
-            [
-                { text: "OK", onPress: () => console.log("OK Pressed") }
-            ]
-        );
-
     const createOneButtonErrorNameAlert = () =>
         Alert.alert(
             "Unable to create chat",
@@ -70,7 +61,6 @@ export default function ChatScreen() {
         try {
             const result = await axios.post('/createChatroom');
             if(result.data){
-                createOneButtonSuccessAlert();
                 await fetchChatRooms();
             } else {
                 createOneButtonErrorNameAlert();

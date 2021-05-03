@@ -96,33 +96,45 @@ routes.post('/chatRoom/:id/createMessage', async (req, res) => {
 
 routes.post('/createGroupChatroom/:category', async (req, res) => {
     if(req.user){
-        const user = await User.findOne({username: req.user.username}, function (err, userInfo){
+        ChatRoom.findOne({ name: req.body.name }, async (err, doc) => {
             if (err) throw err;
-            else
-                return userInfo;
+            if (doc) res.send('ChatRoom Already Exists');
+            if (!doc) {
+                const user = await User.findOne({username: req.user.username}, function (err, userInfo) {
+                    if (err) throw err;
+                    else
+                        return userInfo;
+                });
+
+                if (user) {
+                    return res.status(500).json({error: true, message: 'Patients cannot create group chats'});
+                }
+
+                const doctor = await Doctor.findOne({username: req.user.username}, function (err, doctorInfo) {
+                    if (err) throw err;
+                    else
+                        return doctorInfo;
+                });
+
+                const category = req.params.category;
+                const newGroupChatroom = new ChatRoom({
+                    name: `${category}: ${doctor.username}`,
+                    category: category,
+                    doctor
+                });
+
+                ChatRoom.findOne({ name: newGroupChatroom.name }, async (err, doc) => {
+                    if (err) throw err;
+                    if (doc) res.send('ChatRoom Already Exists');
+                });
+
+                return res.status(200).json(await newGroupChatroom.save());
+            }
         });
-
-        if(user){
-            return res.status(500).json({ error: true, message: 'Patients cannot create group chats'});
-        }
-
-        const doctor = await Doctor.findOne({username: req.user.username}, function (err, doctorInfo){
-            if (err) throw err;
-            else
-                return doctorInfo;
-        });
-
-        const category = req.params.category;
-        const newGroupChatroom = new ChatRoom({
-            name: `${category}: ${doctor.username}`,
-            category: category,
-            doctor
-        });
-
-        return res.status(200).json(await newGroupChatroom.save());
     } else {
         return res.status(404).json({ error: true, message: 'Error with Group Chatroom'});
     }
+
 });
 
 routes.get('/chatRooms', async (req, res) => {

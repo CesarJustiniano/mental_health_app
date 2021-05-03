@@ -43,19 +43,19 @@ export default function GroupChatScreen() {
         fetchGroupChatRooms().then();
     }, [])
 
-    const createOneButtonSuccessAlert = () =>
+    const createOneButtonErrorAlert = () =>
         Alert.alert(
-            "Group Chat Created!",
-            "Please refresh your screen to see the new group chats.",
+            "Group chat not created",
+            "Only doctors can create group chats.",
             [
                 { text: "OK", onPress: () => console.log("OK Pressed") }
             ]
         );
 
-    const createOneButtonErrorAlert = () =>
+    const createOneButtonErrorNameAlert = () =>
         Alert.alert(
             "Group chat not created",
-            "Only doctors can create group chats.",
+            "You already have a group chat in this category",
             [
                 { text: "OK", onPress: () => console.log("OK Pressed") }
             ]
@@ -68,7 +68,11 @@ export default function GroupChatScreen() {
     const onAddNewChatButton = async () => {
         try{
             const newGroupChat = await axios.post(`/createGroupChatroom/${routeID.params.name}`);
-            createOneButtonSuccessAlert();
+            if (newGroupChat.data != 'ChatRoom Already Exists'){
+                await fetchGroupChatRooms();
+            } else {
+                createOneButtonErrorNameAlert();
+            }
             return newGroupChat.data;
         } catch (e) {
             console.log(e);
