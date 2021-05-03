@@ -60,7 +60,7 @@ const CustomDatePicker =(props)=>{
 
 
             const updateUser = {
-                    myAppointment: response.data,
+                    myAppointment: response.data.appointment,
             }
             const responseUser = await axios.put('/updateUser', updateUser, {withCredentials: true});
             setUserApp(responseUser.data.myAppointment)

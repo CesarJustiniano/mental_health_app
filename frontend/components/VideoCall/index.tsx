@@ -22,6 +22,8 @@ const VideoCall = () =>{
     const [DLname,setDLname] = useState([]);
     const [lName, setLName] = useState([]);
     const [phoneNumber,setPhoneNumber] = useState([]);
+    const [appointmentDate,setAppointmentDate] = useState([]);
+
     const [loading, setLoading] = useState(false);
     const route = useRoute();
     console.log(route.params)
@@ -46,10 +48,13 @@ const VideoCall = () =>{
             console.log(info.myDoctor)
 
             console.log("First in Array is:")
-            console.log(info.myDoctor['firstName'])
+            //console.log(info.myDoctor['firstName'])
             setDname(firstNamed.data.firstName)
             setDLname(lastNamed.data.lastName)
             setPhoneNumber(phoneNumby.data.phoneNumber)
+            console.log("THE APPOINTMENT IS:")
+            setAppointmentDate(info.myAppointment)
+            console.log(appointmentDate)
 
             //console.log(myDoctor[0]['firstName'])
 
@@ -75,6 +80,7 @@ return (
     <View>
         <Text>Your Doctor`s Name is {Dname} {DLname}</Text>
         <Text>Your Doctor`s Phone: {phoneNumber} </Text>
+        <Text>Your Appointment is on {appointmentDate}</Text>
 
     </View>
 );

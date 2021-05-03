@@ -17,6 +17,7 @@ export type VideoCallProps ={
 const MyPatients = ()=>{
     const flatList = useRef<FlatList>(null);
     const [patients, setPatient] = useState([]);
+
     // const [user, setUser] = useState([]);
     // const [fName, setFName] = useState([]);
     // const [Dname,setDname] = useState([]);
@@ -92,6 +93,12 @@ const MyPatients = ()=>{
         try {
             const myPatients = await axios.get('/doctor_myPatients', {withCredentials: true});
             setPatient(myPatients.data);
+            let i
+            for(i=0;i<patients.length;i++) {
+                console.log(i)
+
+            }
+
         } catch (e) {
             console.log(e);
         } finally {

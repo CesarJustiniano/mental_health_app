@@ -22,7 +22,7 @@ import {DoctorType} from "../types";
 import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 
-import {getDoctorList, getPosts} from "../constants/api";
+import {getAuthUser, getDoctorList, getPosts} from "../constants/api";
 import Post from "../components/Post";
 import VideoCall from "../components/VideoCall";
 import { useRoute } from '@react-navigation/native';
@@ -39,12 +39,14 @@ export type VideoCallProps = {
 export default function VideoPreCallScreen(this: any, {doctor,patient}:VideoCallProps){
     const  navigation = useNavigation();
     const route = useRoute();
+
     console.log(route.params)
     //Dummy data
     let [username, setUsername] = useState('Jesse'); //Dummy initial
+
     let [phoneNumber, setPhoneNumber] = useState("17874094429"); //Dummy initial
     let [address, setAddress] = useState('San Juan, Puerto Rico'); //Dummy initial
-    let[appointmentDate] = useState('May-03-2021')
+    //let[appointmentDate,setAppointmentDate] = useState([])
     let[myDoctor] = useState('Jesse')
 
     const onButtonPressVideoChat = () => {
@@ -57,14 +59,14 @@ export default function VideoPreCallScreen(this: any, {doctor,patient}:VideoCall
         navigation.navigate('UserMenuScreen');
     }
     const flatList = useRef<FlatList>(null);
-    const [user, setUser] = useState([]);
+    const [User, setUser] = useState([]);
+    const [appointmentDate, setAppointmentDate] = useState([]);
     const [loading, setLoading] = useState(false);
 
 
     return (
         <View style={styles.container}>
             <Text style={styles.headings}>IF YOUR APPOINTMENT IS READY THEN WAIT FOR YOUR DOCTOR TO CALL YOU</Text>
-            <Text>Your Appointment is {appointmentDate}</Text>
 
             <ProfilePicture></ProfilePicture>
             <VideoCall />
