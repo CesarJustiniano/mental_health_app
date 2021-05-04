@@ -6,7 +6,7 @@ import {
     StyleSheet,
     TextInput,
     TouchableOpacity,
-    StatusBar, Animated, Linking
+    StatusBar, Animated, Linking, Alert
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Text, View} from '../components/Themed';
@@ -24,8 +24,10 @@ export default function DoctorListScreen(){
 
 
 
+
+
     const onButtonPress = () => {
-        navigation.navigate('InformationBoardScreen');
+        navigation.navigate('Root');
     }
 
     const onButtonPress2 = () => {

@@ -1,12 +1,9 @@
 import React from 'react';
-import {CheckBox, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {CheckBox, Button, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-//import CheckBox from '@react-native-community/checkbox';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import {  Text, View , } from '../components/Themed';
 import {useState} from "react";
-import {blue50} from "react-native-paper/lib/typescript/styles/colors";
 import axios from "axios";
 
 export default function SignUpScreen(){
@@ -24,6 +21,16 @@ export default function SignUpScreen(){
     })
 
     const  navigation = useNavigation();
+    const createPopUp = ()=>{
+        Alert.alert(
+            "Your Account has been created",
+            "Go Back to the Login Page",
+            [
+
+                {text: "OK",onPress: () => console.log("OK Pressed") }
+                ]
+        )
+    }
 
     const onButtonRegister = async () => {
         try{
@@ -42,13 +49,15 @@ export default function SignUpScreen(){
             const response = await axios.post('/signup', fields);
             console.log(response.data);
             setRegister(response.data);
+            //createPopUp();
+            //navigation.navigate('UserLoginScreen');
             const loginCredentials = {
                 username: fields.username,
                 password: fields.password,
             }
             const loginStatus = await axios.post('/login', loginCredentials, {withCredentials: true});
-            console.log(loginStatus.data);
-            navigation.navigate('InformationBoardScreen');
+            //console.log(loginStatus.data);
+            navigation.navigate('Root');
         } catch (e) {
             console.log(e)
         }
@@ -165,6 +174,7 @@ export default function SignUpScreen(){
                 <TouchableOpacity >
                     <Text style={styles.customButton} onPress={onButtonBack} >                 GO BACK</Text>
                 </TouchableOpacity>
+
             </View>
         </View>
                 </ScrollView>
@@ -210,20 +220,12 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: 'black',
 
-        //alignSelf: 'stretch',
-        //height: 40,
         marginBottom: 15,
-        //color: '#fff',
-        //borderBottomWidth: 1,
-
-
-
 
     },
 
     customButton:{
         alignItems: 'center',
-        //userSelect: 'none',
         display: 'flex',
         justifyContent: 'center',
         paddingTop: 6,

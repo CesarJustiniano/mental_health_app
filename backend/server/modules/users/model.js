@@ -44,7 +44,7 @@ const UserSchema = new Schema ({
         default: 'user',
     },
     myDoctor: {
-        type: mongoose.Schema.Types.Mixed,
+        type: mongoose.Schema.Types.ObjectId,
     },
     myAppointment:{
         type:mongoose.Schema.Types.Mixed,

@@ -85,14 +85,7 @@ export default function UserMenuScreen(){
                 </TouchableOpacity>
 
             </View>
-
-
-
         </View>
-
-
-
-
 
     );
 

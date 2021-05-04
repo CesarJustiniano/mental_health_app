@@ -1,5 +1,14 @@
 import React from 'react';
-import {CheckBox, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {
+    Alert,
+    CheckBox,
+    KeyboardAvoidingView,
+    Linking,
+    ScrollView,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 //import CheckBox from '@react-native-community/checkbox';
 
@@ -23,6 +32,17 @@ export default function SignUpDoctorScreen(){
     })
     const  navigation = useNavigation();
 
+    const createPopUp = ()=>{
+        Alert.alert(
+            "Your Account has been created",
+            "Go Back to the Login Page",
+            [
+
+                {text: "OK",onPress: () => console.log("OK Pressed") }
+            ]
+        )
+    }
+
     const onButtonRegister = async ()=>{
         try{
             const fields = {
@@ -39,13 +59,15 @@ export default function SignUpDoctorScreen(){
             const response = await axios.post('/doctor_signup', fields);
             console.log(response.data);
             setRegister(response.data);
+            //createPopUp()
+           // navigation.navigate('LoginPsychologistScreen');
             const loginCredentials ={
                 username: fields.username,
                 password: fields.password
             }
-            const loginStatus = await axios.post('/doctor_login',loginCredentials, {withCredentials:true});
-            console.log(loginStatus.data);
-            navigation.navigate('InformationBoardScreen');
+            await axios.post('/doctor_login',loginCredentials, {withCredentials:true});
+            //console.log(loginStatus.data);
+            navigation.navigate('Root');
         } catch (e) {
             console.log(e)
         }
@@ -203,20 +225,10 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 3,
         width: 250,
-
         fontSize: 14,
         borderBottomWidth: 1,
         borderBottomColor: 'black',
-
-        //alignSelf: 'stretch',
-        //height: 40,
         marginBottom: 15,
-        //color: '#fff',
-        //borderBottomWidth: 1,
-
-
-
-
     },
 
     customButton:{

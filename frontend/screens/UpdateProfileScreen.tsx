@@ -1,6 +1,6 @@
 import {useNavigation} from "@react-navigation/native";
 import {useState} from "react";
-import {SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Alert, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {AntDesign} from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import * as React from "react";
@@ -12,6 +12,17 @@ export default function UpdateProfileScreen() {
     const [username, setUsername] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address, setAddress] = useState('');
+
+    const createPopUp = ()=>{
+        Alert.alert(
+            "Your Profile has been updated",
+            "You may return to the Main Menu",
+            [
+
+                {text: "OK",onPress: () => console.log("OK Pressed") }
+            ]
+        )
+    }
 
     const onCloseButton = () => {
         navigation.navigate('ProfileSettings');
@@ -32,6 +43,7 @@ export default function UpdateProfileScreen() {
             setUsername(response.data.username);
             setPhoneNumber(response.data.phoneNumber);
             setAddress(response.data.physicalAddress);
+            createPopUp();
             onCloseButton();
         } catch (e) {
             console.log(e);

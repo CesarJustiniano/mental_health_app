@@ -77,16 +77,50 @@ export const getAllDoctors = async (req, res) => {
 }
 
 export const getMyPatients = async (req, res) => {
+    if(req.user.role === 'doctor') {
 
-    const doctorId = await Doctor.findById(req.user._id);
+        const doctor = await Doctor.findById(req.user._id);
 
-    try {
-        //const doc = await Doctor.findOne({username: req.user.username})
-        return res.status(200).json(await User.find({ myDoctor: doctorId }));
-        //return res.status(200).json(await Doctor.find().select({ myPatients: 1 }));
-    } catch {
+        try {
+            //const doc = await Doctor.findOne({username: req.user.username})
+            return res.status(200).json(await User.find({ myDoctor: doctor}));
+            //return res.status(200).json(await Doctor.find().select({ myPatients: 1 }));
+        } catch {
+            return res.status(404).json({error: true, message: 'Error with Doctor'});
+        }
+    }
+    else {
         return res.status(404).json({error: true, message: 'Error with Doctor'});
     }
+}
+
+export const getFirstName = async (req,res)=>{
+    try {
+        return res.status(200).json(await Doctor.findOne({_id: req.params.id},{firstName:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
+}
+export const getLastName = async (req,res)=>{
+    try {
+        return res.status(200).json(await Doctor.findOne({_id: req.params.id},{lastName:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
+}
+
+export const getPhoneNumber = async (req,res)=>{
+    try {
+        return res.status(200).json(await Doctor.findOne({_id: req.params.id},{phoneNumber:1}));
+
+    } catch {
+        return res.status(404).json({ error: true, message: 'Error with User'});
+    }
+
 }
 
 // This function updates the logged current doctor.
@@ -110,6 +144,13 @@ export const updateDoctor = async (req, res) => {
                     if(req.body.phoneNumber) {
                         obj.phoneNumber = req.body.phoneNumber;
                     }
+                    //new
+                    if(req.body.myAppointment){
+                        obj.myAppointment.push(req.body.myAppointment)
+                    }
+
+
+
 
                     obj.save((err, updatedObj) => {
                         if(err) {

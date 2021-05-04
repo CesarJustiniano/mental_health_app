@@ -1,5 +1,15 @@
 import * as React from 'react';
-import {StyleSheet,Platform,ScrollView, TextInput, Dimensions, TouchableOpacity, KeyboardAvoidingView, Image} from 'react-native';
+import {
+    StyleSheet,
+    Platform,
+    ScrollView,
+    TextInput,
+    Dimensions,
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    Image,
+    Alert
+} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View , } from '../components/Themed';
@@ -17,6 +27,15 @@ export default function LoginPsychologistScreen() {
         navigation.navigate('SignUpDoctorScreen');
     }
 
+    const createOneButtonErrorAlert = () =>
+        Alert.alert(
+            "Unable to login",
+            "Invalid username or password.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
     const onButtonLogin = async () =>{
         try{
             const loginCredentials ={
@@ -29,9 +48,10 @@ export default function LoginPsychologistScreen() {
             setUserLogin(response.data)
             if(response.data == 'No Doctor Exists'){
                 console.warn(response.data);
+                createOneButtonErrorAlert();
             } else {
-                navigation.navigate('PsychologistMenuScreen')
-                //navigation.navigate('Root');
+                //navigation.navigate('PsychologistMenuScreen')
+                navigation.navigate('Root');
             }
         }catch (e){
             console.log(e)
@@ -46,8 +66,6 @@ export default function LoginPsychologistScreen() {
         navigation.navigate('FirstScreen')
     }
 
-
-
     // @ts-ignore
     return (
         <KeyboardAvoidingView
@@ -57,28 +75,18 @@ export default function LoginPsychologistScreen() {
             //behavior={Platform.OS ==='ios'? 'padding':null}
         >
             <ScrollView
-
                 contentContainerStyle={{flex:1}} bounces={false}>
-
                 <View style={styles.container}>
-
                     <View>
                         <Text style={styles.headings}>REGISTER AS A PROFESSIONAL</Text>
-
-
                         <View >
                             <TouchableOpacity>
-                                <Text style={styles.redButton} onPress={onButtonPress}>                               REGISTER</Text>
+                                <Text style={styles.redButton} onPress={onButtonPress}>            REGISTER</Text>
                             </TouchableOpacity>
                         </View>
-
-
-
                     </View>
-
                     <View>
-
-                        <Text style={styles.headings}>            SIGN IN</Text>
+                        <Text style={styles.headings}>         SIGN IN</Text>
                         <TextInput
                                    value={uLogin.username||''}
                                    onChangeText={(event) => setUserLogin({...uLogin, username: event})}
@@ -86,8 +94,6 @@ export default function LoginPsychologistScreen() {
                                    placeholder='Username'
                                    placeholderTextColor='rgba(0,128,128,0.6)'
                                    underlineColorAndroid='transparent'>
-
-
                         </TextInput>
 
                         <TextInput
@@ -102,7 +108,7 @@ export default function LoginPsychologistScreen() {
 
                         </TextInput>
                         <TouchableOpacity>
-                            <Text style={styles.redButton} onPress={onButtonLogin}>                       LOGIN</Text>
+                            <Text style={styles.redButton} onPress={onButtonLogin}>                  LOGIN</Text>
                         </TouchableOpacity>
 
 
@@ -111,28 +117,15 @@ export default function LoginPsychologistScreen() {
                     <View>
                         <Text style={styles.headings}>-----------0R-----------</Text>
                         <TouchableOpacity >
-                            <Text style={styles.redButton} onPress={onButtonPressFirst}>                      GO BACK</Text>
+                            <Text style={styles.redButton} onPress={onButtonPressFirst}>                        GO BACK</Text>
                         </TouchableOpacity>
                     </View>
 
                 </View>
-
-
-
-
-
-
             </ScrollView>
         </KeyboardAvoidingView>
-
-
-
-
     );
 }
-
-
-
 
 
 const styles = StyleSheet.create({
@@ -166,35 +159,20 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderColor: 'black',
         borderStyle: 'solid',
-        //WebkitAppearance: 'none',
-        //msAppearance: 'none',
-        //MozAppearance: 'none',
-        //appearance: 'none',
         backgroundColor: "#f2f2f2",
         padding: 12,
         borderRadius: 3,
         width: 250,
-        //outline: 'none',
         fontSize: 14,
         borderBottomWidth: 1,
         borderBottomColor: 'black',
-        //borderBottom: "1px solid black"
         marginBottom:15,
-        //alt
-        //width: WIDTH-55,
-        //height: 45,
-        //borderRadius: 25,
-        //fontSize: 16,
-        //paddingLeft: 45,
-        //backgroundColor: 'rgba(0,0,0,0.35)',
-        //color: 'rgba(255,255,255,0.7)',
-        //marginHorizontal:25
+
 
 
     },
     redButton:{
         alignItems: 'center',
-        //userSelect: 'none',
         display: 'flex',
         justifyContent: 'center',
         paddingTop: 6,
@@ -222,7 +200,7 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: 6,
         marginBottom: 12,
-        //cursor: 'pointer'
+
     },
     keyboard: {
         marginBottom: 100,

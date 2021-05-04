@@ -118,6 +118,10 @@ export const updateUser = async (req, res) => {
                     if(req.body.physicalAddress) {
                         obj.physicalAddress = req.body.physicalAddress;
                     }
+                    //added for scheduler
+                    if(req.body.myAppointment) {
+                        obj.myAppointment = req.body.myAppointment;
+                    }
 
                     obj.save((err, updatedObj) => {
                         if(err) {
@@ -165,7 +169,7 @@ export const assignDoctor = async (req, res) => {
                 }
             })
 
-            await Doctor.findOne({_id: doctorId}, (err, obj) => {
+            await Doctor.findOne({_id: req.params.id}, (err, obj) => {//doctorId
                 if(err) {
                     console.log(err);
                     res.status(500).send();

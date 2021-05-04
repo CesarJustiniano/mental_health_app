@@ -3,42 +3,25 @@ import {Text, View} from "../components/Themed";
 import {Modal, StyleSheet, TouchableHighlight, Button, TextInput} from "react-native";
 
 
-import CustomDatePicker from "./CustomDatePicker";
+import MyPatients from "../components/MyPatients";
 
 
-export default function ScheduleScreen() {
+export default function DoctorSchedule(){
 
 
+    return(
+        <View style={{flex:1,alignItems: 'center',
+            justifyContent: 'center'}}>
+            <MyPatients></MyPatients>
 
-    return (
-        <View style={styles.container}>
-            <View style={{marginHorizontal:20}}>
-            <Text>Choose a Date</Text>
-            <CustomDatePicker
-                textStyle={{
-                    paddingVertical: 15,
-                    paddingHorizontal: 10,
-
-                    borderColor: 'rgb(0, 128, 128)',
-                    borderWidth:1,
-            }}
-                defaultDate= "2021-01-01"
-                //showDatepicker
-                onDateChange={(value)=>console.log('DATE CHANGED TO : '+value)}
-
-            >
-            </CustomDatePicker>
-            </View>
         </View>
-    );
-};
+    )
 
+
+
+
+}
 const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     textStyle :{
         paddingVertical: 15,
         paddingHorizontal: 10,
@@ -97,4 +80,3 @@ const styles = StyleSheet.create({
 
 
 })
-

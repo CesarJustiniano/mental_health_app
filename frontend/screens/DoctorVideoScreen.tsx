@@ -16,37 +16,22 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View , } from '../components/Themed';
 import {useNavigation} from "@react-navigation/native";
 const {width: WIDTH} = Dimensions.get('window')
-//import { PostType } from "../../types";
-import {UserType} from "../types";
-import {DoctorType} from "../types";
+
 import {useEffect, useRef, useState} from "react";
-import axios from "axios";
 
-import {getAuthUser, getDoctorList, getPosts} from "../constants/api";
-import Post from "../components/Post";
-import VideoCall from "../components/VideoCall";
+
+import VideoDoctor from "../components/VideoDoctor";
 import { useRoute } from '@react-navigation/native';
-import ProfilePicture from "../components/ProfilePicture";
 
-
-
-
-export type VideoCallProps = {
-    patient: UserType,
-    doctor: DoctorType
-}
-
-export default function VideoPreCallScreen(this: any, {doctor,patient}:VideoCallProps){
+export default function DoctorVideoScreen(){
     const  navigation = useNavigation();
     const route = useRoute();
-
     console.log(route.params)
-    //Dummy data
-    let [username, setUsername] = useState('Jesse'); //Dummy initial
 
+    let [username, setUsername] = useState('Jesse'); //Dummy initial
     let [phoneNumber, setPhoneNumber] = useState("17874094429"); //Dummy initial
     let [address, setAddress] = useState('San Juan, Puerto Rico'); //Dummy initial
-    //let[appointmentDate,setAppointmentDate] = useState([])
+    let[appointmentDate] = useState('May-03-2021')
     let[myDoctor] = useState('Jesse')
 
     const onButtonPressVideoChat = () => {
@@ -56,27 +41,20 @@ export default function VideoPreCallScreen(this: any, {doctor,patient}:VideoCall
     }
     const onButtonBack = () => {
         //navigation.navigate('CalendarAgenda');
-        navigation.navigate('UserMenuScreen');
+        navigation.navigate('PsychologistMenuScreen');
     }
     const flatList = useRef<FlatList>(null);
-    const [User, setUser] = useState([]);
-    const [appointmentDate, setAppointmentDate] = useState([]);
+    const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(false);
-
 
     return (
         <View style={styles.container}>
-            <Text style={styles.headings}>IF YOUR APPOINTMENT IS READY THEN WAIT FOR YOUR DOCTOR TO CALL YOU</Text>
-
-            <ProfilePicture></ProfilePicture>
-            <VideoCall />
+            <VideoDoctor/>
 
         </View>
 
 
     );
-
-
 
 
 }

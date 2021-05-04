@@ -40,11 +40,7 @@ export default function DatePickerScreen(){
                 onConfirm={handleConfirm}
                 onCancel={hideDatePicker}
             />
-
-
-
         </View>
-
     );
 }
 

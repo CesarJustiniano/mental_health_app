@@ -1,14 +1,14 @@
 import React , {useEffect, useRef, useState} from "react";
-import {View, FlatList, Text, Linking, TouchableOpacity} from "react-native";
+import {View, FlatList, Text, Linking, TouchableOpacity, StyleSheet} from "react-native";
 
 import {UserType} from "../../types";
 import {DoctorType} from "../../types";
 import { useRoute, RouteProp } from '@react-navigation/native';
-import {Params} from "../../types";
-import styles from "./styles";
-import axios from "axios";
-import Comment from "../Comment";
+
 import {getAuthUser, getDoctorList} from "../../constants/api";
+import axios from "axios";
+import moment from "moment";
+//import styles from "./styles";
 export type VideoCallProps ={
     patient: UserType
     doctor: DoctorType
@@ -21,7 +21,11 @@ const VideoCall = () =>{
     const [user, setUser] = useState([]);
     const [fName, setFName] = useState([]);
     const [Dname,setDname] = useState([]);
+    const [DLname,setDLname] = useState([]);
     const [lName, setLName] = useState([]);
+    const [phoneNumber,setPhoneNumber] = useState([]);
+    const [appointmentDate,setAppointmentDate] = useState([]);
+
     const [loading, setLoading] = useState(false);
     const route = useRoute();
     console.log(route.params)
@@ -32,13 +36,29 @@ const VideoCall = () =>{
         try{
             const info = await getAuthUser();
             console.log("this is the user with Fname:")
-            console.log(info)
+            console.log(info.firstName)
+
+            setDoctor(info.myDoctor);
+            const firstNamed = await axios.get(`/doctor/${info.myDoctor}/getFirstName`)
+            const lastNamed = await axios.get(`/doctor/${info.myDoctor}/getLastName`)
+            const phoneNumby = await axios.get(`/doctor/${info.myDoctor}/getPhoneNumber`)
 
             setFName(info.firstName);
             setLName(info.lastName);
-            setDoctor(info.myDoctor);
+
             console.log("This is My Doctor:")
             console.log(info.myDoctor)
+
+            console.log("First in Array is:")
+            //console.log(info.myDoctor['firstName'])
+            setDname(firstNamed.data.firstName)
+            setDLname(lastNamed.data.lastName)
+            setPhoneNumber(phoneNumby.data.phoneNumber)
+            console.log("THE APPOINTMENT IS:")
+            setAppointmentDate(info.myAppointment)
+            console.log(appointmentDate)
+
+            //console.log(myDoctor[0]['firstName'])
 
 
 
@@ -59,17 +79,21 @@ const VideoCall = () =>{
         //await?
     }
 return (
-    <View style={{ width: '100%'}}>
-        <Text>The First Name of user is {fName}</Text>
-        <Text>The Last Name of user is {lName}</Text>
-        <Text>The Doctor of the user is </Text>
-
-
-
-
+    <View style={styles.container}>
+        <Text>Your Doctor`s Name is {Dname} {DLname}</Text>
+        <Text>Your Doctor`s Phone: {phoneNumber} </Text>
+        <Text>Your Appointment is on: {moment(appointmentDate).format('DD/MM/YYYY, hh:mm a')}</Text>
     </View>
 );
 
 }
 
 export default VideoCall
+
+const styles = StyleSheet.create({
+    container: {
+        padding: 5,
+        alignItems: 'flex-start',
+        backgroundColor: 'white',
+    },
+});

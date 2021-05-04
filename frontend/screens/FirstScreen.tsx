@@ -49,30 +49,12 @@ export default function FirstScreen() {
                         </TouchableOpacity>
                     </View>
 
-
-
-
-
-
                 </View>
-
-
-
-
-
-
             </ScrollView>
         </KeyboardAvoidingView>
 
-
-
-
     );
 }
-
-
-
-
 
 const styles = StyleSheet.create({
     container: {

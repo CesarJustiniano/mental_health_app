@@ -28,8 +28,10 @@ export type RootStackParamList = {
   ScheduleScreen: undefined;
   UpdateProfileScreen: undefined;
   UserLoginScreen:undefined;
+  DoctorVideoScreen:undefined;
 
   DoctorListScreen:undefined;
+  DoctorSchedule:undefined;
 };
 
 export type BottomTabParamList = {
@@ -67,12 +69,20 @@ export type TabTwoParamList = {
 export type UserType = {
   _id: string,
   firstName: string,
+  lastName:string,
   username: string,
   image?: string,
   status?: string,
   phoneNumber: string,
-  myDoctor: object,
+  //myDoctor: [object],
+  myDoctor: object
+  myAppointment: Date,
+  physicalAddress: string,
 
+}
+
+export type AppointmentType ={
+  appointment: Date,
 }
 
 export type DoctorType = {
@@ -84,6 +94,7 @@ export type DoctorType = {
   status?: string,
   phoneNumber: string,
   email:string,
+  myPatients:object
 
 }
 

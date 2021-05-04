@@ -3,14 +3,8 @@ import {View, FlatList, Text, Linking, TouchableOpacity} from "react-native";
 
 import {UserType} from "../../types";
 import {DoctorType} from "../../types";
-import { useRoute, RouteProp } from '@react-navigation/native';
-import {Params} from "../../types";
-import styles from "./styles";
 import axios from "axios";
-import Comment from "../Comment";
-import {getDoctorList} from "../../constants/api";
-import ProfilePicture from "../ProfilePicture";
-import Post from "../Post";
+
 import DoctorListComp from "./DoctorComponent";
 export type VideoCallProps ={
     patient: UserType
