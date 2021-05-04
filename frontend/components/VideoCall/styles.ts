@@ -2,13 +2,12 @@ import {StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
     container: {
+        padding: 5,
         width: '100%',
-        flexDirection: 'row',
-        padding: 15,
-        borderBottomWidth: 0.5,
-        borderBottomColor: 'lightgrey',
-        justifyContent:"center",
+        justifyContent: "center",
         alignItems:"center",
+        borderBottomWidth: 0.5,
+        borderBottomColor: 'lightgray'
     },
     redButton:{
         alignItems: 'center',

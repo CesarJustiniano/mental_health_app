@@ -1,5 +1,5 @@
 import React , {useEffect, useRef, useState} from "react";
-import {View, FlatList, Text, Linking, TouchableOpacity} from "react-native";
+import {View, FlatList, Text, Linking, TouchableOpacity, StyleSheet} from "react-native";
 
 import {UserType} from "../../types";
 import {DoctorType} from "../../types";
@@ -7,6 +7,8 @@ import { useRoute, RouteProp } from '@react-navigation/native';
 
 import {getAuthUser, getDoctorList} from "../../constants/api";
 import axios from "axios";
+import moment from "moment";
+//import styles from "./styles";
 export type VideoCallProps ={
     patient: UserType
     doctor: DoctorType
@@ -77,14 +79,21 @@ const VideoCall = () =>{
         //await?
     }
 return (
-    <View>
+    <View style={styles.container}>
         <Text>Your Doctor`s Name is {Dname} {DLname}</Text>
         <Text>Your Doctor`s Phone: {phoneNumber} </Text>
-        <Text>Your Appointment is on {appointmentDate}</Text>
-
+        <Text>Your Appointment is on: {moment(appointmentDate).format('DD/MM/YYYY, hh:mm a')}</Text>
     </View>
 );
 
 }
 
 export default VideoCall
+
+const styles = StyleSheet.create({
+    container: {
+        padding: 5,
+        alignItems: 'flex-start',
+        backgroundColor: 'white',
+    },
+});

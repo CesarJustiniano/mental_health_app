@@ -40,13 +40,6 @@ export default function InformationBoardScreen(){
                  <Text style={styles.customButton} onPress={onButtonPress2} >PHONE NUMBERS</Text>
            </TouchableOpacity>
 
-           <TouchableOpacity >
-                <Text style={styles.customButton} onPress={onFeedBack} >FEEDBACK</Text>
-           </TouchableOpacity>
-           <TouchableOpacity >
-               <Text style={styles.customButton} onPress={onButtonBack} >GO TO MAIN</Text>
-           </TouchableOpacity>
-
            </View>
 
 

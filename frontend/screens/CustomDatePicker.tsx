@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text} from "../components/Themed";
-import {Modal, StyleSheet, TouchableHighlight, Platform, Alert} from "react-native";
+import {Modal, StyleSheet, TouchableHighlight, Platform, Alert, SafeAreaView} from "react-native";
 import moment from "moment";
 import {useState} from "react";
 //import DateTimePicker from "react-native-modal-datetime-picker";
@@ -140,15 +140,9 @@ const CustomDatePicker =(props)=>{
                 onPress={()=>setShow(true)}
                 >
                 <View>
-                    <Text style={textStyle}>{date.format('MMM-Do-YYYY hh:mm:ss')}</Text>
-
-
+                    <Text style={textStyle}>{date.format('MMM-Do-YYYY hh:mm a')}</Text>
                     {Platform.OS != 'ios'  && show && renderDatePicker()}
-
                     {Platform.OS=='ios' && (
-
-
-
                     <Modal
                         transparent={true}
                         animationType="slide"
@@ -156,12 +150,14 @@ const CustomDatePicker =(props)=>{
                         supportedOrientations={['portrait']}
                         onRequestClose={()=>setShow(false)}
                     >
-                        <View style={{flex:1}}>
+                        <View style={{flex: 1}}>
                             <TouchableHighlight
                                 style={{
                                     flex:1,
-                                    alignItems:'flex-end',
+                                    alignItems:'flex-start',
                                     flexDirection:'row',
+                                    marginTop: 50,
+                                    //backgroundColor: 'blue'
                                 }}
                                 activeOpacity={1}
                                 visible={show}
@@ -177,13 +173,14 @@ const CustomDatePicker =(props)=>{
                                     onPress={()=>console.log('datapicker clicked')}
                                 >
                                     <View style={{
-                                        backgroundColor:'#FFFFFF',
+                                        //backgroundColor:'red',
                                         height: 256,
-                                        overflow:'hidden'
+                                        overflow:'hidden',
                                     }}>
-                                        <View style={{marginTop: 20}}>
+                                        <View style={{marginTop: 20, flex: 1}}>
 
                                             <DateTimePicker
+                                                style={{flex: 1}}
                                                 //isVisible={show}
                                                 //onConfirm={handleConfirm}
                                                 //onCancel={onCancelPress}
@@ -217,26 +214,17 @@ const CustomDatePicker =(props)=>{
                                                     Done
                                                 </Text>
                                             </TouchableHighlight>
-
-
-
                                         </View>
-
                                     </View>
-
                                 </TouchableHighlight>
-
                             </TouchableHighlight>
                         </View>
-
                     </Modal>
                     )}
                     <View>
                         <Text style={styles.redButton}  onPress={()=>onButtonAppoint()} >CONFIRM APPOINTMENT</Text>
                     </View>
-
                 </View>
-
             </TouchableHighlight>
         )
 

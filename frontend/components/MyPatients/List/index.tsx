@@ -3,8 +3,10 @@ import { View ,Text, Linking, TouchableOpacity} from "react-native";
 
 import {UserType} from "../../../types";
 import styles from "../../VideoCall/styles";
+//import styles from "./styles";
 import ProfilePicture from "../../ProfilePicture";
 import axios from "axios";
+import moment from "moment";
 
 export type UserProps = {
     User: UserType
@@ -47,7 +49,7 @@ return(
             <Text>Patient: {User.firstName} {User.lastName} </Text>
             <Text>Phone Number: {User.phoneNumber}</Text>
             <Text>Address: {User.physicalAddress}</Text>
-            <Text style={styles.redButton}>APPOINTMENT ON: {User.myAppointment} </Text>
+            <Text style={styles.redButton}>APPOINTMENT ON: {moment(User.myAppointment).format('DD/MM/YYYY, hh:mm a')}</Text>
         </TouchableOpacity>
     </View>
 )

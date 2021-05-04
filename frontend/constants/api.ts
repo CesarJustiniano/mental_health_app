@@ -1,10 +1,12 @@
 import axios from "axios";
 
 //axios.defaults.baseURL = 'http://localhost:3000/api'; //for Web page
-//axios.defaults.baseURL = 'http://172.20.10.3:3000/api'; //for mobile device & Web Page
 //axios.defaults.baseURL = 'http://10.0.0.75:3000/api'; //for mobile device & Web Page last
 //axios.defaults.baseURL = 'exp://172.20.10.3:3000/api'; //for mobile device & Web Page
-axios.defaults.baseURL = 'http://10.0.0.64:3000/api'
+//axios.defaults.baseURL = 'http://10.0.0.64:3000/api'
+
+axios.defaults.baseURL = 'http://192.168.0.19:3000/api';
+
 
 
 //axios.defaults.baseURL = 'http://10.0.0.121:3000/api'; //for mobile device & Web Page

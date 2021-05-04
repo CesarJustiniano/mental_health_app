@@ -1,5 +1,15 @@
 import * as React from 'react';
-import {StyleSheet,Platform,ScrollView, TextInput, Dimensions, TouchableOpacity, KeyboardAvoidingView, Image} from 'react-native';
+import {
+    StyleSheet,
+    Platform,
+    ScrollView,
+    TextInput,
+    Dimensions,
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    Image,
+    Alert
+} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View , } from '../components/Themed';
@@ -16,6 +26,15 @@ export default function UserLoginScreen(){
         navigation.navigate('SignUpScreen');
     }
 
+    const createOneButtonErrorAlert = () =>
+        Alert.alert(
+            "Unable to login",
+            "Invalid username or password.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
+
     const onButtonLogin = async () => {
         try {
             const loginCredentials = {
@@ -26,6 +45,7 @@ export default function UserLoginScreen(){
             setUserLogin(response.data);
             if (response.data == 'No User Exists'){
                 console.warn(response.data);
+                createOneButtonErrorAlert();
             } else {
                 navigation.navigate('Root');
                 // navigation.navigate('UserMenuScreen');

@@ -59,15 +59,15 @@ export default function SignUpDoctorScreen(){
             const response = await axios.post('/doctor_signup', fields);
             console.log(response.data);
             setRegister(response.data);
-            createPopUp()
-            navigation.navigate('LoginPsychologistScreen');
+            //createPopUp()
+           // navigation.navigate('LoginPsychologistScreen');
             const loginCredentials ={
                 username: fields.username,
                 password: fields.password
             }
-            const loginStatus = await axios.post('/doctor_login',loginCredentials, {withCredentials:true});
-            console.log(loginStatus.data);
-            navigation.navigate('InformationBoardScreen');
+            await axios.post('/doctor_login',loginCredentials, {withCredentials:true});
+            //console.log(loginStatus.data);
+            navigation.navigate('Root');
         } catch (e) {
             console.log(e)
         }

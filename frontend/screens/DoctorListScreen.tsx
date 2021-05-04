@@ -27,7 +27,7 @@ export default function DoctorListScreen(){
 
 
     const onButtonPress = () => {
-        navigation.navigate('InformationBoardScreen');
+        navigation.navigate('Root');
     }
 
     const onButtonPress2 = () => {

@@ -38,17 +38,6 @@ export default function InformationPsychologistScreen(){
                     <Text style={styles.customButton} onPress={onButtonHelp} >HELP CENTERS</Text>
                 </TouchableOpacity>
 
-
-                <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onFeedBack} >FEEDBACK</Text>
-                </TouchableOpacity>
-
-
-
-                <TouchableOpacity >
-                    <Text style={styles.customButton} onPress={onButtonBack} >GO TO MAIN</Text>
-                </TouchableOpacity>
-
             </View>
         </View>
     );

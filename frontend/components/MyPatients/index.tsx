@@ -119,7 +119,7 @@ const MyPatients = ()=>{
     // @ts-ignore
     return(
 
-        <View>
+        <View style={{ alignItems: "flex-start", justifyContent: "flex-start"}}>
             <FlatList
                 data={patients}
                 renderItem={({item}) => <List User={item}/>}

@@ -10,8 +10,8 @@ export default function DoctorSchedule(){
 
 
     return(
-        <View style={{flex:1,marginTop:50,alignItems: 'center',
-            justifyContent: 'center',}}>
+        <View style={{flex:1,alignItems: 'center',
+            justifyContent: 'center'}}>
             <MyPatients></MyPatients>
 
         </View>

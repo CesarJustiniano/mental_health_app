@@ -49,14 +49,14 @@ export default function SignUpScreen(){
             const response = await axios.post('/signup', fields);
             console.log(response.data);
             setRegister(response.data);
-            createPopUp();
+            //createPopUp();
             //navigation.navigate('UserLoginScreen');
             const loginCredentials = {
                 username: fields.username,
                 password: fields.password,
             }
             const loginStatus = await axios.post('/login', loginCredentials, {withCredentials: true});
-            console.log(loginStatus.data);
+            //console.log(loginStatus.data);
             navigation.navigate('Root');
         } catch (e) {
             console.log(e)
