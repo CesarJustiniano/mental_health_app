@@ -15,11 +15,15 @@ import {RouteProp, useNavigation} from "@react-navigation/native";
 import { useRoute } from '@react-navigation/native';
 import {Params} from "../types";
 import axios from "axios";
+import Filter from 'bad-words';
 
 export default function NewCommentScreen() {
     const [comment, setComment] = useState('');
     const navigation = useNavigation();
     const route = useRoute<RouteProp<Params, 'A'>>();
+    const filter = new Filter();
+    filter.addWords('bullshit');
+    filter.removeWords('sex');
 
     const createOneButtonSuccessAlert = () =>
         Alert.alert(
@@ -33,7 +37,7 @@ export default function NewCommentScreen() {
     const onPostButton = async () => {
         try{
             const newComment = {
-                text: comment,
+                text: filter.clean(comment),
             }
             const response = await axios.post(`/post/${route.params.id}/createComment`, newComment, {withCredentials: true});
             setComment(response.data);

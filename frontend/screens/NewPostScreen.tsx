@@ -14,12 +14,17 @@ import ProfilePicture from "../components/ProfilePicture";
 import {RouteProp, useNavigation, useRoute} from "@react-navigation/native";
 import axios from "axios";
 import {Params} from "../types";
+import Filter from 'bad-words';
 
 export default function NewPostScreen() {
     const [post, setPost] = useState('');
     const navigation = useNavigation();
 
     const route = useRoute<RouteProp<Params, 'A'>>();
+
+    const filter = new Filter();
+    filter.addWords('bullshit');
+    filter.removeWords('sex');
 
     const createOneButtonSuccessAlert = () =>
         Alert.alert(
@@ -33,7 +38,7 @@ export default function NewPostScreen() {
     const onPostButton = async () => {
         try {
             const newPost = {
-                body: post,
+                body: filter.clean(post),
             }
             const response = await axios.post(`/createPost/${route.params.name}`, newPost, {withCredentials: true});
             setPost(response.data);

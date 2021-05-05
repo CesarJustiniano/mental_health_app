@@ -8,6 +8,8 @@ import ProfilePicture from "../components/ProfilePicture";
 import ChatMessage from '../components/ChatMessage'
 import BG from '../assets/images/chatBackground.jpg';
 import InputBox from "../components/InputBox";
+import Filter from 'bad-words';
+
 
 import {Params} from "../types";
 import axios from "axios";
@@ -25,6 +27,10 @@ export default function ChatRoomScreen() {
     const [textMessage, setTextMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const [loggedUser, setLoggedUser] = useState([]);
+
+    const filter = new Filter();
+    filter.addWords('bullshit');
+    filter.removeWords('sex');
 
     const fetchMessages = async () => {
         setLoading(true);
@@ -111,7 +117,7 @@ export default function ChatRoomScreen() {
     const onSendPress = async () => {
         try {
             const newMessage = {
-                content: textMessage,
+                content: filter.clean(textMessage),
             }
             await axios.post(`/chatRoom/${routeId.params.id}/createMessage`, newMessage, {withCredentials: true});
             setTextMessage('');
