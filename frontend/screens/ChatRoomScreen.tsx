@@ -89,10 +89,14 @@ export default function ChatRoomScreen() {
                     style: "cancel"
                 },
                 { text: "Confirm", onPress: async () => {
-                        const response = await axios.delete(`/groupChatroom/remove/${routeId.params.id}`, {withCredentials: true});
-                        navigation.navigate('Root');
-                        createOneButtonSuccessAlert();
-                        return response.data;
+                        try {
+                            const response = await axios.delete(`/groupChatroom/remove/${routeId.params.id}`, {withCredentials: true});
+                            navigation.navigate('Root');
+                            createOneButtonSuccessAlert();
+                            return response.data;
+                        } catch (e){
+                            createOneButtonErrorAlert();
+                        }
                     } }
             ]
         );
@@ -102,16 +106,7 @@ export default function ChatRoomScreen() {
     }
 
     const onDeleteButton = async () => {
-        try{
-            createDeleteAlert();
-            // const response = await axios.delete(`/groupChatroom/remove/${routeId.params.id}`, {withCredentials: true});
-            // navigation.navigate('Root');
-            // createOneButtonSuccessAlert();
-            // return response.data;
-        } catch (e) {
-            console.log(e);
-            createOneButtonErrorAlert();
-        }
+        createDeleteAlert();
     }
 
     const onSendPress = async () => {

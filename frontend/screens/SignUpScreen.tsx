@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {  Text, View , } from '../components/Themed';
 import {useState} from "react";
 import axios from "axios";
+import KeyboardSpacer from "react-native-keyboard-spacer";
 
 export default function SignUpScreen(){
 
@@ -76,92 +77,89 @@ export default function SignUpScreen(){
 
 
     return (
-
-        <KeyboardAvoidingView
-            style={{flex:1}}
-            behavior={'padding'}
+        <ScrollView
+            contentContainerStyle={{flex:1}} bounces={false}
         >
-            <ScrollView
-                contentContainerStyle={{flex:1}} bounces={false}
+            <KeyboardAvoidingView
+                style={{flex:1}}
+                behavior={'padding'}
                 >
-        <View style={styles.container}>
+            <View style={styles.container}>
+                <Text style={styles.headings}>Enter Your Information</Text>
 
-
-
-       <Text style={styles.headings}>Enter Your Information</Text>
-            <TextInput
-                value={register.email || ''}
-                onChangeText={(event) => setRegister({...register, email: event})}
-                style={styles.customInput}
-                placeholder='E-Mail'
-                placeholderTextColor='rgba(0,128,128,0.6)'
-                underlineColorAndroid='transparent'>
-            </TextInput>
-            <TextInput
-                value={register.password || ''}
-                onChangeText={(event) => setRegister({...register, password: event})}
-                style={styles.customInput}
-                placeholder='Password'
-                placeholderTextColor='rgba(0,128,128,0.6)'
-                underlineColorAndroid='transparent'
-                secureTextEntry={true}>
-            </TextInput>
-            <TextInput
-                value={register.firstName || ''}
-                onChangeText={(event) => setRegister({...register, firstName: event})}
-                style={styles.customInput}
-                placeholder='First Name'
-                placeholderTextColor='rgba(0,128,128,0.6)'
-                underlineColorAndroid='transparent'>
-            </TextInput>
-            <TextInput
-                value={register.lastName || ''}
-                onChangeText={(event) => setRegister({...register, lastName: event})}
-                style={styles.customInput}
-                placeholder='Last Name'
-                placeholderTextColor='rgba(0,128,128,0.6)'
-                underlineColorAndroid='transparent'>
-            </TextInput>
-            <TextInput
-                value={register.username || ''}
-                onChangeText={(event) => setRegister({...register, username: event})}
-                style={styles.customInput}
-                placeholder='Username'
-                placeholderTextColor='rgba(0,128,128,0.6)'
-                underlineColorAndroid='transparent'>
-            </TextInput>
-            <TextInput
-                value={register.phoneNumber || ''}
-                onChangeText={(event) => setRegister({...register, phoneNumber: event})}
-                style={styles.customInput}
-                placeholder='Phone Number, e.g: 17875557777'
-                placeholderTextColor='rgba(0,128,128,0.6)'
-                underlineColorAndroid='transparent'>
-            </TextInput>
-            <TextInput
-                value={register.age || ''}
-                onChangeText={(event) => setRegister({...register, age: event})}
-                style={styles.customInput}
-                placeholder='Age'
-                placeholderTextColor='rgba(0,128,128,0.6)'
-                underlineColorAndroid='transparent'>
-            </TextInput>
-            <TextInput
-                value={register.gender || ''}
-                onChangeText={(event) => setRegister({...register, gender: event})}
-                style={styles.customInput}
-                placeholder='Gender'
-                placeholderTextColor='rgba(0,128,128,0.6)'
-                underlineColorAndroid='transparent'>
-            </TextInput>
-            <TextInput
-                value={register.physicalAddress || ''}
-                onChangeText={(event) => setRegister({...register, physicalAddress: event})}
-                style={styles.customInput}
-                placeholder='Address'
-                placeholderTextColor='rgba(0,128,128,0.6)'
-                underlineColorAndroid='transparent'>
-            </TextInput>
+                <TextInput
+                    value={register.email || ''}
+                    onChangeText={(event) => setRegister({...register, email: event})}
+                    style={styles.customInput}
+                    placeholder='E-Mail'
+                    placeholderTextColor='rgba(0,128,128,0.6)'
+                    underlineColorAndroid='transparent'>
+                </TextInput>
+                <TextInput
+                    value={register.password || ''}
+                    onChangeText={(event) => setRegister({...register, password: event})}
+                    style={styles.customInput}
+                    placeholder='Password'
+                    placeholderTextColor='rgba(0,128,128,0.6)'
+                    underlineColorAndroid='transparent'
+                    secureTextEntry={true}>
+                </TextInput>
+                <TextInput
+                    value={register.firstName || ''}
+                    onChangeText={(event) => setRegister({...register, firstName: event})}
+                    style={styles.customInput}
+                    placeholder='First Name'
+                    placeholderTextColor='rgba(0,128,128,0.6)'
+                    underlineColorAndroid='transparent'>
+                </TextInput>
+                <TextInput
+                    value={register.lastName || ''}
+                    onChangeText={(event) => setRegister({...register, lastName: event})}
+                    style={styles.customInput}
+                    placeholder='Last Name'
+                    placeholderTextColor='rgba(0,128,128,0.6)'
+                    underlineColorAndroid='transparent'>
+                </TextInput>
+                <TextInput
+                    value={register.username || ''}
+                    onChangeText={(event) => setRegister({...register, username: event})}
+                    style={styles.customInput}
+                    placeholder='Username'
+                    placeholderTextColor='rgba(0,128,128,0.6)'
+                    underlineColorAndroid='transparent'>
+                </TextInput>
+                <TextInput
+                    value={register.phoneNumber || ''}
+                    onChangeText={(event) => setRegister({...register, phoneNumber: event})}
+                    style={styles.customInput}
+                    placeholder='Phone Number, e.g: 17875557777'
+                    placeholderTextColor='rgba(0,128,128,0.6)'
+                    underlineColorAndroid='transparent'>
+                </TextInput>
+                <TextInput
+                    value={register.age || ''}
+                    onChangeText={(event) => setRegister({...register, age: event})}
+                    style={styles.customInput}
+                    placeholder='Age'
+                    placeholderTextColor='rgba(0,128,128,0.6)'
+                    underlineColorAndroid='transparent'>
+                </TextInput>
+                <TextInput
+                    value={register.gender || ''}
+                    onChangeText={(event) => setRegister({...register, gender: event})}
+                    style={styles.customInput}
+                    placeholder='Gender'
+                    placeholderTextColor='rgba(0,128,128,0.6)'
+                    underlineColorAndroid='transparent'>
+                </TextInput>
+                <TextInput
+                    value={register.physicalAddress || ''}
+                    onChangeText={(event) => setRegister({...register, physicalAddress: event})}
+                    style={styles.customInput}
+                    placeholder='Address'
+                    placeholderTextColor='rgba(0,128,128,0.6)'
+                    underlineColorAndroid='transparent'>
+                </TextInput>
             <View>
                 <Text onPress={onButtonToS}
                 style={{color:'blue'}}>
@@ -174,12 +172,14 @@ export default function SignUpScreen(){
                 <TouchableOpacity >
                     <Text style={styles.customButton} onPress={onButtonBack} >                 GO BACK</Text>
                 </TouchableOpacity>
-
             </View>
         </View>
-                </ScrollView>
             </KeyboardAvoidingView>
-    );
+
+        </ScrollView>
+
+
+);
 
 }
 
