@@ -12,6 +12,7 @@ import InputBox from "../components/InputBox";
 import {Params} from "../types";
 import axios from "axios";
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import {getAuthUser} from "../constants/api";
 
 export default function ChatRoomScreen() {
     const navigation = useNavigation();
@@ -23,10 +24,12 @@ export default function ChatRoomScreen() {
     const [message, setMessage] = useState([]);
     const [textMessage, setTextMessage] = useState('');
     const [loading, setLoading] = useState(false);
+    const [loggedUser, setLoggedUser] = useState([]);
 
     const fetchMessages = async () => {
         setLoading(true);
         try {
+            setLoggedUser(await getAuthUser());
             const getMessages = async () => {
                 try{
                     const response = await axios.get(`/chatRoom/${routeId.params.id}/messages`, {withCredentials: true});
@@ -69,16 +72,36 @@ export default function ChatRoomScreen() {
             ]
         );
 
+    const createDeleteAlert = () =>
+        Alert.alert(
+            "Delete this group chat?",
+            "Once deleted, the previous messages cannot be recovered.",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "Confirm", onPress: async () => {
+                        const response = await axios.delete(`/groupChatroom/remove/${routeId.params.id}`, {withCredentials: true});
+                        navigation.navigate('Root');
+                        createOneButtonSuccessAlert();
+                        return response.data;
+                    } }
+            ]
+        );
+
     const onCloseButton = () => {
         navigation.navigate('Root');
     }
 
     const onDeleteButton = async () => {
         try{
-            const response = await axios.delete(`/groupChatroom/remove/${routeId.params.id}`, {withCredentials: true});
-            navigation.navigate('Root');
-            createOneButtonSuccessAlert();
-            return response.data;
+            createDeleteAlert();
+            // const response = await axios.delete(`/groupChatroom/remove/${routeId.params.id}`, {withCredentials: true});
+            // navigation.navigate('Root');
+            // createOneButtonSuccessAlert();
+            // return response.data;
         } catch (e) {
             console.log(e);
             createOneButtonErrorAlert();
@@ -109,7 +132,7 @@ export default function ChatRoomScreen() {
                         <Text style={styles.headerUsername}>{route.params.name}</Text>
                         <Text style={styles.headerText}>Chat</Text>
                     </View>
-                    <AntDesign name="delete" size={24} color="red" onPress={onDeleteButton} />
+                    {loggedUser.role == 'doctor' ? <AntDesign name="delete" size={24} color="red" onPress={onDeleteButton}/> : <View></View>}
                 </View>
 
                         <ImageBackground style={styles.background} source={BG}>

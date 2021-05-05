@@ -47,6 +47,7 @@ return(
         <TouchableOpacity>
             <ProfilePicture></ProfilePicture>
             <Text>Patient: {User.firstName} {User.lastName} </Text>
+            <Text>Username: {User.username}</Text>
             <Text>Phone Number: {User.phoneNumber}</Text>
             <Text>Address: {User.physicalAddress}</Text>
             <Text style={styles.redButton}>APPOINTMENT ON: {moment(User.myAppointment).format('DD/MM/YYYY, hh:mm a')}</Text>

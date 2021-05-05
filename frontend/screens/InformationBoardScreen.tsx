@@ -36,10 +36,6 @@ export default function InformationBoardScreen(){
                          <Text style={styles.customButton} onPress={onButtonPress} >HELP CENTERS</Text>
            </TouchableOpacity>
 
-           <TouchableOpacity >
-                 <Text style={styles.customButton} onPress={onButtonPress2} >PHONE NUMBERS</Text>
-           </TouchableOpacity>
-
            </View>
 
 

@@ -12,16 +12,16 @@ export default function FeedCategoriesScreen() {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={onClick}>
             <View style={styles.container}>
-                <FlatList
-                    style={{width: '100%'}}
-                    data={postCategories}
-                    renderItem={({item}) => <PostCategoryListItem category={item}/>}
-                    keyExtractor={(item) => item.id}
-                />
+                <TouchableWithoutFeedback onPress={onClick}>
+                    <FlatList
+                        style={{width: '100%'}}
+                        data={postCategories}
+                        renderItem={({item}) => <PostCategoryListItem category={item}/>}
+                        keyExtractor={(item) => item.id}
+                    />
+                </TouchableWithoutFeedback>
             </View>
-        </TouchableWithoutFeedback>
     )
 }
 

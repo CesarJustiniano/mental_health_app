@@ -63,7 +63,7 @@ export default function UpdateProfileScreen() {
                         style={styles.data}
                         value={username}
                         onChangeText={(value) => setUsername(value)}
-                        placeholder={'Change to a new username'}
+                        placeholder={'New username'}
                     />
                 </View>
                 <View style={styles.inputContainer}>
@@ -72,7 +72,7 @@ export default function UpdateProfileScreen() {
                         style={styles.data}
                         value={phoneNumber}
                         onChangeText={(value) => setPhoneNumber(value)}
-                        placeholder={'Change to a new phone number, e.g: 17875557777'}
+                        placeholder={'e.g: 17875557777'}
                     />
                 </View>
                 <View style={styles.inputContainer}>
@@ -81,7 +81,7 @@ export default function UpdateProfileScreen() {
                         style={styles.data}
                         value={address}
                         onChangeText={(value) => setAddress(value)}
-                        placeholder={'Change to a new address'}
+                        placeholder={'New address'}
                     />
                 </View>
                 <View style={styles.buttonContainer}>

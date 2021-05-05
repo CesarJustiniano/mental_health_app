@@ -27,7 +27,7 @@ const PatientList = ({User}:UserProps) =>(
         <TouchableOpacity >
             <ProfilePicture></ProfilePicture>
             <Text>Patient: {User.firstName} {User.lastName} </Text>
-
+            <Text>Username: {User.username}</Text>
             <Text>Phone Number: {User.phoneNumber}</Text>
             <Text style={styles.redButton} onPress={()=>onButtonPressVideoChat(User.phoneNumber)}>CALL PATIENT</Text>
         </TouchableOpacity>

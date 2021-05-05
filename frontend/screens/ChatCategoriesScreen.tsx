@@ -21,20 +21,21 @@ export default function ChatCategoriesScreen() {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={onClick}>
             <View style={styles.container}>
                 <View style={styles.headerContainer}>
                     <AntDesign name={'close'} size={30} color={Colors.light.tint} onPress={onCloseButton}/>
                     <Text style={styles.headerText}>Group Chats</Text>
                 </View>
-                <FlatList
-                    style={{width: '100%'}}
-                    data={groupChatCategories}
-                    renderItem={({item}) => <CategoryListItem category={item}/>}
-                    keyExtractor={(item) => item.id}
-                />
+                <TouchableWithoutFeedback onPress={onClick}>
+                    <FlatList
+                        style={{width: '100%'}}
+                        data={groupChatCategories}
+                        renderItem={({item}) => <CategoryListItem category={item}/>}
+                        keyExtractor={(item) => item.id}
+                    />
+                </TouchableWithoutFeedback>
+
             </View>
-        </TouchableWithoutFeedback>
 
     );
 }

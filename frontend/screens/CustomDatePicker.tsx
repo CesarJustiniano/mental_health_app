@@ -28,7 +28,6 @@ const CustomDatePicker =(props)=>{
             "Your Appointment has been created",
             " Please Wait for your appointment date",
             [
-
                 {text: "OK",onPress: () => console.log("OK Pressed") }
             ]
         )
@@ -67,6 +66,7 @@ const CustomDatePicker =(props)=>{
             console.log("RESPONSE OF THE UPDATED USER")
             console.log(responseUser.data);
 
+            createPopUp()
 
             const updateDoctor ={
                 myAppointment: response.data,
@@ -76,7 +76,6 @@ const CustomDatePicker =(props)=>{
             console.log("RESPONSE OF THE DOCTOR")
             console.log(responseDoctor.data)
 
-            createPopUp()
             onCloseButton()
 
             //look into newpost component
@@ -119,7 +118,7 @@ const CustomDatePicker =(props)=>{
                 //isVisible={show}
                 //onConfirm={handleConfirm}
                 //onCancel={onCancelPress}
-                timeZoneOffsetInMinutes={0}
+                //timeZoneOffsetInMinutes={0}
                 value={new Date(date)}
                 mode="date"
                 //mode = {tmode}
@@ -184,7 +183,7 @@ const CustomDatePicker =(props)=>{
                                                 //isVisible={show}
                                                 //onConfirm={handleConfirm}
                                                 //onCancel={onCancelPress}
-                                                timeZoneOffsetInMinutes={0}
+                                                //timeZoneOffsetInMinutes={0}
                                                 value={new Date(date)}
                                                 mode="datetime"
                                                 //mode = {tmode}
@@ -222,7 +221,7 @@ const CustomDatePicker =(props)=>{
                     </Modal>
                     )}
                     <View>
-                        <Text style={styles.redButton}  onPress={()=>onButtonAppoint()} >CONFIRM APPOINTMENT</Text>
+                        <Text style={styles.redButton}  onPress={onButtonAppoint} >CONFIRM APPOINTMENT</Text>
                     </View>
                 </View>
             </TouchableHighlight>
