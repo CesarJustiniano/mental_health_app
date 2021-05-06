@@ -27,18 +27,18 @@ export default function HelpCenterScreen(){
         //{name: 'Hogar Crea Las Marias', _id: '6',phone:'888-991-1168',web:''},
         //{name: 'Hogar Crea San Humacao', _id: '7',phone:'888-991-1168',web:''},
         //{name: 'Hogar Crea Gurabo', _id: '8',phone:'888-991-1168',web:''},
-       // {name: 'Hogar Crea Corozal', _id: '9',phone:'888-991-1168',web:''},
+        // {name: 'Hogar Crea Corozal', _id: '9',phone:'888-991-1168',web:''},
         //{name: 'Hogar Crea La Quinta', _id: '10',phone:'888-991-1168',web:''},
         //{name: 'Hogar Crea Comerio', _id: '11',phone:'888-991-1168',web:''},
         //{name: 'Hogar Crea Naranjito', _id: '12',phone:'888-991-1168',web:''},
         //{name: 'Hogar Crea Manati Varones', _id: '13',phone:'888-991-1168',web:''},
         //{name: 'Hogar Crea Coamo Damas', _id: '14',phone:'888-991-1168',web:''},
         //{name: 'Hogar Crea Yabucoa', _id: '15',phone:'888-991-1168',web:''},
-       // {name: 'Hogar Crea Sabana Catano', _id: '16',phone:'888-991-1168',web:''},
+        // {name: 'Hogar Crea Sabana Catano', _id: '16',phone:'888-991-1168',web:''},
         //{name: 'Hogar Crea Guaynabo Adultos', _id: '17',phone:'888-991-1168',web:''},
         //{name: 'Casa Luz y Vida Incorporated', _id: '18',phone:'888-991-1168',web:''},
         //{name: 'Silo Mision Christiana Incorporated', _id: '19',phone:'888-991-1168',web:''},
-       // {name: 'Hogar Jesus Incorporated', _id: '20',phone:'888-991-1168',web:''},
+        // {name: 'Hogar Jesus Incorporated', _id: '20',phone:'888-991-1168',web:''},
         //{name: 'Hogar Nuevo Pacto', _id: '21',phone:'888-991-1168',web:''},
         {name: 'Ashford Presbyterian Community Hospital', id: '22', phone:' (787) 721-2160', web: 'https://www.presbypr.com/' },
         {name: 'Auxilio Mutuo', id: '23',phone:'(787) 758-2000',web:'http://www.auxiliomutuo.com/'},
@@ -78,10 +78,10 @@ export default function HelpCenterScreen(){
     const onButtonPress = async () => {
         const info = await getAuthUser();
         if(info.role=="doctor"){
-            navigation.navigate('InformationPsychologistScreen');
+            navigation.navigate('Root');
         }
         else {
-            navigation.navigate('InformationBoardScreen');
+            navigation.navigate('Root');
         }
 
     }
@@ -156,7 +156,7 @@ export default function HelpCenterScreen(){
                     </Animated.View>
 
                 }}
-                />
+            />
 
 
         </View>
