@@ -50,7 +50,7 @@ return(
             <Text>Username: {User.username}</Text>
             <Text>Phone Number: {User.phoneNumber}</Text>
             <Text>Address: {User.physicalAddress}</Text>
-            <Text style={styles.redButton}>APPOINTMENT ON: {moment(User.myAppointment).format('DD/MM/YYYY, hh:mm a')}</Text>
+            <Text style={styles.redButton}>APPOINTMENT ON: {moment(User.myAppointment).format('MM/DD/YYYY, hh:mm a')}</Text>
         </TouchableOpacity>
     </View>
 )

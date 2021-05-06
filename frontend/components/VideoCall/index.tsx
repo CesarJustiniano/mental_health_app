@@ -82,7 +82,7 @@ return (
     <View style={styles.container}>
         <Text>Your Doctor`s Name is {Dname} {DLname}</Text>
         <Text>Your Doctor`s Phone: {phoneNumber} </Text>
-        <Text>Your Appointment is on: {moment(appointmentDate).format('DD/MM/YYYY, hh:mm a')}</Text>
+        <Text>Your Appointment is on: {moment(appointmentDate).format('MM/DD/YYYY, hh:mm a')}</Text>
     </View>
 );
 
