@@ -22,12 +22,20 @@ export default function InformationBoardScreen(){
         const onButtonBack = () => {
             navigation.navigate('Root');
         }
+        const onButtonPrivacy = ()=>{
+                Linking.openURL("https://pdfhost.io/v/kXsaPhgTN_FeelGoods_Privacy_Policy.pdf");
+            }
 
     return(
 
     <View style={styles.container}>
 
            <View>
+            <Text onPress={onButtonPrivacy}
+                                 style={{color:'blue', alignItems: 'center',
+                                     justifyContent: 'center'}}>
+                               Privacy Policy
+            </Text>
            <TouchableOpacity >
                          <Text style={styles.customButton} onPress={onButtonPress2} >DOCTOR LIST</Text>
            </TouchableOpacity>
@@ -35,6 +43,8 @@ export default function InformationBoardScreen(){
            <TouchableOpacity >
                          <Text style={styles.customButton} onPress={onButtonPress} >HELP CENTERS</Text>
            </TouchableOpacity>
+
+
 
            </View>
 
