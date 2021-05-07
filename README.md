@@ -20,3 +20,5 @@ In order to run this source code:
 10. Alternatively, you can run this application from your iOS decive by downloading "Expo Go" app
 11. Scan the barcode with your iOS device's camera
 12. Unfortunately, for android the frontend is not fully implemented to render the UI appropriately
+
+To stop the servers of frontend and backend: ctrl + C or command + C
