@@ -17,9 +17,7 @@ const onButtonPressVideoChat = (phoneNumber) => {
     Linking.openURL("tel:+"+phoneNumber);
     //await?
 }
-const onCloseButton = () => {
-    // navigation.navigate('UserMenuScreen');
-}
+
 
 
 const PatientList = ({User}:UserProps) =>(

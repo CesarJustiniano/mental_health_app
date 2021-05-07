@@ -11,13 +11,7 @@ export default function InformationPsychologistScreen(){
     const onButtonHelp = () => {
         navigation.navigate('HelpCenterScreen');
     }
-    const onButtonBack = () => {
-        navigation.navigate('Root');
-    }
 
-    const onFeedBack = () => {
-        //navigation.navigate('PsychologistMenuScreen');
-    }
 
     const onButtonPrivacy = ()=>{
         Linking.openURL("https://pdfhost.io/v/kXsaPhgTN_FeelGoods_Privacy_Policy.pdf");

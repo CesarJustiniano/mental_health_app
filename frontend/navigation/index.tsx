@@ -19,12 +19,8 @@ import SignUpScreen from "../screens/SignUpScreen";
 import InformationBoardScreen from "../screens/InformationBoardScreen";
 import HelpCenterScreen from "../screens/HelpCenterScreen";
 import LoginPsychologistScreen from "../screens/LoginPsychologistScreen";
-import PsychologistMenuScreen from "../screens/PsychologistMenuScreen";
-import UserMenuScreen from "../screens/UserMenuScreen";
 import FirstScreen from "../screens/FirstScreen";
-import CalendarAgenda from "../screens/CalendarAgenda";
 import DatePickerScreen from "../screens/DatePickerScreen";
-
 import TermsOfServiceScreen from "../screens/TermsOfServiceScteen";
 import InformationPsychologistScreen from "../screens/InformationPsychologistScreen";
 import VideoPreCallScreen from "../screens/VideoPreCallScreen";
@@ -74,12 +70,8 @@ function RootNavigator() {
       <Stack.Screen name= "InformationBoardScreen" component={InformationBoardScreen} />
       <Stack.Screen name= "HelpCenterScreen" component={HelpCenterScreen} />
       <Stack.Screen name= "LoginPsychologistScreen" component={LoginPsychologistScreen} />
-      <Stack.Screen name= "PsychologistMenuScreen" component={PsychologistMenuScreen} />
-      <Stack.Screen name= "UserMenuScreen" component={UserMenuScreen} />
-      <Stack.Screen name= "CalendarAgenda" component={CalendarAgenda} />
       <Stack.Screen name= "DatePickerScreen" component={DatePickerScreen} />
       <Stack.Screen name="TermsOfServiceScreen" component={TermsOfServiceScreen} />
-
       <Stack.Screen name= "InformationPsychologistScreen" component={InformationPsychologistScreen} />
       <Stack.Screen name= "VideoPreCallScreen" component={VideoPreCallScreen} />
       <Stack.Screen name= "ScheduleScreen" component={ScheduleScreen}/>
