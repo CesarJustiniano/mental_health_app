@@ -12,7 +12,7 @@ In order to run this source code:
    - **api.tsx** file is located: \mental_health_app\frontend\constants\api.tsx
    - Here is a image of the file: 
 
-7. To run the iOS simulator follow this [![video](http://img.youtube.com/vi/0-S5a0eXPoc?t=879/0.jpg)](https://www.youtube.com/watch?v=0-S5a0eXPoc?t=879)
+7. To run the iOS simulator follow this [![video](http://img.youtube.com/vi/0-S5a0eXPoc?t=880/0.jpg)](https://www.youtube.com/watch?v=0-S5a0eXPoc?t=880)
 8. Alternatively, you can run this application from your iOS decive by downloading "Expo Go" app
 9. Scan the barcode with your iOS device's camera
 10. Unfortunaly, for android the frontend is not fully implemented to render the UI appropriately
