@@ -115,14 +115,8 @@ const CustomDatePicker =(props)=>{
     const renderDatePicker = ()=>{
         return(
             <DateTimePicker
-                //isVisible={show}
-                //onConfirm={handleConfirm}
-                //onCancel={onCancelPress}
-                //timeZoneOffsetInMinutes={0}
                 value={new Date(date)}
                 mode="date"
-                //mode = {tmode}
-
                 minimumDate={new Date(moment().format('YYYY-MM-DD'))}
                 maximumDate={new Date(moment().add(5,'years').format('YYYY-MM-DD'))}
 
@@ -156,7 +150,7 @@ const CustomDatePicker =(props)=>{
                                     alignItems:'flex-start',
                                     flexDirection:'row',
                                     marginTop: 50,
-                                    //backgroundColor: 'blue'
+
                                 }}
                                 activeOpacity={1}
                                 visible={show}
@@ -180,10 +174,6 @@ const CustomDatePicker =(props)=>{
 
                                             <DateTimePicker
                                                 style={{flex: 1}}
-                                                //isVisible={show}
-                                                //onConfirm={handleConfirm}
-                                                //onCancel={onCancelPress}
-                                                //timeZoneOffsetInMinutes={0}
                                                 value={new Date(date)}
                                                 mode="datetime"
                                                 //mode = {tmode}
@@ -191,7 +181,7 @@ const CustomDatePicker =(props)=>{
                                                 minimumDate={new Date(moment().format('YYYY-MM-DD'))}
                                                 maximumDate={new Date(moment().add(5,'years').format('YYYY-MM-DD'))}
                                                 onChange={Platform.OS=='ios'? onChange : onAndroidChange}
-                                                //17:18
+
                                             >
                                             </DateTimePicker>
 

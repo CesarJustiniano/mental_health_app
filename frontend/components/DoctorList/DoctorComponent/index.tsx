@@ -15,13 +15,6 @@ export type DoctorProps = {
     doctor: DoctorType
 }
 
-const onButtonPressVideoChat = (phoneNumber) => {
-    //navigation.navigate('LoginPsychologistScreen');
-    Linking.openURL("tel:+"+phoneNumber);
-    //await?
-}
-
-
 const DoctorListComp = ({doctor}:DoctorProps) => {
 
     const [Doctor, setDoctor] = useState([]);

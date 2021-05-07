@@ -58,10 +58,6 @@ export default function LoginPsychologistScreen() {
         }
     }
 
-    const onButtonPress2 = () => {
-        navigation.navigate('PsychologistMenuScreen');
-    }
-
     const onButtonPressFirst = ()=>{
         navigation.navigate('FirstScreen')
     }

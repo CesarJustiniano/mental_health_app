@@ -50,7 +50,7 @@ const VideoCall = () =>{
             console.log(info.myDoctor)
 
             console.log("First in Array is:")
-            //console.log(info.myDoctor['firstName'])
+
             setDname(firstNamed.data.firstName)
             setDLname(lastNamed.data.lastName)
             setPhoneNumber(phoneNumby.data.phoneNumber)
@@ -58,7 +58,7 @@ const VideoCall = () =>{
             setAppointmentDate(info.myAppointment)
             console.log(appointmentDate)
 
-            //console.log(myDoctor[0]['firstName'])
+
 
 
 
@@ -73,11 +73,7 @@ const VideoCall = () =>{
         fetchFName().then();
     }, [])
 
-    const onButtonPressVideoChat = (phoneNumber) => {
-        //navigation.navigate('LoginPsychologistScreen');
-        Linking.openURL("tel:+"+phoneNumber);
-        //await?
-    }
+
 return (
     <View style={styles.container}>
         <Text>Your Doctor`s Name is {Dname} {DLname}</Text>

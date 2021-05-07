@@ -18,43 +18,11 @@ export type VideoCallProps ={
 const VideoDoctor= ()=>{
     const flatList = useRef<FlatList>(null);
     const [patients, setPatient] = useState([]);
-    // const [user, setUser] = useState([]);
-    // const [fName, setFName] = useState([]);
-    // const [Dname,setDname] = useState([]);
-    // const [lName, setLName] = useState([]);
     const [loading, setLoading] = useState(false);
     const route = useRoute();
     console.log(route.params)
 
-    // const fetchFDoctor = async ()=>{
-    //     try{
-    //         const info = await getAuthUser();
-    //         console.log("this is the Doctor with DoctorName:")
-    //         console.log(info)
-    //
-    //
-    //         setPatient(info.myPatients);
-    //
-    //         console.log("This is My Patient:")
-    //         console.log(info.myPatients)
-    //         console.log(Patients)
-    //         console.log("First in Array is:")
-    //         console.log("My patient length"+info.myPatients.length)
-    //         let i;
-    //         for(i=0;i<info.myPatients.length;i++){
-    //             //console.log(i)
-    //         }
-    //
-    //         console.log(info.myPatients[0]['firstName'])
-    //         setDname(info.myPatients[0]['firstName'])
-    //         //console.log(myDoctor[0]['firstName'])
-    //
-    //     }
-    //     catch (e){
-    //         console.log(e)
-    //     }
-    //
-    // }
+
 
     const fetchFDoctor = async () => {
         setLoading(true);

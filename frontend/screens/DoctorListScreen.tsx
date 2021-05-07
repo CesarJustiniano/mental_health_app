@@ -30,9 +30,6 @@ export default function DoctorListScreen(){
         navigation.navigate('Root');
     }
 
-    const onButtonPress2 = () => {
-        //navigation.navigate('TabTwoScreen');
-    }
 
 
     return(

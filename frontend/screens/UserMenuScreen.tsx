@@ -2,10 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {KeyboardAvoidingView, Linking, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import axios from "axios";
-import {UserType} from "../types"
-import {DoctorType} from "../types";
-import { useRoute, RouteProp } from '@react-navigation/native';
-import {Params} from "../types";
+
 
 import {Text, View, } from '../components/Themed';
 
@@ -14,12 +11,11 @@ export default function UserMenuScreen(){
     const  navigation = useNavigation();
 
     const onButtonPressSchedule = () => {
-        //navigation.navigate('CalendarAgenda');
+
         navigation.navigate('ScheduleScreen');
     }
     const onButtonPressVideoChat = () => {
-        //navigation.navigate('LoginPsychologistScreen');
-        //Linking.openURL("tel:+17874094429");
+
         navigation.navigate('VideoPreCallScreen')
         //await?
     }

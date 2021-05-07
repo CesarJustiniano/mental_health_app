@@ -17,9 +17,6 @@ import { Text, View , } from '../components/Themed';
 import {useNavigation} from "@react-navigation/native";
 const {width: WIDTH} = Dimensions.get('window')
 
-import {useEffect, useRef, useState} from "react";
-
-
 import VideoDoctor from "../components/VideoDoctor";
 import { useRoute } from '@react-navigation/native';
 
@@ -28,24 +25,6 @@ export default function DoctorVideoScreen(){
     const route = useRoute();
     console.log(route.params)
 
-    let [username, setUsername] = useState('Jesse'); //Dummy initial
-    let [phoneNumber, setPhoneNumber] = useState("17874094429"); //Dummy initial
-    let [address, setAddress] = useState('San Juan, Puerto Rico'); //Dummy initial
-    let[appointmentDate] = useState('May-03-2021')
-    let[myDoctor] = useState('Jesse')
-
-    const onButtonPressVideoChat = () => {
-        //navigation.navigate('LoginPsychologistScreen');
-        Linking.openURL("tel:+"+phoneNumber);
-        //await?
-    }
-    const onButtonBack = () => {
-        //navigation.navigate('CalendarAgenda');
-        navigation.navigate('PsychologistMenuScreen');
-    }
-    const flatList = useRef<FlatList>(null);
-    const [user, setUser] = useState([]);
-    const [loading, setLoading] = useState(false);
 
     return (
         <View style={styles.container}>

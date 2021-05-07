@@ -75,9 +75,7 @@ export default function SignUpDoctorScreen(){
 
 
 
-    const onButtonPress = () => {
-        navigation.navigate('PsychologistMenuScreen');
-    }
+
     const onButtonBack = () => {
         navigation.navigate('LoginPsychologistScreen');
     }
@@ -85,9 +83,6 @@ export default function SignUpDoctorScreen(){
     const onButtonToS = ()=>{
         Linking.openURL("https://pdfhost.io/v/Yql1Cwto7_FeelGoods_Terms_Of_Service.pdf");
     }
-
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
-
 
 
     return (
