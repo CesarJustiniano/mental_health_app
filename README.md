@@ -11,7 +11,7 @@ In order to run this source code:
 6. Since this application was not deployed, you will need to adjust the _baseURL_ on the file **api.tsx**
    - **api.tsx** file is located: \mental_health_app\frontend\constants\api.tsx
    - Here is a image of the file: 
-
+![BaseURL code](https://user-images.githubusercontent.com/25636543/117503560-1be1eb80-af4f-11eb-861f-ac11f8de183c.PNG)
 7. To run the iOS simulator follow this [![video](http://img.youtube.com/vi/0-S5a0eXPoc?t=880/0.jpg)](https://www.youtube.com/watch?v=0-S5a0eXPoc?t=880)
 8. Alternatively, you can run this application from your iOS decive by downloading "Expo Go" app
 9. Scan the barcode with your iOS device's camera
