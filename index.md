@@ -18,6 +18,12 @@ The main objective of this project is to create an app with certain features tha
 - Fully implement a feature that would allow Psychologists and other users to post content related to a category. For example, a user can post how they feel during depression, this post will fall into the depression category. Then other users or psychologists are able to comment on that post for morale support or guidance.  Another example is for a psychologist to post information and/or videos that would be about steps on how to treat anxiety. Such posts will fall into the category of Anxiety.
 - Create a section within the app with information of psychologists registered in this app and live in Puerto Rico. Users would be able to send a request to be their patient. Once the selected psychologist accepts they will be able to start scheduling meetings to chat or have a virtual meeting.
 
+### Documentation
+
+[Elevator Pitch](https://drive.google.com/file/d/1xBJ11Y3tqOYyh5pVvI6Homta6Nxzoa_m/view?usp=sharing)
+
+[Final Presentation](https://docs.google.com/presentation/d/19kIaILHlENa8TQOcFl6iY09a1lnuEYfHXaBd1Py4fx4/edit?usp=sharing)
+
 ### Contributors
 
 - César Justiniano-Santiago; [@CesarJustiniano](https://github.com/CesarJustiniano)
